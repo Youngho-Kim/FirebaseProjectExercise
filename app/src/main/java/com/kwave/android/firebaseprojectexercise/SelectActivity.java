@@ -22,7 +22,7 @@ public class SelectActivity extends AppCompatActivity {
         imageInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectActivity.this,InfomationActivity.class);
+                Intent intent = new Intent(SelectActivity.this,InfomationWriteActivity.class);
                 startActivity(intent);
             }
         });

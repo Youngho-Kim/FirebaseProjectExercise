@@ -15,4 +15,5 @@
     </string>
     <string name="title_activity_select">우리집</string>
     <string name="title_activity_infomation">집 정보</string>
+    <string name="title_activity_information">InformationActivity</string>
 </resources>
