@@ -1,6 +1,9 @@
 package com.kwave.android.firebaseprojectexercise;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +20,13 @@ public class InformationActivity extends AppCompatActivity {
 
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.inflateMenu(R.menu.information);
+
+        Drawable dr = getResources().getDrawable(R.drawable.pagepencilicon);
+        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+
+        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
+        toolbar.setOverflowIcon(drawable);
 
 
     }
@@ -25,9 +35,9 @@ public class InformationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                goSelect();
                 return true;
-            case R.id.saveInformation:
+            case android.R.id.custom:
                 goInformation();
                 return true;
         }
@@ -40,5 +50,8 @@ public class InformationActivity extends AppCompatActivity {
         Intent intent = new Intent(InformationActivity.this,InfomationWriteActivity.class);
         startActivity(intent);
     }
-
+    public void goSelect(){
+        Intent intent = new Intent(InformationActivity.this,SelectActivity.class);
+        startActivity(intent);
+    }
 }

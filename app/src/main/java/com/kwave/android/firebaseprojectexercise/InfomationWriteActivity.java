@@ -27,7 +27,7 @@ public class InfomationWriteActivity extends AppCompatActivity {
             case android.R.id.home:
                 goInformation();
                 return true;
-            case R.id.saveInformation:
+            case android.R.id.button1:
                 goInformation();
                 return true;
         }
