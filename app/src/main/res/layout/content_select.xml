@@ -8,4 +8,92 @@
     tools:context="com.kwave.android.firebaseprojectexercise.SelectActivity"
     tools:showIn="@layout/activity_select">
 
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/home_info" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:ems="5"
+        android:inputType="text|textShortMessage"
+        android:text="집 정보"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView14"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@mipmap/money" />
+
+    <EditText
+        android:id="@+id/editText6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="32dp"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:text="납부내역"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText
+        android:id="@+id/editText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:text="준수사항"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/notify" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/group"
+        android:layout_marginRight="32dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText8" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginRight="0dp"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:text="세입자 관리"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/imageView17" />
+
 </android.support.constraint.ConstraintLayout>
