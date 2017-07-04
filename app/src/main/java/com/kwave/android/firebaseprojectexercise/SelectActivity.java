@@ -12,8 +12,6 @@ public class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        toolbar.setTitle("우리집");
     }
 
 }
