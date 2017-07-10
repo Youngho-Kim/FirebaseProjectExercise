@@ -159,27 +159,6 @@ public class PaymentActivity extends AppCompatActivity {
 
 
 
-    class PagerAdapter extends FragmentStatePagerAdapter {
-        List<Fragment> datas;
-        public PagerAdapter(FragmentManager fm, List<Fragment> datas) {
-            super(fm);
-            this.datas = datas;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return datas.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return datas.size();
-        }
-    }
-
-
-
-
 
     //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 실행----------------------------------------
     @Override
@@ -206,6 +185,30 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+
+
+    class PagerAdapter extends FragmentStatePagerAdapter {
+        List<Fragment> datas;
+        public PagerAdapter(FragmentManager fm, List<Fragment> datas) {
+            super(fm);
+            this.datas = datas;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return datas.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return datas.size();
+        }
+    }
 //
 //
 //    public void loadData(){
