@@ -15,5 +15,10 @@
     </string>
     <string name="title_activity_select">우리집</string>
     <string name="title_activity_infomation">집 정보</string>
-    <string name="title_activity_information">InformationActivity</string>
+    <string name="title_activity_information">집 정보</string>
+    <string name="title_activity_payment">납부 내역</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

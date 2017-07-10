@@ -1,0 +1,185 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kwave.android.firebaseprojectexercise.PaymentActivity"
+    tools:showIn="@layout/activity_payment">
+        <LinearLayout
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:id="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <ImageButton
+                android:id="@+id/preMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/cardview_light_background"
+                android:rotation="270"
+                app:srcCompat="@android:drawable/arrow_up_float" />
+            <TextView
+                android:id="@+id/textPayMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="3sp"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="5월"
+                />
+
+            <ImageButton
+                android:id="@+id/nextMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/cardview_light_background"
+                android:rotation="270"
+                app:srcCompat="@android:drawable/arrow_down_float" />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/payTab"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.1"
+            android:text="월세"
+            />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.1"
+            android:text="수도세" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.1"
+            android:text="+  추가" />
+        </android.support.design.widget.TabLayout>
+
+
+        <LinearLayout
+            android:gravity="center"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payTab">
+
+        <TextView
+            android:id="@+id/textPayRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="호실" />
+
+        <TextView
+            android:id="@+id/textPayName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="이름" />
+
+        <TextView
+            android:id="@+id/textPayCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="금액" />
+
+        <TextView
+            android:id="@+id/textPayUse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="사용량" />
+
+        <TextView
+            android:id="@+id/textPayDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="납부일" />
+
+        <TextView
+            android:id="@+id/textPayCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.02"
+            android:textColor="@color/darkish_pink_two"
+            android:textSize="13sp"
+            android:text="확인" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/payViewPaser"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+                <include layout="@layout/fragment_payment_month" />
+        </android.support.v4.view.ViewPager>
+</android.support.constraint.ConstraintLayout>
