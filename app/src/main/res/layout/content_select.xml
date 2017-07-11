@@ -30,7 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                app:srcCompat="@mipmap/home_info" />
+                android:background="#f3f3f3"
+                app:srcCompat="@mipmap/ios_home_outline" />
 
             <TextView
                 android:id="@+id/txtInformation"
@@ -38,7 +39,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="집 정보" />
+                android:letterSpacing="0.1"
+                android:text="집 정보"
+                android:textColor="#3b3a3c"
+                android:textSize="15sp"
+                 />
 
         </LinearLayout>
 
@@ -57,13 +62,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                app:srcCompat="@mipmap/money" />
+                android:background="#f3f3f3"
+                app:srcCompat="@mipmap/group" />
 
             <TextView
                 android:id="@+id/txtPay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#3b3a3c"
+                android:letterSpacing="0.1"
                 android:gravity="center"
                 android:text="납부 내역" />
         </LinearLayout>
@@ -90,13 +99,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                app:srcCompat="@mipmap/notify" />
+                android:background="#f3f3f3"
+                app:srcCompat="@mipmap/folder" />
 
             <TextView
                 android:id="@+id/txtNotify"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#3b3a3c"
+                android:letterSpacing="0.1"
                 android:gravity="center"
                 android:text="준수사항" />
         </LinearLayout>
@@ -116,15 +129,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                app:srcCompat="@mipmap/group" />
+                android:background="#f3f3f3"
+                app:srcCompat="@mipmap/add_contact" />
 
             <TextView
                 android:id="@+id/txtGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
+                android:textColor="#3b3a3c"
+                android:letterSpacing="0.1"
                 android:gravity="center"
-                android:text="세입자 관리" />
+                android:text="세입자 관리"
+                />
         </LinearLayout>
     </LinearLayout>
 

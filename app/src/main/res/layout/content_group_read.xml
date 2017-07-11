@@ -1,0 +1,116 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:layout="@layout/fragment_group_read_month"
+    tools:showIn="@layout/activity_group_read"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp" >
+
+
+        <LinearLayout
+            android:id="@+id/groupReadLinearLayout"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/groupReadAppBarLayout">
+
+        <ImageButton
+            android:id="@+id/groupReadPreMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:rotation="270"
+            app:srcCompat="@android:drawable/arrow_up_float" />
+        <TextView
+            android:id="@+id/textGroupReadMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="3sp"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="5월"
+            />
+
+        <ImageButton
+            android:id="@+id/groupReadNextMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/cardview_light_background"
+            android:rotation="270"
+            app:srcCompat="@android:drawable/arrow_down_float" />
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+
+            android:id="@+id/groupReadTab"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupReadLinearLayout">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/groupReadTabMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.1"
+            android:text="월세"
+            />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/groupReadTabWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.1"
+            android:text="수도세" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:visibility="gone"
+            android:letterSpacing="0.1"
+            android:text="+  추가" />
+        </android.support.design.widget.TabLayout>
+
+
+
+        <android.support.v4.view.ViewPager
+        android:id="@+id/groupReadViewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/groupReadTab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp">
+        <!--<include layout="@layout/fragment_payment_write_month"/>-->
+        </android.support.v4.view.ViewPager>
+
+
+
+</android.support.constraint.ConstraintLayout>

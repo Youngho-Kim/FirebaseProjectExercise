@@ -21,9 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Payment.PaymentReadActivity"
-            android:label="@string/title_activity_payment_read"
-
+            android:name=".SelectActivity"
+            android:label="@string/title_activity_select"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,20 +31,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SelectActivity"
-            android:label="@string/title_activity_select"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".InformationActivity"
+            android:name=".Information.InformationActivity"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".InfomationWriteActivity"
+            android:name=".Information.InfomationWriteActivity"
             android:label="@string/title_activity_infomation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Payment.PaymentWriteActivity"
             android:label="@string/title_activity_payment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Payment.PaymentReadActivity"
+            android:label="@string/title_activity_payment_read"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Notify.NotifyWriteActivity"
+            android:label="@string/title_activity_notify_write"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Notify.NotifyReadActivity"
+            android:label="@string/title_activity_notify_read"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kwave.android.firebaseprojectexercise.Notify.NotifyReadActivity"
+    tools:showIn="@layout/activity_notify_read">
+
+    <TextView
+        android:id="@+id/textView"
+        android:padding="30dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:letterSpacing="0.1"
+        android:gravity="center"
+        android:lineSpacingExtra="2.7sp"
+        tools:text="임차인 준수사항 확인서"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:padding="5dp"
+        android:id="@+id/textNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="sans-serif"
+        android:gravity="start"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="8sp"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        android:text="1. 제 3자에게 임대 대상물의 전부 또는 일부를 임대인의 동의없이 양도하거나 전대할 수 없다.
+2. 구조변경은 할 수 없으며, 설치물의 파손 및 분실에 대하여는 원상복구에 필요한 일체의 비용을 임차인이 부담하며, 임대호실의 시설관리, 유지보수 등을 위해 임대인은 해당 호실을 출입할 수 있다.
+3. 시설물의 보호를 위하여 부착물의 설치는 임대인의 사전허락을 득한 후에 하며, 건물내벽의 시설물 (전기,통신, 시상수 등 기타매입시설물)의 보호 및 임차인의 안전을 위해 모든 못 박음 행위는 금지한다.
+4. 건물 내에서의 음주, 소란 및 고성방가, 애완동물 사육, 복도나 계단 등의 공용장소에서의 흡연은 절대 삼가해야하며, 위반으로 인한 임대인의 조치에 전적으로 수용한다.
+5.1인 1실 (독신자 전용)을 원칙으로 하며, 불가피한 임대인의 사전동의를 득한 동건인 1인 추가시에는 추가관리비 (3만원)를 부담한다.
+6.계약기간 만료 2개월 전에 재계약 여부를 서면 또는 유선으로 통보해야한다.
+7.월임차료(월세) 및 관리비는 임차대상물의 호수를 표기하여 국민은행 738210-01-135005 (서임주)로 입주시 약정한 매월 동일한 일자에 입금한다. " />
+</android.support.constraint.ConstraintLayout>
