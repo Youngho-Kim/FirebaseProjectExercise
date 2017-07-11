@@ -6,23 +6,23 @@ package com.kwave.android.firebaseprojectexercise.domain;
 
 public class PayMonthData {
     public String id;    // 파이어베이스의 push 로 자동생성된다.
-    public String PayRoom;  // 호수
+    public int PayRoom;  // 호수
     public String PayName;     // 이름
-    public String PayCount; // 금액
-    public String PayDay;   // 납부일
-    public boolean PayCheck;
+    public int PayCountMonth; // 금액
+    public int PayDay;   // 납부일
+    public boolean PayCheckMonth;
 
     public PayMonthData(){
 
     }
 
-    public PayMonthData(String id, String payRoom, String payName, String payCount, String payDay, boolean payCheck) {
+    public PayMonthData(String id, int payRoom, String payName, int payCount, int payDay, boolean payCheck) {
         this.id = id;
         this.PayRoom = payRoom;
         this.PayName = payName;
-        this.PayCount = payCount;
+        this.PayCountMonth = payCount;
         this.PayDay = payDay;
-        this.PayCheck = payCheck;
+        this.PayCheckMonth = payCheck;
     }
 }
 

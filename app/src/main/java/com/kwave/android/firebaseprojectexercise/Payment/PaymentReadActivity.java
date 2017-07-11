@@ -1,4 +1,4 @@
-package com.kwave.android.firebaseprojectexercise;
+package com.kwave.android.firebaseprojectexercise.Payment;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,18 +22,18 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.kwave.android.firebaseprojectexercise.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.drawable.ic_menu_edit;
 
-public class PaymentActivity extends AppCompatActivity {
-    TextView textPayMonth,  textPayRoom, textPayName, textPayCount, textPayUse, textPayCheck ;
-    TabLayout payTab;
-    TabItem tabMonth, tabWater;
+public class PaymentReadActivity extends AppCompatActivity {
+    TextView textPayReadMonth;
+    TabLayout payReadTab;
+    TabItem payReadTabMonth, payReadTabWater;
     LocationManager manager;
-    ViewPager payViewPaser;
+    ViewPager payReadViewPaser;
     Fragment monthFee,waterFee;
     PagerAdapter adapter;
 
@@ -47,28 +47,21 @@ public class PaymentActivity extends AppCompatActivity {
         bbsRef = database.getReference("bbs");
 
 
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_payment_read);
 
-        textPayMonth = (TextView) findViewById(R.id.textPayMonth);
-        textPayRoom = (TextView) findViewById(R.id.textPayRoom);
-        textPayName = (TextView) findViewById(R.id.textPayName);
-        textPayCount = (TextView) findViewById(R.id.textPayCount);
-        textPayUse = (TextView) findViewById(R.id.textPayUse);
-        textPayCheck = (TextView) findViewById(R.id.textPayCheck);
-        payTab = (TabLayout) findViewById(R.id.payTab);
-        tabMonth = (TabItem) findViewById(R.id.tabMonth);
-        tabWater = (TabItem) findViewById(R.id.tabWater);
-        payViewPaser = (ViewPager) findViewById(R.id.payViewPaser);
+        textPayReadMonth = (TextView) findViewById(R.id.textPayReadMonth);
+        payReadTab = (TabLayout) findViewById(R.id.payReadTab);
+        payReadTabMonth = (TabItem) findViewById(R.id.payReadTabMonth);
+        payReadTabWater = (TabItem) findViewById(R.id.payReadTabWater);
+        payReadViewPaser = (ViewPager) findViewById(R.id.payReadViewPaser);
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.payToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.payReadToolbar);
         setSupportActionBar(toolbar);
 
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        toolbar.inflateMenu(R.menu.information);
-        getSupportActionBar().setIcon(ic_menu_edit);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
 
         manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -81,8 +74,8 @@ public class PaymentActivity extends AppCompatActivity {
 //        payTab.addTab(payTab.newTab().setText("Four"));
 
         // 2. Fragment 생성
-        monthFee = new PaymentFragment_month();
-        waterFee = new PaymentFragment_water();
+        monthFee = new PaymentWriteFragment_month();
+        waterFee = new PaymentWriteFragment_water();
 
         // 3. Fragment를 datas 저장소에 담은 후
         List<Fragment> datas = new ArrayList<>();
@@ -94,14 +87,14 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         // 5. adapter를 pager 위젯에 연결
-        payViewPaser.setAdapter(adapter);
+        payReadViewPaser.setAdapter(adapter);
 
         // 6. 페이저가 변경 되었을 때 탭을 변경해주는 리스너
-        payViewPaser.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(payTab));
+        payReadViewPaser.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(payReadTab));
 
 
         // 7. 탭이 변경되었을 때 탭을 변경해주는 리스너
-        payTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payViewPaser));
+        payReadTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payReadViewPaser));
 
 
 //        loadData();
@@ -160,7 +153,7 @@ public class PaymentActivity extends AppCompatActivity {
         finish();
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------권한처리 끝--------------------------------------------------------------------------------------
 
 
 
@@ -240,18 +233,6 @@ public class PaymentActivity extends AppCompatActivity {
 //        startActivity(intent);
 //    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

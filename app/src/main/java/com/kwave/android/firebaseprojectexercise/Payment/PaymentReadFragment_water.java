@@ -1,4 +1,4 @@
-package com.kwave.android.firebaseprojectexercise;
+package com.kwave.android.firebaseprojectexercise.Payment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,41 +8,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kwave.android.firebaseprojectexercise.R;
 import com.kwave.android.firebaseprojectexercise.domain.PayWaterData;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by kwave on 2017-07-11.
+ */
 
-public class PaymentFragment_water extends Fragment {
-    RecyclerView payWaterRecycler;
-    PaymentListAdapter_water adapter;
+public class PaymentReadFragment_water extends Fragment{
 
-    public PaymentFragment_water() {
+    RecyclerView payReadWaterRecycler;
+    PaymentReadListAdapter_water adapter;
+
+    public PaymentReadFragment_water() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_payment_water, container, false);
+        View view = inflater.inflate(R.layout.fragment_payment_read_water, container, false);
 
 
         List<PayWaterData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         PayWaterData bbs = new PayWaterData();
         bbs.PayName = "kwave";
-        bbs.PayCount = "3000";
-        bbs.PayDay = "2/4";
-        bbs.PayRoom = "301호";
-        bbs.PayUse = "300";
-        bbs.PayCheck = true;
+        bbs.PayCountWater = 3000;
+        bbs.PayDay = 8;
+        bbs.PayRoom = 301;
+        bbs.PayUse = 300;
+        bbs.PayCheckWater = true;
         data.add(bbs);
 
         // RecyclerView Setting
-        payWaterRecycler = (RecyclerView) view.findViewById(R.id.payWaterRecycler);
-        adapter = new PaymentListAdapter_water(data, getContext());
-        payWaterRecycler.setAdapter(adapter);
-        payWaterRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        payReadWaterRecycler = (RecyclerView) view.findViewById(R.id.payReadWaterRecycler);
+        adapter = new PaymentReadListAdapter_water(data, getContext());
+        payReadWaterRecycler.setAdapter(adapter);
+        payReadWaterRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
 
@@ -51,6 +56,5 @@ public class PaymentFragment_water extends Fragment {
 
         return view;
     }
-
 
 }

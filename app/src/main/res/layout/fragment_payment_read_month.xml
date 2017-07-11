@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.kwave.android.firebaseprojectexercise.PaymentFragment_water">
+    tools:context="com.kwave.android.firebaseprojectexercise.Payment.PaymentReadFragment_month">
+
 
 
     <LinearLayout
         android:gravity="center"
-        android:id="@+id/linearLayout"
+        android:id="@+id/payReadLinearLayoutMonth"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         app:layout_constraintHorizontal_bias="1.0"
@@ -20,52 +21,42 @@
         app:layout_constraintTop_toBottomOf="@+id/payTab">
 
         <TextView
-            android:id="@+id/textPayRoom"
-            android:layout_width="60dp"
+            android:id="@+id/payReadRoomMonth"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
             android:text="호실" />
 
         <TextView
-            android:id="@+id/textPayName"
-            android:layout_width="60dp"
+            android:id="@+id/payReadNameMonth"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
             android:text="이름" />
 
         <TextView
-            android:id="@+id/textPayCount"
-            android:layout_width="60dp"
+            android:id="@+id/payReadCountMonth"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:text="금액" />
+            android:text="금액(/달)" />
+
 
         <TextView
-            android:id="@+id/textPayUse"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:letterSpacing="0.02"
-            android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="사용량" />
-
-        <TextView
-            android:id="@+id/textPayDay"
-            android:layout_width="60dp"
+            android:id="@+id/payReadDayMonth"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
@@ -75,21 +66,22 @@
             android:text="납부일" />
 
         <TextView
-            android:id="@+id/textPayCheck"
+            android:id="@+id/payReadCheckMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_horizontal"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
+            android:layout_weight="1"
             android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/payWaterRecycler"
+        android:id="@+id/payReadMonthRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

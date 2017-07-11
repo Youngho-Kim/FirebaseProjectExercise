@@ -8,21 +8,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 >
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayRoomMonth"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:fontFamily="sans-serif"
-            android:textStyle="normal"
-            android:textColor="#4a4a4a"
-            android:letterSpacing="0.02"
-            android:hint="101호"
-            android:gravity="center_horizontal"
-            android:layout_weight="1"/>
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayNameMonth"
+            android:id="@+id/editPayWriteRoomMonth"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:hint="101호"
+            android:letterSpacing="0.02"
+            android:textColor="#4a4a4a"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editPayWriteNameMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
@@ -35,37 +36,37 @@
             android:layout_weight="1"
         >
         </android.support.v7.widget.AppCompatEditText>
+
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayCountMonth"
+            android:id="@+id/editPayWriteCountMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
+            android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:textStyle="normal"
-            android:textColor="#4a4a4a"
-            android:letterSpacing="0.02"
             android:gravity="center_horizontal"
             android:hint="500"
-            android:layout_weight="1"
-            />
+            android:letterSpacing="0.02"
+            android:numeric="integer"
+            android:textColor="#4a4a4a"
+            android:textSize="13sp"
+            android:textStyle="normal" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayDayMonth"
+            android:id="@+id/editPayWriteDayMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:fontFamily="sans-serif"
-            android:textStyle="normal"
-            android:textColor="#4a4a4a"
-            android:letterSpacing="0.02"
-            android:hint="5/4"
-            android:gravity="center"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:hint="5/4"
+            android:letterSpacing="0.02"
+            android:textColor="#4a4a4a"
+            android:textSize="13sp"
 
-            />
+            android:textStyle="normal" />
 
         <CheckBox
-            android:id="@+id/checkPayMonth"
+            android:id="@+id/checkPayWriteMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:letterSpacing="0.02"

@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.kwave.android.firebaseprojectexercise.PaymentFragment_month">
+    tools:context="com.kwave.android.firebaseprojectexercise.Payment.PaymentWriteFragment_month">
 
 
     <LinearLayout
         android:gravity="center"
-        android:id="@+id/linearLayoutMonth"
+        android:id="@+id/payWriteLinearLayoutMonth"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         app:layout_constraintHorizontal_bias="1.0"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/payTab">
 
         <TextView
-            android:id="@+id/textPayRoomMonth"
+            android:id="@+id/textPayWriteRoomMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
             android:text="호실" />
 
         <TextView
-            android:id="@+id/textPayNameMonth"
+            android:id="@+id/textPayWriteNameMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -42,7 +42,7 @@
             android:text="이름" />
 
         <TextView
-            android:id="@+id/textPayCountMonth"
+            android:id="@+id/textPayWriteCountMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,7 +54,7 @@
 
 
         <TextView
-            android:id="@+id/textPayDayMonth"
+            android:id="@+id/textPayWriteDayMonth"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,7 +65,7 @@
             android:text="납부일" />
 
         <TextView
-            android:id="@+id/textPayCheckMonth"
+            android:id="@+id/textPayWriteCheckMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -76,7 +76,7 @@
             android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/payMonthRecycler"
+        android:id="@+id/payWriteMonthRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

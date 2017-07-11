@@ -22,6 +22,9 @@
         app:layout_constraintHorizontal_bias="0.0" />
 
     <LinearLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -49,7 +52,10 @@
                 android:gravity="left|center"
                 android:text="주 소"
                 android:paddingLeft="30dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2.7sp"/>
 
             <EditText
                 android:id="@+id/editAddress"
@@ -58,7 +64,11 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Address" />
+                android:hint="Address"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2.7sp"/>
         </LinearLayout>
 
         <ImageView
@@ -83,7 +93,10 @@
                 android:gravity="left|center"
                 android:paddingLeft="30dp"
                 android:text="집주인 정보"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2.7sp" />
 
             <LinearLayout
                 android:id="@+id/name"
@@ -98,17 +111,24 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="이 름" />
+                    android:text="이 름"
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp" />
 
                 <EditText
                     android:id="@+id/editName"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="Name"
-                    android:textAppearance="@android:style/TextAppearance.Material.Small" />
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -123,17 +143,24 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="핸드폰 번호" />
+                    android:text="핸드폰번호"
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp" />
 
                 <EditText
                     android:id="@+id/editPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="010 - 0000 - 0000"
-                    android:textAppearance="@android:style/TextAppearance.Material.Small" />
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp"  />
             </LinearLayout>
 
             <LinearLayout
@@ -148,17 +175,24 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="계좌 번호" />
+                    android:text="계좌 번호"
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp" />
 
                 <EditText
                     android:id="@+id/editAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:hint="Account"
-                    android:textAppearance="@android:style/TextAppearance.Material.Small" />
+                    android:textSize="13sp"
+                    android:textColor="#000000"
+                    android:letterSpacing="0.03"
+                    android:lineSpacingExtra="2.7sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -183,14 +217,21 @@
                 android:layout_height="wrap_content"
                 android:text="분리수거"
                 android:paddingLeft="30dp"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+                android:textSize="15sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2.7sp" />
 
             <EditText
                 android:id="@+id/editTrash"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textMultiLine" />
+                android:hint="지정된 날짜와 장소에 규격봉투를 사용하여 버리며 (복도나 계단에 방치 불가), 분리수거 대상 쓰레기 (병류, 캔류, 플라스틱류 등)는 지정된 수거함에 정확히 구분하여 투기한다. 현재는 일, 화, 목 오후 6시~9시에 버림."
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:letterSpacing="0.03"
+                android:lineSpacingExtra="2.7sp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
