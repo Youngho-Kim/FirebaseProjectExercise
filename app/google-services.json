@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "961845877436",
+    "firebase_url": "https://community-10ece.firebaseio.com",
+    "project_id": "community-10ece",
+    "storage_bucket": "community-10ece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961845877436:android:7eebd640d2ac7b22",
+        "android_client_info": {
+          "package_name": "com.kwave.android.community"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961845877436-uslq0dja56b0mcbgvlhkespvj654bp7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kwave.android.community",
+            "certificate_hash": "d2bb866ce31b630d76efa94c129bf0c0b998699a"
+          }
+        },
+        {
+          "client_id": "961845877436-advtkgfs8qo34eagseklq8kv50c0p6o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMcjL-flsEcz43-UmWGfBkbqihmQTScGU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961845877436-advtkgfs8qo34eagseklq8kv50c0p6o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961845877436:android:0c696400b0cbc785",
+        "android_client_info": {
+          "package_name": "com.kwave.android.firebaseprojectexercise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961845877436-rnmhugfgtcctug7q6ur7tgsv7ad2vjr7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kwave.android.firebaseprojectexercise",
+            "certificate_hash": "d2bb866ce31b630d76efa94c129bf0c0b998699a"
+          }
+        },
+        {
+          "client_id": "961845877436-advtkgfs8qo34eagseklq8kv50c0p6o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMcjL-flsEcz43-UmWGfBkbqihmQTScGU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961845877436-advtkgfs8qo34eagseklq8kv50c0p6o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,6 @@ package com.kwave.android.firebaseprojectexercise;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
@@ -21,6 +20,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +37,14 @@ public class PaymentActivity extends AppCompatActivity {
     Fragment monthFee,waterFee;
     PagerAdapter adapter;
 
-//    FirebaseDatabase database;
-//    DatabaseReference bbsRef;
+    FirebaseDatabase database;
+    DatabaseReference bbsRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        database = FirebaseDatabase.getInstance();
-//        bbsRef = database.getReference("bbs");
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference("bbs");
 
 
         setContentView(R.layout.activity_payment);
@@ -100,6 +102,9 @@ public class PaymentActivity extends AppCompatActivity {
 
         // 7. 탭이 변경되었을 때 탭을 변경해주는 리스너
         payTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payViewPaser));
+
+
+//        loadData();
 
         // 마시멜로 버전 이상에서 권한설정을 한다.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -167,23 +172,10 @@ public class PaymentActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case android.R.id.custom:
-                goInformation();
-                return true;
-            case ic_menu_edit:
-                finish();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
-
-
-    public void goInformation(){
-        Intent intent = new Intent(PaymentActivity.this,InfomationWriteActivity.class);
-        startActivity(intent);
-    }
-
 
 
 
@@ -210,13 +202,13 @@ public class PaymentActivity extends AppCompatActivity {
         }
     }
 //
-//
+////
 //    public void loadData(){
 //        bbsRef.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(DataSnapshot data) {
-////                List<Bbs> list = new ArrayList<Bbs>();
-//                Data.list.clear();
+//                List<Bbs> list = new ArrayList<Bbs>();
+//                list.clear();
 //                for(DataSnapshot item : data.getChildren()){
 //                    // json 데이터를 Bbs 인스턴스로 변환오류 발생 가능성 있음
 //                    // 그래서 예외처리 필요

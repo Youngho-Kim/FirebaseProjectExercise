@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kwave.android.firebaseprojectexercise.domain.PayMonthData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -23,12 +28,26 @@ public class PaymentFragment_month extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_month, container, false);
 
+
+        List<PayMonthData> data = new ArrayList<>();
+        // 리스트를 띄우기 위한 임시데이터
+        PayMonthData bbs = new PayMonthData();
+        bbs.PayRoom = "301호";
+        bbs.PayName = "kwave";
+        bbs.PayCount = "3000";
+        bbs.PayDay = "2/4";
+        bbs.PayCheck = true;
+        data.add(bbs);
+
+        // RecyclerView Setting
         payMonthRecycler = (RecyclerView) view.findViewById(R.id.payMonthRecycler);
-        adapter = new PaymentListAdapter_month(getContext());
+        adapter = new PaymentListAdapter_month(data, getContext());
         payMonthRecycler.setAdapter(adapter);
         payMonthRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setData(data);
+        adapter.notifyDataSetChanged();
 
-//        loadData();
+
 
 
         return view;

@@ -9,8 +9,8 @@
         android:layout_height="match_parent"
 >
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayRoom"
-            android:layout_width="wrap_content"
+            android:id="@+id/tPayRoom"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -22,8 +22,8 @@
             android:layout_weight="1"/>
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayName"
-            android:layout_width="wrap_content"
+            android:id="@+id/tPayName"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -36,8 +36,8 @@
         >
         </android.support.v7.widget.AppCompatEditText>
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayUse"
-            android:layout_width="wrap_content"
+            android:id="@+id/tPayCount"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -49,8 +49,8 @@
             android:layout_weight="1"
             />
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayCount"
-            android:layout_width="wrap_content"
+            android:id="@+id/tPayUse"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -62,8 +62,8 @@
             android:layout_weight="1"
             />
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayDay"
-            android:layout_width="wrap_content"
+            android:id="@+id/tPayDay"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -76,7 +76,7 @@
 
             />
         <CheckBox
-            android:id="@+id/checkPay"
+            android:id="@+id/tcheckPay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#009688"
