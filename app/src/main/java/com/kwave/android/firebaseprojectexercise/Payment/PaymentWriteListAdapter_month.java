@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.PayMonthData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,15 @@ import java.util.List;
  */
 
 public class PaymentWriteListAdapter_month extends RecyclerView.Adapter<PaymentWriteListAdapter_month.Holder>{
-    private List<PayMonthData> data = new ArrayList<>();
+    private List<MyHomeData> data = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public PaymentWriteListAdapter_month(List<PayMonthData> data, Context context) {
+    public PaymentWriteListAdapter_month(List<MyHomeData> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(List<PayMonthData> data){
+    public void setData(List<MyHomeData> data){
         this.data = data;
     }
 
@@ -46,12 +46,12 @@ public class PaymentWriteListAdapter_month extends RecyclerView.Adapter<PaymentW
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        PayMonthData bbs = data.get(position);
-        holder.setEditPayWriteNameMonth(bbs.payName);
-        holder.setEditPayWriteCountMonth(bbs.payCountMonth);
-        holder.setEditPayWriteDayMonth(bbs.payDay);
-        holder.setEditPayWriteRoomMonth(bbs.payRoom);
-        holder.setCheckPayWriteMonth(bbs.payCheckMonth);
+        MyHomeData bbs = data.get(position);
+        holder.setEditPayWriteNameMonth(bbs.name);
+        holder.setEditPayWriteCountMonth(bbs.countTenant);
+        holder.setEditPayWriteDayMonth(bbs.day);
+        holder.setEditPayWriteRoomMonth(bbs.room);
+        holder.setCheckPayWriteMonth(bbs.checkTenant);
         holder.setPosition(position);
     }
 

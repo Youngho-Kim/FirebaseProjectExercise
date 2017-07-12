@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupTenantData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ import java.util.List;
 public class GroupReadFragment_tenant extends Fragment {
     RecyclerView groupReadTenantRecycler;
     GroupReadListAdapter_tenant adapter;
+    Date date;
     public GroupReadFragment_tenant() {
     }
 
@@ -29,13 +31,13 @@ public class GroupReadFragment_tenant extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_read_tenant, container, false);
 
 
-        List<GroupTenantData> data = new ArrayList<>();
+        List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        GroupTenantData bbs = new GroupTenantData();
-        bbs.groupRoom = 301;
-        bbs.groupName = "kwave";
-        bbs.groupCountTenant = 50;
-        bbs.groupDay = 8;
+        MyHomeData bbs = new MyHomeData();
+        bbs.room = 301;
+        bbs.name = "kwave";
+        bbs.countTenant= 50;
+        bbs.contract = "2017.7.2 ~ 2018.7.1";
         data.add(bbs);
 
         // RecyclerView Setting

@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.PayWaterData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,15 @@ import java.util.List;
  */
 
 public class PaymentWriteListAdapter_water extends RecyclerView.Adapter<PaymentWriteListAdapter_water.Holder>{
-    private List<PayWaterData> data = new ArrayList<>();
+    private List<MyHomeData> data = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public PaymentWriteListAdapter_water(List<PayWaterData> data, Context context) {
+    public PaymentWriteListAdapter_water(List<MyHomeData> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(List<PayWaterData> data){
+    public void setData(List<MyHomeData> data){
         this.data = data;
     }
 
@@ -46,13 +46,13 @@ public class PaymentWriteListAdapter_water extends RecyclerView.Adapter<PaymentW
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        PayWaterData bbs = data.get(position);
-        holder.setPayName(bbs.payName);
-        holder.setPayCount(bbs.payCountWater);
-        holder.setPayDay(bbs.payDay);
-        holder.setPayRoom(bbs.payRoom);
-        holder.setPayUse(bbs.payUse);
-        holder.setTextcheckPay(bbs.payCheckWater);
+        MyHomeData bbs = data.get(position);
+        holder.setPayName(bbs.name);
+        holder.setPayCount(bbs.countWater);
+        holder.setPayDay(bbs.day);
+        holder.setPayRoom(bbs.room);
+        holder.setPayUse(bbs.use);
+        holder.setTextcheckPay(bbs.checkWater);
         holder.setPosition(position);
     }
 

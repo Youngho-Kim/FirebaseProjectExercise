@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupContactData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +28,12 @@ public class GroupWriteFragment_contact extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_write_contact, container, false);
 
 
-        List<GroupContactData> data = new ArrayList<>();
+        List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        GroupContactData bbs = new GroupContactData();
-        bbs.groupName = "kwave";
-        bbs.groupPhoneContact = "010-1234-5678";
-        bbs.groupRoom = 301;
+        MyHomeData bbs = new MyHomeData();
+        bbs.name = "kwave";
+        bbs.phoneNumber = "010-1234-5678";
+        bbs.room = 301;
         data.add(bbs);
 
         // RecyclerView Setting

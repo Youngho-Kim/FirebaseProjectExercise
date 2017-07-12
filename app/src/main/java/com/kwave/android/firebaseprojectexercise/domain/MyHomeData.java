@@ -11,14 +11,24 @@ public class MyHomeData {
     public int room;  // 호수
     public String name;     // 이름
     public String phoneNumber; // 핸드폰 번호
-    public Date contract;   // 계약기간
-    public Date day;   // 납부일
-    public int dataMonth;   // 납부일
+    public String contract;   // 계약기간
+    public int day;   // 납부일
+    public int dataMonth;   // 현재 월 표시
     public Date currentDay;   // 현재일자
     public int countTenant; // 월세
     public int countWater; // 수도세
     public int use; // 수도 사용량
     public boolean checkWater;  // 체크여부
     public boolean checkTenant;  // 체크여부
+
+    // master Info
+
+    public String masterHome;   // 집 이름
+    public String masterName;   // 주인 이름
+    public String masterAddr;   // 집 주소
+    public String masterAccount;   // 주인 계좌번호
+    public String masterPhoneNumber;   // 주인 전화번호
+    public String masterTrash;   // 분리수거 사항
+    public String masterNotify;   // 분리수거 사항
 
 }

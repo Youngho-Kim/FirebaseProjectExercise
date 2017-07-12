@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupContactData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ import java.util.List;
  */
 
 public class GroupWriteListAdapter_contact extends RecyclerView.Adapter<GroupWriteListAdapter_contact.Holder>{
-    private List<GroupContactData> data = new ArrayList<>();
+    private List<MyHomeData> data = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public GroupWriteListAdapter_contact(List<GroupContactData> data, Context context) {
+    public GroupWriteListAdapter_contact(List<MyHomeData> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(List<GroupContactData> data){
+    public void setData(List<MyHomeData> data){
         this.data = data;
     }
 
@@ -45,10 +45,10 @@ public class GroupWriteListAdapter_contact extends RecyclerView.Adapter<GroupWri
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        GroupContactData bbs = data.get(position);
-        holder.setGroupName(bbs.groupName);
-        holder.setGroupPhone(bbs.groupPhoneContact);
-        holder.setGroupRoom(bbs.groupRoom);
+        MyHomeData bbs = data.get(position);
+        holder.setGroupName(bbs.name);
+        holder.setGroupPhone(bbs.phoneNumber);
+        holder.setGroupRoom(bbs.room);
         holder.setPosition(position);
     }
 

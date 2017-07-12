@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupTenantData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,13 @@ public class GroupWriteFragment_tenant extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_write_tenant, container, false);
 
 
-        List<GroupTenantData> data = new ArrayList<>();
+        List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        GroupTenantData bbs = new GroupTenantData();
-        bbs.groupRoom = 301;
-        bbs.groupName = "kwave";
-        bbs.groupCountTenant = 100;
-        bbs.groupDay = 4;
+        MyHomeData bbs = new MyHomeData();
+        bbs.room = 301;
+        bbs.name = "kwave";
+        bbs.countTenant = 100;
+        bbs.contract = "2017.7.2 ~ 2018.7.1";
         data.add(bbs);
 
         // RecyclerView Setting

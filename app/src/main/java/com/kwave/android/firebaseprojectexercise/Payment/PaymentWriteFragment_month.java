@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.PayMonthData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +28,14 @@ public class PaymentWriteFragment_month extends Fragment {
         View view = inflater.inflate(R.layout.fragment_payment_write_month, container, false);
 
 
-        List<PayMonthData> data = new ArrayList<>();
+        List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        PayMonthData bbs = new PayMonthData();
-        bbs.payRoom = 301;
-        bbs.payName = "kwave";
-        bbs.payCountMonth = 3000;
-        bbs.payDay = 4;
-        bbs.payCheckMonth = true;
+        MyHomeData bbs = new MyHomeData();
+        bbs.room = 301;
+        bbs.name = "kwave";
+        bbs.countTenant = 3000;
+        bbs.day = 4;
+        bbs.checkTenant = true;
         data.add(bbs);
 
         // RecyclerView Setting

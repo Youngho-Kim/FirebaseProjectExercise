@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupTenantData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ import java.util.List;
  */
 
 public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadListAdapter_tenant.Holder>{
-    private List<GroupTenantData> data = new ArrayList<>();
+    private List<MyHomeData> data = new ArrayList<>();
     private LayoutInflater inflater;
 
-    public GroupReadListAdapter_tenant(List<GroupTenantData> data, Context context) {
+    public GroupReadListAdapter_tenant(List<MyHomeData> data, Context context) {
         this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setData(List<GroupTenantData> data){
+    public void setData(List<MyHomeData> data){
         this.data = data;
     }
 
@@ -45,11 +45,11 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        GroupTenantData bbs = data.get(position);
-        holder.setGroupWriteNameTenant(bbs.groupName);
-        holder.setGroupWriteCountTenant(bbs.groupCountTenant);
-        holder.setGroupWriteDayTenant(bbs.groupDay);
-        holder.setGroupWriteRoomTenant(bbs.groupRoom);
+        MyHomeData bbs = data.get(position);
+        holder.setGroupWriteNameTenant(bbs.name);
+        holder.setGroupWriteCountTenant(bbs.countTenant);
+        holder.setGroupWriteDayTenant(bbs.contract);
+        holder.setGroupWriteRoomTenant(bbs.room);
         holder.setPosition(position);
     }
 
@@ -87,8 +87,8 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
             textGroupReadCountTenant.setText(GroupWriteCountTenant+"만원");
         }
 
-        public void setGroupWriteDayTenant(int GroupWriteDayTenant) {
-            textGroupReadDayTenant.setText(GroupWriteDayTenant+"일");
+        public void setGroupWriteDayTenant(String GroupWriteDayTenant) {
+            textGroupReadDayTenant.setText(GroupWriteDayTenant);
         }
         public void setGroupWriteRoomTenant(int GroupWriteRoomTenant) {
             textGroupReadRoomTenant.setText(GroupWriteRoomTenant+"호");

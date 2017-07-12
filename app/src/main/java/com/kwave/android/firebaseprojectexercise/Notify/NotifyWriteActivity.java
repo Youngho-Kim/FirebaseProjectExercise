@@ -28,7 +28,7 @@ public class NotifyWriteActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.group_read_menu, menu);
+        inflater.inflate(R.menu.notify_write_menu, menu);
 
         return true;
     }
@@ -40,9 +40,10 @@ public class NotifyWriteActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case R.menu.group_read_menu:
+            case R.id.notifyWritePen:
                 Intent intent = new Intent(NotifyWriteActivity.this,NotifyReadActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

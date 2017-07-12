@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.PayWaterData;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +28,15 @@ public class PaymentWriteFragment_water extends Fragment {
         View view = inflater.inflate(R.layout.fragment_payment_write_water, container, false);
 
 
-        List<PayWaterData> data = new ArrayList<>();
+        List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        PayWaterData bbs = new PayWaterData();
-        bbs.payName = "kwave";
-        bbs.payCountWater = 3000;
-        bbs.payDay = 2;
-        bbs.payRoom = 301;
-        bbs.payUse = 300;
-        bbs.payCheckWater = true;
+        MyHomeData bbs = new MyHomeData();
+        bbs.name = "kwave";
+        bbs.countWater = 3000;
+        bbs.day = 2;
+        bbs.room = 301;
+        bbs.use = 300;
+        bbs.checkWater = true;
         data.add(bbs);
 
         // RecyclerView Setting
