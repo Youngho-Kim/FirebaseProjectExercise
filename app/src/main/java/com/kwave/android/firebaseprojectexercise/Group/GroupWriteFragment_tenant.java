@@ -9,41 +9,39 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupMonthData;
+import com.kwave.android.firebaseprojectexercise.domain.GroupTenantData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class GroupReadFragment_month extends Fragment {
-    RecyclerView groupReadMonthRecycler;
-    GroupReadListAdapter_month adapter;
-    public GroupReadFragment_month() {
+
+public class GroupWriteFragment_tenant extends Fragment {
+    RecyclerView groupWriteTenantRecycler;
+    GroupWriteListAdapter_tenant adapter;
+
+    public GroupWriteFragment_tenant() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_group_read_month, container, false);
+        View view = inflater.inflate(R.layout.fragment_group_write_tenant, container, false);
 
 
-        List<GroupMonthData> data = new ArrayList<>();
+        List<GroupTenantData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
-        GroupMonthData bbs = new GroupMonthData();
+        GroupTenantData bbs = new GroupTenantData();
         bbs.GroupRoom = 301;
         bbs.GroupName = "kwave";
-        bbs.GroupCountMonth = 3000;
+        bbs.GroupCountTenant = 100;
         bbs.GroupDay = 4;
-        bbs.GroupCheckMonth = true;
         data.add(bbs);
 
         // RecyclerView Setting
-        groupReadMonthRecycler = (RecyclerView) view.findViewById(R.id.groupReadMonthRecycler);
-        adapter = new GroupReadListAdapter_month(data, getContext());
-        groupReadMonthRecycler.setAdapter(adapter);
-        groupReadMonthRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        groupWriteTenantRecycler = (RecyclerView) view.findViewById(R.id.groupWriteTenantRecycler);
+        adapter = new GroupWriteListAdapter_tenant(data, getContext());
+        groupWriteTenantRecycler.setAdapter(adapter);
+        groupWriteTenantRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
 
@@ -52,4 +50,6 @@ public class GroupReadFragment_month extends Fragment {
 
         return view;
     }
+
+
 }

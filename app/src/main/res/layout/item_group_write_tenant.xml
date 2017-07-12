@@ -10,12 +10,12 @@
 >
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayWriteRoomWater"
-            android:layout_width="60dp"
+            android:id="@+id/editGroupWriteRoomTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:hint="101호"
             android:letterSpacing="0.02"
             android:textColor="#4a4a4a"
@@ -23,8 +23,8 @@
             android:textStyle="normal" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayWriteNameWater"
-            android:layout_width="60dp"
+            android:id="@+id/editGroupWriteNameTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -32,19 +32,19 @@
             android:textColor="#4a4a4a"
             android:letterSpacing="0.02"
             android:hint="진소라"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:layout_weight="1"
         >
         </android.support.v7.widget.AppCompatEditText>
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayWriteCountWater"
-            android:layout_width="60dp"
+            android:id="@+id/editGroupWriteCountTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
-            android:hint="5000"
+            android:hint="500"
             android:letterSpacing="0.02"
             android:numeric="integer"
             android:textColor="#4a4a4a"
@@ -52,40 +52,17 @@
             android:textStyle="normal" />
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayWriteUseWater"
-            android:layout_width="60dp"
+            android:id="@+id/editGroupWriteDayTenant"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:hint="31"
-            android:letterSpacing="0.02"
-            android:numeric="integer"
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-            android:textStyle="normal" />
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/editPayWriteDayWater"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:hint="5/4"
+            android:hint="2017/01/04~2018/01/03"
             android:letterSpacing="0.02"
             android:textColor="#4a4a4a"
             android:textSize="13sp"
 
             android:textStyle="normal" />
-        <CheckBox
-            android:id="@+id/checkPayWriteWater"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="#009688"
-            android:letterSpacing="0.02"
-            android:gravity="center"
-            android:layout_weight="1"
-            />
     </LinearLayout>
 </android.support.v7.widget.CardView>

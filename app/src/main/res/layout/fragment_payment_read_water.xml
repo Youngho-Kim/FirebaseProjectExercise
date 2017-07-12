@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/payReadRoomWater"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
@@ -33,7 +33,7 @@
         <TextView
             android:id="@+id/payReadNameWater"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/payReadCountWater"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
@@ -55,7 +55,7 @@
         <TextView
             android:id="@+id/payReadUseWater"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
@@ -66,9 +66,9 @@
         <TextView
             android:id="@+id/payReadDayWater"
             android:layout_width="60dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -77,9 +77,9 @@
         <TextView
             android:id="@+id/payReadCheckWater"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"

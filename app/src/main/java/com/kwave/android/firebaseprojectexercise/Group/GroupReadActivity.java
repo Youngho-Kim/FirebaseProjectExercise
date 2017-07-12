@@ -31,10 +31,10 @@ import java.util.List;
 public class GroupReadActivity extends AppCompatActivity {
     TextView textGroupReadMonth;
     TabLayout groupReadTab;
-    TabItem groupReadTabMonth, groupReadTabWater;
+    TabItem groupReadTabTenant, groupReadTabContact;
     LocationManager manager;
     ViewPager groupReadViewPager;
-    Fragment monthFee,waterFee;
+    Fragment tenantFee,contactFee;
     PagerAdapter adapter;
 
     FirebaseDatabase database;
@@ -51,8 +51,8 @@ public class GroupReadActivity extends AppCompatActivity {
 
         textGroupReadMonth = (TextView) findViewById(R.id.textGroupReadMonth);
         groupReadTab = (TabLayout) findViewById(R.id.groupReadTab);
-        groupReadTabMonth = (TabItem) findViewById(R.id.groupReadTabMonth);
-        groupReadTabWater = (TabItem) findViewById(R.id.groupReadTabWater);
+        groupReadTabTenant = (TabItem) findViewById(R.id.groupReadTabTenant);
+        groupReadTabContact = (TabItem) findViewById(R.id.groupReadTabContact);
         groupReadViewPager = (ViewPager) findViewById(R.id.groupReadViewPager);
 
 
@@ -74,13 +74,13 @@ public class GroupReadActivity extends AppCompatActivity {
 //        payTab.addTab(payTab.newTab().setText("Four"));
 
         // 2. Fragment 생성
-        monthFee = new GroupWriteFragment_month();
-        waterFee = new GroupWriteFragment_water();
+        tenantFee = new GroupWriteFragment_tenant();
+        contactFee = new GroupWriteFragment_contact();
 
         // 3. Fragment를 datas 저장소에 담은 후
         List<Fragment> datas = new ArrayList<>();
-        datas.add(monthFee);
-        datas.add(waterFee);
+        datas.add(tenantFee);
+        datas.add(contactFee);
 
         // 4. Fragment Manager와 함께 adapter에 전달
         adapter = new PagerAdapter(getSupportFragmentManager(), datas);

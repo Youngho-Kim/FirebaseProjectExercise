@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/textGroupReadRoomContact"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="0.02"
+            android:text="101호"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/textGroupReadNameContact"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="0.02"
+            android:text="진소라"
+            android:gravity="center"
+            android:layout_weight="1"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/textGroupReadPhoneContact"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="0.02"
+            android:gravity="center"
+            android:text="010-1234-5678"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+</android.support.v7.widget.CardView>

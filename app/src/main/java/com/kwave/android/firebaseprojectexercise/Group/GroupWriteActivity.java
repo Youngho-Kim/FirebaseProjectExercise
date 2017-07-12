@@ -27,15 +27,13 @@ import com.kwave.android.firebaseprojectexercise.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kwave.android.firebaseprojectexercise.R.id.payWriteTab;
-
 public class GroupWriteActivity extends AppCompatActivity {
     TextView textGroupWriteMonth;
     TabLayout groupWriteTab;
-    TabItem groupWriteTabMonth, groupWriteTabWater;
+    TabItem groupWriteTabTenant, groupWriteTabContact;
     LocationManager manager;
     ViewPager groupWriteViewPaser;
-    Fragment monthFee,waterFee;
+    Fragment tenantFee,contactFee;
     PagerAdapter adapter;
 
     FirebaseDatabase database;
@@ -52,8 +50,8 @@ public class GroupWriteActivity extends AppCompatActivity {
 
         textGroupWriteMonth = (TextView) findViewById(R.id.textGroupWriteMonth);
         groupWriteTab = (TabLayout) findViewById(R.id.groupWriteTab);
-        groupWriteTabMonth = (TabItem) findViewById(R.id.groupWriteTabMonth);
-        groupWriteTabWater = (TabItem) findViewById(R.id.groupWriteTabWater);
+        groupWriteTabTenant = (TabItem) findViewById(R.id.groupWriteTabTenant);
+        groupWriteTabContact = (TabItem) findViewById(R.id.groupWriteTabContact);
         groupWriteViewPaser = (ViewPager) findViewById(R.id.groupWriteViewPager);
 
 
@@ -77,13 +75,13 @@ public class GroupWriteActivity extends AppCompatActivity {
 //        payTab.addTab(payTab.newTab().setText("Four"));
 
         // 2. Fragment 생성
-        monthFee = new GroupWriteFragment_month();
-        waterFee = new GroupWriteFragment_water();
+        tenantFee = new GroupWriteFragment_tenant();
+        contactFee = new GroupWriteFragment_contact();
 
         // 3. Fragment를 datas 저장소에 담은 후
         List<Fragment> datas = new ArrayList<>();
-        datas.add(monthFee);
-        datas.add(waterFee);
+        datas.add(tenantFee);
+        datas.add(contactFee);
 
         // 4. Fragment Manager와 함께 adapter에 전달
         adapter = new PagerAdapter(getSupportFragmentManager(), datas);

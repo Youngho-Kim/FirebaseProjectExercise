@@ -7,11 +7,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+>
 
-        <TextView
-            android:id="@+id/textGroupReadRoomMonth"
-            android:layout_width="75dp"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editGroupWriteRoomContact"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
@@ -22,9 +22,9 @@
             android:textSize="13sp"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/textGroupReadNameMonth"
-            android:layout_width="75dp"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editGroupWriteNameContact"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:textSize="13sp"
             android:fontFamily="sans-serif"
@@ -34,44 +34,22 @@
             android:hint="진소라"
             android:gravity="center"
             android:layout_weight="1"
-            >
-        </TextView>
+        >
+        </android.support.v7.widget.AppCompatEditText>
 
-        <TextView
-            android:id="@+id/textGroupReadCountMonth"
-            android:layout_width="75dp"
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editGroupWritePhoneContact"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:hint="500"
+            android:gravity="center_horizontal"
+            android:hint="010-1234-5678"
             android:letterSpacing="0.02"
             android:numeric="integer"
             android:textColor="#4a4a4a"
             android:textSize="13sp"
             android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/textGroupReadDayMonth"
-            android:layout_width="75dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:hint="5/4"
-            android:letterSpacing="0.02"
-            android:textColor="#4a4a4a"
-            android:textSize="13sp"
-
-            android:textStyle="normal" />
-
-        <CheckBox
-            android:id="@+id/checkGroupReadMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="0.02"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="#009688" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

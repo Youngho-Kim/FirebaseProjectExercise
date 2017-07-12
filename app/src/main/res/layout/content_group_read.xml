@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout="@layout/fragment_group_read_month"
+    tools:layout="@layout/fragment_group_read_tenant"
     tools:showIn="@layout/activity_group_read"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp" >
@@ -66,23 +66,23 @@
         app:layout_constraintTop_toBottomOf="@+id/groupReadLinearLayout">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/groupReadTabMonth"
+            android:id="@+id/groupReadTabTenant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#000000"
             android:letterSpacing="0.1"
-            android:text="월세"
+            android:text="세입자 정보"
             />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/groupReadTabWater"
+            android:id="@+id/groupReadTabContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#000000"
             android:letterSpacing="0.1"
-            android:text="수도세" />
+            android:text="연락처" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
             android:textColor="#000000"
             android:visibility="gone"
             android:letterSpacing="0.1"
-            android:text="+  추가" />
+            android:text=" " />
         </android.support.design.widget.TabLayout>
 
 
@@ -108,7 +108,6 @@
         app:layout_constraintTop_toBottomOf="@+id/groupReadTab"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="0dp">
-        <!--<include layout="@layout/fragment_payment_write_month"/>-->
         </android.support.v4.view.ViewPager>
 
 

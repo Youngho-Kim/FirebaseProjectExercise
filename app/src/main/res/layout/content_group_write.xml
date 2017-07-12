@@ -63,23 +63,23 @@
         app:layout_constraintTop_toBottomOf="@+id/groupWriteLinearLayout">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/groupWriteTabMonth"
+            android:id="@+id/groupWriteTabTenant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#000000"
             android:letterSpacing="0.1"
-            android:text="월세"
+            android:text="세입자 정보"
             />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/groupWriteTabWater"
+            android:id="@+id/groupWriteTabContact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#000000"
             android:letterSpacing="0.1"
-            android:text="수도세" />
+            android:text="연락처" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
@@ -87,7 +87,8 @@
             android:textSize="12sp"
             android:textColor="#000000"
             android:letterSpacing="0.1"
-            android:text="+  추가" />
+            android:visibility="gone"
+            android:text=" " />
         </android.support.design.widget.TabLayout>
 
 

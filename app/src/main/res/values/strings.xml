@@ -16,12 +16,14 @@
     <string name="title_activity_select">우리집</string>
     <string name="title_activity_infomation">집 정보</string>
     <string name="title_activity_information">집 정보</string>
-    <string name="title_activity_payment">납부 내역Write</string>
+    <string name="title_activity_payment">납부 내역</string>
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_payment_read">납부 내역Read</string>
     <string name="title_activity_notify_write">준수 사항</string>
-    <string name="title_activity_notify_read">NotifyReadActivity</string>
+    <string name="title_activity_notify_read">준수 사항</string>
+    <string name="title_activity_group_read">세입자 관리</string>
+    <string name="title_activity_group_write">세입자 관리</string>
 </resources>

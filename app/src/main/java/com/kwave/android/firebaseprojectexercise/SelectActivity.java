@@ -26,6 +26,7 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
         imageInformation = (ImageView) findViewById(R.id.imageInfomation);
         imagePay = (ImageView) findViewById(R.id.imagePay);
         imageGruop = (ImageView) findViewById(R.id.imageGruop);
+        imageGruop.setClickable(true);
         imageNotify = (ImageView) findViewById(R.id.imageNotify);
         imageInformation.setOnClickListener(this);
         imagePay.setOnClickListener(this);

@@ -22,9 +22,9 @@
         <TextView
             android:id="@+id/textPayWriteRoomMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -33,9 +33,9 @@
         <TextView
             android:id="@+id/textPayWriteNameMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -44,9 +44,9 @@
         <TextView
             android:id="@+id/textPayWriteCountMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -56,9 +56,9 @@
         <TextView
             android:id="@+id/textPayWriteDayMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -67,12 +67,12 @@
         <TextView
             android:id="@+id/textPayWriteCheckMonth"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:layout_weight="1"
             android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView

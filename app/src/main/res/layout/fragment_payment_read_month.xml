@@ -45,9 +45,9 @@
         <TextView
             android:id="@+id/payReadCountMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -57,9 +57,9 @@
         <TextView
             android:id="@+id/payReadDayMonth"
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
@@ -68,12 +68,12 @@
         <TextView
             android:id="@+id/payReadCheckMonth"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:layout_weight="1"
             android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView

@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.kwave.android.firebaseprojectexercise.Payment.PaymentWriteFragment_water">
+    tools:context="com.kwave.android.firebaseprojectexercise.Group.GroupWriteFragment_tenant">
 
 
     <LinearLayout
         android:gravity="center"
-        android:id="@+id/payWriteLinearLayoutWater"
+        android:id="@+id/groupWriteLinearLayoutTenant"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payTab">
+        app:layout_constraintTop_toBottomOf="@+id/groupTab">
 
         <TextView
-            android:id="@+id/textPayWriteRoom"
-            android:layout_width="60dp"
+            android:id="@+id/textGroupWriteRoomTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -31,8 +31,8 @@
             android:text="호실" />
 
         <TextView
-            android:id="@+id/textPayWriteName"
-            android:layout_width="60dp"
+            android:id="@+id/textGroupWriteNameTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
@@ -42,54 +42,36 @@
             android:text="이름" />
 
         <TextView
-            android:id="@+id/textPayCount"
-            android:layout_width="60dp"
+            android:id="@+id/textGroupWriteCountTenant"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:text="금액" />
+            android:text="금액(/달)" />
+
 
         <TextView
-            android:id="@+id/textPayUse"
-            android:layout_width="60dp"
+            android:id="@+id/textGroupWriteDayTenant"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:text="사용량" />
+            android:text="계약일" />
 
-        <TextView
-            android:id="@+id/textPayWriteDay"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:letterSpacing="0.02"
-            android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="납부일" />
 
-        <TextView
-            android:id="@+id/textPayWriteWriteCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:letterSpacing="0.02"
-            android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/payWriteWaterRecycler"
+        android:id="@+id/groupWriteTenantRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>

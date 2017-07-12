@@ -18,7 +18,7 @@
         android:letterSpacing="0.1"
         android:gravity="center"
         android:lineSpacingExtra="2.7sp"
-        tools:text="임차인 준수사항 확인서"
+        android:text="임차인 준수사항 확인서"
         android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="0dp"

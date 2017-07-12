@@ -4,25 +4,23 @@ package com.kwave.android.firebaseprojectexercise.domain;
  * Created by kwave on 2017-07-04.
  */
 
-public class GroupMonthData {
+public class GroupTenantData {
     public String id;    // 파이어베이스의 push 로 자동생성된다.
     public int GroupRoom;  // 호수
     public String GroupName;     // 이름
-    public int GroupCountMonth; // 금액
+    public int GroupCountTenant; // 금액
     public int GroupDay;   // 납부일
-    public boolean GroupCheckMonth;
 
-    public GroupMonthData(){
+    public GroupTenantData(){
 
     }
 
-    public GroupMonthData(String id, int groupRoom, String groupName, int groupCount, int groupDay, boolean groupCheck) {
+    public GroupTenantData(String id, int groupRoom, String groupName, int groupCount, int groupDay) {
         this.id = id;
         this.GroupRoom = groupRoom;
         this.GroupName = groupName;
-        this.GroupCountMonth = groupCount;
+        this.GroupCountTenant = groupCount;
         this.GroupDay = groupDay;
-        this.GroupCheckMonth = groupCheck;
     }
 }
 

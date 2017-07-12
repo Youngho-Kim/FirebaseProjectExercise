@@ -6,82 +6,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.kwave.android.firebaseprojectexercise.Group.GroupReadActivity">
-
+    tools:context="com.kwave.android.firebaseprojectexercise.Group.GroupReadFragment_contact">
 
 
     <LinearLayout
+        android:id="@+id/groupReadlinearLayoutContact"
         android:gravity="center"
-        android:id="@+id/groupReadLinearLayoutMonth"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/payTab">
+        app:layout_constraintTop_toBottomOf="@+id/groupTab">
 
         <TextView
-            android:id="@+id/groupReadRoomMonth"
-            android:layout_width="75dp"
+            android:id="@+id/groupReadRoomContact"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
             android:text="호실" />
 
         <TextView
-            android:id="@+id/groupReadNameMonth"
-            android:layout_width="75dp"
+            android:id="@+id/groupReadNameContact"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
             android:text="이름" />
 
         <TextView
-            android:id="@+id/groupReadCountMonth"
-            android:layout_width="75dp"
+            android:id="@+id/groupReadPhoneContact"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:letterSpacing="0.02"
             android:textColor="@color/darkish_pink_two"
             android:textSize="13sp"
-            android:text="금액(/달)" />
+            android:text="핸드폰 번호" />
 
-
-        <TextView
-            android:id="@+id/groupReadDayMonth"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.02"
-            android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="납부일" />
-
-        <TextView
-            android:id="@+id/groupReadCheckMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:letterSpacing="0.02"
-            android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:layout_weight="1"
-            android:text="확인" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/groupReadMonthRecycler"
+        android:id="@+id/groupReadContactRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-
 
 </LinearLayout>
