@@ -32,11 +32,11 @@ public class PaymentReadFragment_month extends Fragment {
         List<PayMonthData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         PayMonthData bbs = new PayMonthData();
-        bbs.PayRoom = 301;
-        bbs.PayName = "kwave";
-        bbs.PayCountMonth = 3000;
-        bbs.PayDay = 4;
-        bbs.PayCheckMonth = true;
+        bbs.payRoom = 301;
+        bbs.payName = "kwave";
+        bbs.payCountMonth = 3000;
+        bbs.payDay = 4;
+        bbs.payCheckMonth = true;
         data.add(bbs);
 
         // RecyclerView Setting

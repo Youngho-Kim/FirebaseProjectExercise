@@ -31,10 +31,10 @@ public class GroupWriteFragment_tenant extends Fragment {
         List<GroupTenantData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         GroupTenantData bbs = new GroupTenantData();
-        bbs.GroupRoom = 301;
-        bbs.GroupName = "kwave";
-        bbs.GroupCountTenant = 100;
-        bbs.GroupDay = 4;
+        bbs.groupRoom = 301;
+        bbs.groupName = "kwave";
+        bbs.groupCountTenant = 100;
+        bbs.groupDay = 4;
         data.add(bbs);
 
         // RecyclerView Setting

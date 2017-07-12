@@ -46,9 +46,9 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         GroupContactData bbs = data.get(position);
-        holder.setGroupName(bbs.GroupName);
-        holder.setGroupPhone(bbs.GroupPhoneContact);
-        holder.setGroupRoom(bbs.GroupRoom);
+        holder.setGroupName(bbs.groupName);
+        holder.setGroupPhone(bbs.groupPhoneContact);
+        holder.setGroupRoom(bbs.groupRoom);
         holder.setPosition(position);
     }
 
@@ -65,7 +65,7 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), GroupReadActivity.class);
+                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }
@@ -85,7 +85,7 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
 
 
         public void setGroupRoom(int GroupRoom) {
-            textGroupReadRoomContact.setText(GroupRoom);
+            textGroupReadRoomContact.setText(GroupRoom+"호");
         }
 
     }

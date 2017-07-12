@@ -31,12 +31,12 @@ public class PaymentWriteFragment_water extends Fragment {
         List<PayWaterData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         PayWaterData bbs = new PayWaterData();
-        bbs.PayName = "kwave";
-        bbs.PayCountWater = 3000;
-        bbs.PayDay = 2;
-        bbs.PayRoom = 301;
-        bbs.PayUse = 300;
-        bbs.PayCheckWater = true;
+        bbs.payName = "kwave";
+        bbs.payCountWater = 3000;
+        bbs.payDay = 2;
+        bbs.payRoom = 301;
+        bbs.payUse = 300;
+        bbs.payCheckWater = true;
         data.add(bbs);
 
         // RecyclerView Setting

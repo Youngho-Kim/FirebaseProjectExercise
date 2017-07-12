@@ -46,9 +46,9 @@ public class GroupWriteListAdapter_contact extends RecyclerView.Adapter<GroupWri
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         GroupContactData bbs = data.get(position);
-        holder.setGroupName(bbs.GroupName);
-        holder.setGroupPhone(bbs.GroupPhoneContact);
-        holder.setGroupRoom(bbs.GroupRoom);
+        holder.setGroupName(bbs.groupName);
+        holder.setGroupPhone(bbs.groupPhoneContact);
+        holder.setGroupRoom(bbs.groupRoom);
         holder.setPosition(position);
     }
 

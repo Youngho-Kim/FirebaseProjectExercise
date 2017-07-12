@@ -2,6 +2,7 @@ package com.kwave.android.firebaseprojectexercise.Group;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
@@ -16,18 +17,25 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kwave.android.firebaseprojectexercise.R;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class GroupWriteActivity extends AppCompatActivity {
+public class GroupWriteActivity extends AppCompatActivity implements View.OnClickListener{
     TextView textGroupWriteMonth;
     TabLayout groupWriteTab;
     TabItem groupWriteTabTenant, groupWriteTabContact;
@@ -35,7 +43,10 @@ public class GroupWriteActivity extends AppCompatActivity {
     ViewPager groupWriteViewPaser;
     Fragment tenantFee,contactFee;
     PagerAdapter adapter;
+    ImageButton groupWritePreMonth, groupWriteNextMonth;
 
+    MyHomeData myHomeData = new MyHomeData();
+    Date date = new Date();
     FirebaseDatabase database;
     DatabaseReference bbsRef;
     @Override
@@ -53,7 +64,15 @@ public class GroupWriteActivity extends AppCompatActivity {
         groupWriteTabTenant = (TabItem) findViewById(R.id.groupWriteTabTenant);
         groupWriteTabContact = (TabItem) findViewById(R.id.groupWriteTabContact);
         groupWriteViewPaser = (ViewPager) findViewById(R.id.groupWriteViewPager);
+        groupWritePreMonth = (ImageButton) findViewById(R.id.groupWritePreMonth);
+        groupWriteNextMonth = (ImageButton) findViewById(R.id.groupWriteNextMonth);
+        groupWritePreMonth.setOnClickListener(this);
+        groupWriteNextMonth.setOnClickListener(this);
 
+        myHomeData.dataMonth = date.getMonth()+1;
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("onCreat","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        textGroupWriteMonth.setText(currentMonth+"월");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.groupWriteToolbar);
         setSupportActionBar(toolbar);
@@ -61,7 +80,7 @@ public class GroupWriteActivity extends AppCompatActivity {
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setDisplayShowCustomEnabled(true);
-//        toolbar.inflateMenu(R.menu.information);
+//        toolbar.inflateMenu(R.group_read_menu.information);
 //        getSupportActionBar().setIcon(ic_menu_edit);
 
 
@@ -109,6 +128,54 @@ public class GroupWriteActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void SetDataPreMonth(){
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        if(currentMonth > 12){
+            currentMonth = date.getMonth();
+            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else if(currentMonth <= 1)
+        {
+            currentMonth = 12;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else{
+            currentMonth = currentMonth-1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        textGroupWriteMonth.setText(currentMonth+"월");
+        myHomeData.dataMonth = currentMonth;
+        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+    }
+    public void SetDataNextMonth(){
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        if(currentMonth < 1){
+            currentMonth = date.getMonth()+1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else if(myHomeData.dataMonth >=12)
+        {
+            currentMonth = 1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else{
+            currentMonth = currentMonth+1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        textGroupWriteMonth.setText(currentMonth+"월");
+        myHomeData.dataMonth = currentMonth;
+        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+    }
+
 
     // 어댑터의 데이터가 달라지면서 리스트  갱신
     @Override
@@ -158,6 +225,14 @@ public class GroupWriteActivity extends AppCompatActivity {
 
 
 
+    //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.group_write_menu, menu);
+
+        return true;
+    }
 
     //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 실행----------------------------------------
     @Override
@@ -166,11 +241,32 @@ public class GroupWriteActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.groupWritePen:
+                Intent intent = new Intent(GroupWriteActivity.this,GroupReadActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
+//------------------해당 월이 바뀌면서 데이터 갱신하기 ----------------------------------------
+@Override
+public void onClick(View v) {
+    switch (v.getId()) {
 
+        case R.id.groupWritePreMonth :
+//            textGroupWriteMonth.setText((myHomeData.dataMonth-1)+"월");
+            SetDataPreMonth();
+            break;
+        case R.id.groupWriteNextMonth :
+//            textGroupWriteMonth.setText((myHomeData.dataMonth+1)+"월");
+            SetDataNextMonth();
+            break;
+
+    }
+}
+    //------------------해당 월이 바뀌면서 데이터 갱신하기 끝 ----------------------------------------
 
 
 

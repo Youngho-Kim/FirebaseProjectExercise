@@ -47,12 +47,12 @@ public class PaymentWriteListAdapter_water extends RecyclerView.Adapter<PaymentW
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         PayWaterData bbs = data.get(position);
-        holder.setPayName(bbs.PayName);
-        holder.setPayCount(bbs.PayCountWater);
-        holder.setPayDay(bbs.PayDay);
-        holder.setPayRoom(bbs.PayRoom);
-        holder.setPayUse(bbs.PayUse);
-        holder.setTextcheckPay();
+        holder.setPayName(bbs.payName);
+        holder.setPayCount(bbs.payCountWater);
+        holder.setPayDay(bbs.payDay);
+        holder.setPayRoom(bbs.payRoom);
+        holder.setPayUse(bbs.payUse);
+        holder.setTextcheckPay(bbs.payCheckWater);
         holder.setPosition(position);
     }
 
@@ -75,7 +75,7 @@ public class PaymentWriteListAdapter_water extends RecyclerView.Adapter<PaymentW
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), PaymentWriteActivity.class);
+                    Intent intent = new Intent(v.getContext(), PaymentReadActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }
@@ -105,8 +105,8 @@ public class PaymentWriteListAdapter_water extends RecyclerView.Adapter<PaymentW
             editPayWriteUseWater.setText(payUse+"");
         }
 
-        public void setTextcheckPay() {
-            checkPayWriteWater.isChecked();
+        public void setTextcheckPay(boolean payWriteWater) {
+            checkPayWriteWater.setChecked(payWriteWater);
         }
     }
 }

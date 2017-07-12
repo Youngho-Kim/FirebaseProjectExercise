@@ -46,10 +46,10 @@ public class GroupWriteListAdapter_tenant extends RecyclerView.Adapter<GroupWrit
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         GroupTenantData bbs = data.get(position);
-        holder.setEditGroupWriteNameTenant(bbs.GroupName);
-        holder.setEditGroupWriteCountTenant(bbs.GroupCountTenant);
-        holder.setEditGroupWriteDayTenant(bbs.GroupDay);
-        holder.setEditGroupWriteRoomTenant(bbs.GroupRoom);
+        holder.setEditGroupWriteNameTenant(bbs.groupName);
+        holder.setEditGroupWriteCountTenant(bbs.groupCountTenant);
+        holder.setEditGroupWriteDayTenant(bbs.groupDay);
+        holder.setEditGroupWriteRoomTenant(bbs.groupRoom);
         holder.setPosition(position);
     }
 

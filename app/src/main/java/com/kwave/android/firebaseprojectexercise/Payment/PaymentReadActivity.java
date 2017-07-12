@@ -2,6 +2,7 @@ package com.kwave.android.firebaseprojectexercise.Payment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
@@ -16,19 +17,26 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kwave.android.firebaseprojectexercise.R;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
-public class PaymentReadActivity extends AppCompatActivity {
+public class PaymentReadActivity extends AppCompatActivity implements View.OnClickListener{
     TextView textPayReadMonth;
     TabLayout payReadTab;
     TabItem payReadTabMonth, payReadTabWater;
@@ -36,6 +44,12 @@ public class PaymentReadActivity extends AppCompatActivity {
     ViewPager payReadViewPaser;
     Fragment monthFee,waterFee;
     PagerAdapter adapter;
+
+    ImageButton payReadPreMonth, payReadNextMonth;
+    MyHomeData myHomeData = new MyHomeData();
+    Date date = new Date();
+
+
 
     FirebaseDatabase database;
     DatabaseReference bbsRef;
@@ -54,7 +68,15 @@ public class PaymentReadActivity extends AppCompatActivity {
         payReadTabMonth = (TabItem) findViewById(R.id.payReadTabMonth);
         payReadTabWater = (TabItem) findViewById(R.id.payReadTabWater);
         payReadViewPaser = (ViewPager) findViewById(R.id.payReadViewPaser);
+        payReadPreMonth = (ImageButton) findViewById(R.id.payReadPreMonth);
+        payReadNextMonth = (ImageButton) findViewById(R.id.payReadNextMonth);
+        payReadPreMonth.setOnClickListener(this);
+        payReadNextMonth.setOnClickListener(this);
 
+        myHomeData.dataMonth = date.getMonth()+1;
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("onCreat","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        textPayReadMonth.setText(currentMonth+"월");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.payReadToolbar);
         setSupportActionBar(toolbar);
@@ -74,8 +96,8 @@ public class PaymentReadActivity extends AppCompatActivity {
 //        payTab.addTab(payTab.newTab().setText("Four"));
 
         // 2. Fragment 생성
-        monthFee = new PaymentWriteFragment_month();
-        waterFee = new PaymentWriteFragment_water();
+        monthFee = new PaymentReadFragment_month();
+        waterFee = new PaymentReadFragment_water();
 
         // 3. Fragment를 datas 저장소에 담은 후
         List<Fragment> datas = new ArrayList<>();
@@ -108,6 +130,58 @@ public class PaymentReadActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void SetDataPreMonth(){
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        if(currentMonth > 12){
+            currentMonth = date.getMonth();
+            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else if(currentMonth <= 1)
+        {
+            currentMonth = 12;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else{
+            currentMonth = currentMonth-1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        textPayReadMonth.setText(currentMonth+"월");
+        myHomeData.dataMonth = currentMonth;
+        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+    }
+    public void SetDataNextMonth(){
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        if(currentMonth < 1){
+            currentMonth = date.getMonth()+1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else if(myHomeData.dataMonth >=12)
+        {
+            currentMonth = 1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        else{
+            currentMonth = currentMonth+1;
+//            myHomeData.dataMonth = currentMonth;
+            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        }
+        textPayReadMonth.setText(currentMonth+"월");
+        myHomeData.dataMonth = currentMonth;
+        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+    }
+
+
+
+
+
 
     // 어댑터의 데이터가 달라지면서 리스트  갱신
     @Override
@@ -157,6 +231,14 @@ public class PaymentReadActivity extends AppCompatActivity {
 
 
 
+    //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.payment_read_menu, menu);
+
+        return true;
+    }
 
     //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 실행----------------------------------------
     @Override
@@ -165,14 +247,33 @@ public class PaymentReadActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.paymentReadPen:
+                Intent intent = new Intent(PaymentReadActivity.this,PaymentWriteActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
 
 
+    //------------------해당 월이 바뀌면서 데이터 갱신하기 ----------------------------------------
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
 
-
+            case R.id.payReadPreMonth :
+//                textPayReadMonth.setText((myHomeData.dataMonth-1)+"월");
+                SetDataPreMonth();
+                break;
+            case R.id.payReadNextMonth :
+//                textPayReadMonth.setText((myHomeData.dataMonth+1)+"월");
+                SetDataNextMonth();
+                break;
+        }
+    }
+    //------------------해당 월이 바뀌면서 데이터 갱신하기 끝 ----------------------------------------
 
 
 

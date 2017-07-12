@@ -35,8 +35,9 @@ public class GroupReadFragment_contact extends Fragment{
         List<GroupContactData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         GroupContactData bbs = new GroupContactData();
-        bbs.GroupName = "kwave";
-        bbs.GroupPhoneContact = "010_7894-5612";
+        bbs.groupRoom = 301;
+        bbs.groupName = "kwave";
+        bbs.groupPhoneContact = "010_7894-5612";
         data.add(bbs);
 
         // RecyclerView Setting

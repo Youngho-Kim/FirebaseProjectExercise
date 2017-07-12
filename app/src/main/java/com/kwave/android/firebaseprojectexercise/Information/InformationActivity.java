@@ -7,10 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.SelectActivity;
 
 public class InformationActivity extends AppCompatActivity {
 
@@ -33,6 +34,15 @@ public class InformationActivity extends AppCompatActivity {
 
 
     }
+    //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.group_read_menu, menu);
+
+        return true;
+    }
+
     //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 실행----------------------------------------
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -40,21 +50,12 @@ public class InformationActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-            case android.R.id.custom:
-                goInformation();
+            case R.menu.group_read_menu:
+                Intent intent = new Intent(InformationActivity.this,InfomationWriteActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
-
-
-    public void goInformation(){
-        Intent intent = new Intent(InformationActivity.this,InfomationWriteActivity.class);
-        startActivity(intent);
-    }
-    public void goSelect(){
-        Intent intent = new Intent(InformationActivity.this,SelectActivity.class);
-        startActivity(intent);
-    }
 }

@@ -47,11 +47,11 @@ public class PaymentReadListAdapter_month extends RecyclerView.Adapter<PaymentRe
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         PayMonthData bbs = data.get(position);
-        holder.setPayWriteNameMonth(bbs.PayName);
-        holder.setPayWriteCountMonth(bbs.PayCountMonth);
-        holder.setPayWriteDayMonth(bbs.PayDay);
-        holder.setPayWriteRoomMonth(bbs.PayRoom);
-        holder.setCheckPayWriteMonth();
+        holder.setPayWriteNameMonth(bbs.payName);
+        holder.setPayWriteCountMonth(bbs.payCountMonth);
+        holder.setPayWriteDayMonth(bbs.payDay);
+        holder.setPayWriteRoomMonth(bbs.payRoom);
+        holder.setCheckPayWriteMonth(bbs.payCheckMonth);
         holder.setPosition(position);
     }
 
@@ -68,11 +68,11 @@ public class PaymentReadListAdapter_month extends RecyclerView.Adapter<PaymentRe
             textPayReadCountMonth = (TextView) v.findViewById(R.id.textPayReadCountMonth);
             textPayReadDayMonth = (TextView) v.findViewById(R.id.textPayReadDayMonth);
             textPayReadRoomMonth = (TextView) v.findViewById(R.id.textPayReadRoomMonth);
-            checkPayReadMonth = (CheckBox) v.findViewById(R.id.checkPayWriteMonth);
+            checkPayReadMonth = (CheckBox) v.findViewById(R.id.checkPayReadMonth);
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), PaymentReadActivity.class);
+                    Intent intent = new Intent(v.getContext(), PaymentWriteActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }
@@ -83,23 +83,23 @@ public class PaymentReadListAdapter_month extends RecyclerView.Adapter<PaymentRe
         }
 
 
-        public void setPayWriteNameMonth(String PayWriteNameMonth) {
-            textPayReadNameMonth.setText(PayWriteNameMonth);
+        public void setPayWriteNameMonth(String payWriteNameMonth) {
+            textPayReadNameMonth.setText(payWriteNameMonth);
         }
 
-        public void setPayWriteCountMonth(int PayWriteCountMonth) {
-            textPayReadCountMonth.setText(PayWriteCountMonth);
+        public void setPayWriteCountMonth(int payWriteCountMonth) {
+            textPayReadCountMonth.setText(payWriteCountMonth+"원");
         }
 
-        public void setPayWriteDayMonth(int PayWriteDayMonth) {
-            textPayReadDayMonth.setText(PayWriteDayMonth+"일");
+        public void setPayWriteDayMonth(int payWriteDayMonth) {
+            textPayReadDayMonth.setText(payWriteDayMonth+"일");
         }
-        public void setPayWriteRoomMonth(int PayWriteRoomMonth) {
-            textPayReadRoomMonth.setText(PayWriteRoomMonth+"호");
+        public void setPayWriteRoomMonth(int payWriteRoomMonth) {
+            textPayReadRoomMonth.setText(payWriteRoomMonth+"호");
         }
 
-        public void setCheckPayWriteMonth() {
-            checkPayReadMonth.isChecked();
+        public void setCheckPayWriteMonth(boolean payReadMonth) {
+            checkPayReadMonth.setChecked(payReadMonth);
         }
     }
 }

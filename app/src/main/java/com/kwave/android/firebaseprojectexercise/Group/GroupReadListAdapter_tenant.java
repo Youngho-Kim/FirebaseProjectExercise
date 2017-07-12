@@ -46,10 +46,10 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         GroupTenantData bbs = data.get(position);
-        holder.setGroupWriteNameTenant(bbs.GroupName);
-        holder.setGroupWriteCountTenant(bbs.GroupCountTenant);
-        holder.setGroupWriteDayTenant(bbs.GroupDay);
-        holder.setGroupWriteRoomTenant(bbs.GroupRoom);
+        holder.setGroupWriteNameTenant(bbs.groupName);
+        holder.setGroupWriteCountTenant(bbs.groupCountTenant);
+        holder.setGroupWriteDayTenant(bbs.groupDay);
+        holder.setGroupWriteRoomTenant(bbs.groupRoom);
         holder.setPosition(position);
     }
 
@@ -68,7 +68,7 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), GroupReadActivity.class);
+                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }

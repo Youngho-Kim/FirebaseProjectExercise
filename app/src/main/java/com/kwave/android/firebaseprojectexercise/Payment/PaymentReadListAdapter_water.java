@@ -47,12 +47,12 @@ public class PaymentReadListAdapter_water extends RecyclerView.Adapter<PaymentRe
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         PayWaterData bbs = data.get(position);
-        holder.setPayName(bbs.PayName);
-        holder.setPayCount(bbs.PayCountWater);
-        holder.setPayDay(bbs.PayDay);
-        holder.setPayRoom(bbs.PayRoom);
-        holder.setPayUse(bbs.PayUse);
-        holder.setTextcheckPay();
+        holder.setPayName(bbs.payName);
+        holder.setPayCount(bbs.payCountWater);
+        holder.setPayDay(bbs.payDay);
+        holder.setPayRoom(bbs.payRoom);
+        holder.setPayUse(bbs.payUse);
+        holder.setTextcheckPay(bbs.payCheckWater);
         holder.setPosition(position);
     }
 
@@ -75,7 +75,7 @@ public class PaymentReadListAdapter_water extends RecyclerView.Adapter<PaymentRe
             v.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), PaymentReadActivity.class);
+                    Intent intent = new Intent(v.getContext(), PaymentWriteActivity.class);
                     intent.putExtra("LIST_POSITION", position);
                     v.getContext().startActivity(intent);
                  }
@@ -90,23 +90,23 @@ public class PaymentReadListAdapter_water extends RecyclerView.Adapter<PaymentRe
         }
 
         public void setPayCount(int payCount) {
-            textPayReadCountWater.setText(payCount);
+            textPayReadCountWater.setText(payCount+"만원");
         }
 
         public void setPayDay(int payDay) {
-            textPayReadDayWater.setText(payDay);
+            textPayReadDayWater.setText(payDay+"일");
         }
 
         public void setPayRoom(int payRoom) {
-            textPayReadRoomWater.setText(payRoom);
+            textPayReadRoomWater.setText(payRoom+"호");
         }
 
         public void setPayUse(int payUse) {
-            textPayReadUseWater.setText(payUse);
+            textPayReadUseWater.setText(payUse+"");
         }
 
-        public void setTextcheckPay() {
-            checkPayReadWater.isChecked();
+        public void setTextcheckPay(boolean payReadWater) {
+            checkPayReadWater.setChecked(payReadWater);
         }
     }
 }

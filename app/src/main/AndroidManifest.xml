@@ -54,14 +54,14 @@
             android:name=".Notify.NotifyReadActivity"
             android:label="@string/title_activity_notify_read"
             android:theme="@style/AppTheme.NoActionBar"/>
-            <activity
-                android:name=".Group.GroupReadActivity"
-                android:label="@string/title_activity_group_read"
-                android:theme="@style/AppTheme.NoActionBar" />
-            <activity
-                android:name=".Group.GroupWriteActivity"
-                android:label="@string/title_activity_group_write"
-                android:theme="@style/AppTheme.NoActionBar" >
+        <activity
+            android:name=".Group.GroupReadActivity"
+            android:label="@string/title_activity_group_read"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Group.GroupWriteActivity"
+            android:label="@string/title_activity_group_write"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
