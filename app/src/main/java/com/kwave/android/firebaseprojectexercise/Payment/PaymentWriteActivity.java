@@ -248,7 +248,7 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
             case android.R.id.home:
                 finish();
                 return true;
-            case R.id.groupWritePen:
+            case R.id.paymentWritePen:
                 Intent intent = new Intent(PaymentWriteActivity.this,PaymentReadActivity.class);
                 startActivity(intent);
                 finish();
