@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,28 +37,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class GroupWriteActivity extends AppCompatActivity implements View.OnClickListener{
+    public static final int REQ_GROUP_WRITE_TENANT = 100;
     TextView textGroupWriteMonth;
     TabLayout groupWriteTab;
     TabItem groupWriteTabTenant, groupWriteTabContact;
     LocationManager manager;
     ViewPager groupWriteViewPaser;
     Fragment tenantFee,contactFee;
+    GroupWriteFragment_tenant tenantF = new GroupWriteFragment_tenant();
     PagerAdapter adapter;
     ImageButton groupWritePreMonth, groupWriteNextMonth;
+    int current_month;
+    GroupWriteFragment_tenant tenant1;
+
+//
+//    int GroupWriteRoomTenant;
+//    String GroupWriteNameTenant;
+//    int GroupWriteCountTenant;
+//    String GroupWriteDayTenant;
+
 
     MyHomeData myHomeData = new MyHomeData();
     Date date = new Date();
     FirebaseDatabase database;
     DatabaseReference bbsRef;
+    List<MyHomeData> data = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("bbs");
-
-
         setContentView(R.layout.activity_group_write);
 
         textGroupWriteMonth = (TextView) findViewById(R.id.textGroupWriteMonth);
@@ -69,10 +79,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         groupWritePreMonth.setOnClickListener(this);
         groupWriteNextMonth.setOnClickListener(this);
 
-        myHomeData.dataMonth = date.getMonth()+1;
-        int currentMonth = myHomeData.dataMonth;
-        Log.d("onCreat","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        textGroupWriteMonth.setText(currentMonth+"월");
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.groupWriteToolbar);
         setSupportActionBar(toolbar);
@@ -83,9 +90,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
 //        toolbar.inflateMenu(R.group_read_menu.information);
 //        getSupportActionBar().setIcon(ic_menu_edit);
 
-
         manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
 
 //        // 1. ViewPager 위젯 연결           // 탭을 생성
 //        payTab.addTab(payTab.newTab().setText("One"));
@@ -95,6 +100,8 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
 
         // 2. Fragment 생성
         tenantFee = new GroupWriteFragment_tenant();
+//        ((GroupWriteFragment_tenant) tenantFee).setParentActivity(this);
+
         contactFee = new GroupWriteFragment_contact();
 
         // 3. Fragment를 datas 저장소에 담은 후
@@ -116,6 +123,18 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         // 7. 탭이 변경되었을 때 탭을 변경해주는 리스너
         groupWriteTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(groupWriteViewPaser));
 
+//        startFragment(tenant1);
+//        goFragment(tenant1);
+
+
+        myHomeData.dataMonth = date.getMonth()+1;
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("onCreat","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        textGroupWriteMonth.setText(currentMonth+"월");
+        current_month = currentMonth;
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference("남일빌라/세입자 관리/2017/"+current_month+"/세입자 정보/101/");
+
 
 //        loadData();
 
@@ -125,9 +144,134 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         }
 
 
-
-
     }
+
+
+    public void startFragment(Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.tenantFee3, fragment);
+        transaction.commit();
+    }
+//
+//    public void goFragment(Fragment fragment) {
+//        FragmentManager manager = this.getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.add(R.id.tenantFee3, fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
+//
+//    public void goPrevFragment(){
+//        FragmentManager manager = this.getSupportFragmentManager();
+//        manager.popBackStack();
+//    }
+//
+
+
+
+
+
+//    public int getQueryIndex() {
+////        int temp = myHomeData.dataMonth;
+//        int temp = 7;
+//        Log.d("TAG","=====================================================================================");
+//        return temp;
+//    }
+
+//    public void insertUsingRemote(MyHomeData myHomeData){
+//        // 파이어베이스 데이터베이스에 데이터 넣기
+//        if(myHomeData == null){
+//            return;
+//        }
+//
+//        // 이미지가 있으면 이미지 올리기
+////        if(imageUri != null){
+////            myHomeData.fileUriString = imageUri.toString();
+////        }
+//
+//        // 2. 입력할 데이터의 키 생성
+//        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
+//        // 3. 생성된 키를 레퍼런스로 데이터를 입력
+//        //    insert 와 update, delete 는 동일하게 동작
+////        bbsRef.child("bbsKey").setValue(myHomeData.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
+//        bbsRef.child("집주인 이름").setValue(this.myHomeData.masterName);        // 내가 원하는 부분으로 입력된다.
+//        bbsRef.child("집주인 주소").setValue(myHomeData.masterAddr);
+//        bbsRef.child("집주인 계좌번호").setValue(myHomeData.masterAccount);
+//        bbsRef.child("집주인 전화번호").setValue(myHomeData.masterPhoneNumber);
+//        bbsRef.child("분리수거 안내").setValue(myHomeData.masterTrash);
+//        //    update : bbsRef.child(bbsKey).setValue(myHomeData);
+//        //    delete : bbsRef.child(bbsKey).setValue(null);
+//        // 데이터 입력후 창 닫기
+//        finish();
+//    }
+
+
+
+
+
+    public void afterUploadFile(Uri imageUri){
+        // 데이터 받아 올 변수 만들기
+
+//        Log.i("FBStorage","Upload check ========= 3");
+//        int groupWriteRoom = tenantF.data.get(data.indexOf(tenantF)).room
+//
+//        String groupWriteName = tenantF.data.get(data.indexOf(tenantF)).name;
+//        int groupWriteCountTenant = tenantF.data.get(data.indexOf(tenantF)).countTenant;
+
+        // 파이어베이스 데이터베이스에 데이터 넣기
+        // 1. 데이터 객체 생성
+//        MyHomeData bbs = new MyHomeData(groupWriteRoom,groupWriteName,groupWriteCountTenant,groupWriteContract);
+        MyHomeData bbs = new MyHomeData();
+
+            Log.d("getTextWatcher.size", "몇이 나올까?? : "+tenantF.getTextWatcher().size());
+            bbs.room = tenantF.getTextWatcher().get(0).room;
+            bbs.name = tenantF.getTextWatcher().get(0).name;
+            bbs.countTenant = tenantF.getTextWatcher().get(0).countTenant;
+            bbs.contract = tenantF.getTextWatcher().get(0).contract;
+
+        // 이미지가 있으면 이미지 올리기
+//        if(imageUri != null){
+//            bbs.fileUriString = imageUri.toString();
+//        }
+
+        // 2. 입력할 데이터의 키 생성
+        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
+        // 3. 생성된 키를 레퍼런스로 데이터를 입력
+        //    insert 와 update, delete 는 동일하게 동작
+//        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
+        bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+        Log.d("bbs.room", "Room 입력사항 "+bbs.room);;
+        bbsRef.child("이름").setValue(bbs.name);
+        Log.d("bbs.name", "name 입력사항 "+bbs.name);;
+        bbsRef.child("금액(/달)").setValue(bbs.countTenant);
+        Log.d("bbs.countTenant", "countTenant 입력사항 "+bbs.countTenant);;
+        bbsRef.child("계약일").setValue(bbs.contract);
+        Log.d("bbs.contract", "contract 입력사항 "+bbs.contract);;
+        //    update : bbsRef.child(bbsKey).setValue(bbs);
+        //    delete : bbsRef.child(bbsKey).setValue(null);
+        // 데이터 입력후 창 닫기
+        finish();
+    }
+//    @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//        if (requestCode == REQ_GROUP_WRITE_TENANT) {
+//            if (resultCode == RESULT_OK) {
+//                // Information Write Activity에서 보낸 값을 세팅
+//                GroupWriteRoomTenant = Integer.parseInt(intent.getStringExtra("GroupWriteRoomTenant"));
+//
+//                GroupWriteNameTenant = intent.getStringExtra("GroupWriteNameTenant");
+//
+//                GroupWriteCountTenant = Integer.parseInt(intent.getStringExtra("GroupWriteCountTenant"));
+//
+//                GroupWriteDayTenant = intent.getStringExtra("GroupWriteDayTenant");
+//
+//
+//            }
+//        }
+//    }
+
+
+
 
 
     public void SetDataPreMonth(){
@@ -150,6 +294,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         }
         textGroupWriteMonth.setText(currentMonth+"월");
         myHomeData.dataMonth = currentMonth;
+        current_month = myHomeData.dataMonth;
         Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
     }
     public void SetDataNextMonth(){
@@ -173,6 +318,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         }
         textGroupWriteMonth.setText(currentMonth+"월");
         myHomeData.dataMonth = currentMonth;
+        current_month = myHomeData.dataMonth;
         Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
     }
 
@@ -183,6 +329,9 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
         super.onResume();
         adapter.notifyDataSetChanged();
     }
+
+
+
 
     //-------------------------------------------권한처리---------------------------------------------------------------------------------
     private final int REQ_PERMISSION = 100;
@@ -242,9 +391,13 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 return true;
             case R.id.groupWritePen:
+//                adapter.notifyDataSetChanged();
+                afterUploadFile(null);
+//                adapter.notifyDataSetChanged();
+//                tenantF.test();
                 Intent intent = new Intent(GroupWriteActivity.this,GroupReadActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -266,6 +419,7 @@ public void onClick(View v) {
 
     }
 }
+
     //------------------해당 월이 바뀌면서 데이터 갱신하기 끝 ----------------------------------------
 
 

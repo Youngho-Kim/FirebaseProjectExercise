@@ -1,20 +1,40 @@
 package com.kwave.android.firebaseprojectexercise.Information;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.kwave.android.firebaseprojectexercise.R;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 public class InfomationWriteActivity extends AppCompatActivity {
+    EditText editAddressWrite, editNameWrite, editPhoneWrite, editAccountWrite, editTrashWrite;
+
+    // 데이터베이스
+    FirebaseDatabase database;
+    DatabaseReference bbsRef;
+    // 스토리지
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference("남일빌라/집 정보/");
+        // 스토리지 레퍼런스
+        mStorageRef = FirebaseStorage.getInstance().getReference("images");
+
+
         setContentView(R.layout.activity_infomation_write);
         Toolbar toolbar = (Toolbar) findViewById(R.id.infomationToolbar);
         setSupportActionBar(toolbar);
@@ -22,8 +42,55 @@ public class InfomationWriteActivity extends AppCompatActivity {
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        setView();
     }
+
+
+    private void setView(){
+        editAddressWrite = (EditText) findViewById(R.id.editAddressWrite);
+        editNameWrite = (EditText) findViewById(R.id.editNameWrite);
+        editPhoneWrite = (EditText) findViewById(R.id.editPhoneWrite);
+        editAccountWrite = (EditText) findViewById(R.id.editAccountWrite);
+        editTrashWrite = (EditText) findViewById(R.id.editTrashWrite);
+    }
+
+
+    public void afterUploadFile(Uri imageUri){
+        // 데이터 받아 올 변수 만들기
+        String masterAddr = editAddressWrite.getText().toString();
+        String masterName = editNameWrite.getText().toString();
+        String masterPhoneNumber = editPhoneWrite.getText().toString();
+        String masterAccount = editAccountWrite.getText().toString();
+        String masterTrash = editTrashWrite.getText().toString();
+
+//        Log.i("FBStorage","Upload check ========= 3");
+
+        // 파이어베이스 데이터베이스에 데이터 넣기
+        // 1. 데이터 객체 생성
+        MyHomeData bbs = new MyHomeData(masterName,masterAddr,masterAccount,masterPhoneNumber,masterTrash);
+
+        // 이미지가 있으면 이미지 올리기
+//        if(imageUri != null){
+//            bbs.fileUriString = imageUri.toString();
+//        }
+
+        // 2. 입력할 데이터의 키 생성
+        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
+        // 3. 생성된 키를 레퍼런스로 데이터를 입력
+        //    insert 와 update, delete 는 동일하게 동작
+//        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
+        bbsRef.child("집주인 이름").setValue(bbs.masterName);        // 내가 원하는 부분으로 입력된다.
+        bbsRef.child("집주인 주소").setValue(bbs.masterAddr);
+        bbsRef.child("집주인 계좌번호").setValue(bbs.masterAccount);
+        bbsRef.child("집주인 전화번호").setValue(bbs.masterPhoneNumber);
+        bbsRef.child("분리수거 안내").setValue(bbs.masterTrash);
+        //    update : bbsRef.child(bbsKey).setValue(bbs);
+        //    delete : bbsRef.child(bbsKey).setValue(null);
+        // 데이터 입력후 창 닫기
+        finish();
+    }
+
+
     //-----------------------------액션바에서 ReadActivity로 가기 ----------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -41,14 +108,31 @@ public class InfomationWriteActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.informationWritePen:
-                Intent intent = new Intent(InfomationWriteActivity.this,InformationActivity.class);
+
+                // 인텐트를 통해서 작성한 글 Read Activity로 보내기
+//                Intent intent = new Intent();
+//                intent.putExtra("addrWrite",editAddressWrite.getText().toString());
+//                intent.putExtra("nameWrite", editNameWrite.getText().toString());
+//                intent.putExtra("phoneWrite", editPhoneWrite.getText().toString());
+//                intent.putExtra("accountWrite", editAccountWrite.getText().toString());
+//                intent.putExtra("trashWrite", editTrashWrite.getText().toString());
+//                setResult(RESULT_OK, intent) ;
+//                finish();
+
+
+                // 파이어베이스에 데이터 보내기
+                afterUploadFile(null);
+                // 액티비티 이동하기
+                Intent intent = new Intent(InfomationWriteActivity.this, InformationActivity.class);
                 startActivity(intent);
-                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
+
+
+
 }
 
 

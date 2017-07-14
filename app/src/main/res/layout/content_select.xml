@@ -27,7 +27,8 @@
 
             <ImageView
                 android:id="@+id/imageInfomation"
-                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:background="#f3f3f3"
@@ -59,9 +60,10 @@
 
             <ImageView
                 android:id="@+id/imagePay"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:layout_gravity="center"
                 android:background="#f3f3f3"
                 app:srcCompat="@mipmap/group" />
 
@@ -96,9 +98,10 @@
 
             <ImageView
                 android:id="@+id/imageNotify"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:layout_gravity="center"
                 android:background="#f3f3f3"
                 app:srcCompat="@mipmap/folder" />
 
@@ -127,9 +130,10 @@
             <ImageView
                 android:id="@+id/imageGruop"
                 android:clickable="true"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
+                android:layout_gravity="center"
                 android:background="#f3f3f3"
                 app:srcCompat="@mipmap/add_contact" />
 

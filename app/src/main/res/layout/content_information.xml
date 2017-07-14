@@ -57,6 +57,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:hint="Address"
+                android:gravity="center|left"
                 android:textSize="13sp"
                 android:textColor="#000000"
                 android:letterSpacing="0.03"
@@ -118,6 +119,7 @@
                     android:inputType="textPersonName"
                     android:hint="Name"
                     android:textSize="13sp"
+                    android:gravity="center|left"
                     android:textColor="#000000"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="2.7sp" />
@@ -151,6 +153,7 @@
                     android:hint="010 - 0000 - 0000"
                     android:textSize="13sp"
                     android:textColor="#000000"
+                    android:gravity="center|left"
                     android:letterSpacing="0.03"
                     android:lineSpacingExtra="2.7sp"  />
             </LinearLayout>
@@ -184,6 +187,7 @@
                     android:textSize="13sp"
                     android:textColor="#000000"
                     android:letterSpacing="0.03"
+                    android:gravity="center|left"
                     android:lineSpacingExtra="2.7sp" />
             </LinearLayout>
 

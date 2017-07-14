@@ -20,6 +20,8 @@ public class MyHomeData {
     public int use; // 수도 사용량
     public boolean checkWater;  // 체크여부
     public boolean checkTenant;  // 체크여부
+    public String contractStart;    // 계약날짜 시작
+    public String contractEnd;    // 계약날짜 끝
 
     // master Info
 
@@ -30,5 +32,35 @@ public class MyHomeData {
     public String masterPhoneNumber;   // 주인 전화번호
     public String masterTrash;   // 분리수거 사항
     public String masterNotify;   // 분리수거 사항
+
+//    public MyHomeData bbs = new MyHomeData();
+
+    public MyHomeData() {
+    }
+
+//    public MyHomeData(MyHomeData bbs) {
+//        this.bbs = bbs;
+//    }
+
+    public MyHomeData(String masterNotify) {
+        this.masterNotify = masterNotify;
+    }
+
+    public MyHomeData(String masterName, String masterAddr, String masterAccount, String masterPhoneNumber, String masterTrash) {
+        this.masterName = masterName;
+        this.masterAddr = masterAddr;
+        this.masterAccount = masterAccount;
+        this.masterPhoneNumber = masterPhoneNumber;
+        this.masterTrash = masterTrash;
+    }
+
+    public MyHomeData(int room, String name, int countTenant, String contract) {
+        this.room = room;
+        this.name = name;
+        this.countTenant = countTenant;
+        this.contract = contract;
+    }
+
+
 
 }
