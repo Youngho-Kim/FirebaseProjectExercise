@@ -87,14 +87,14 @@ public class PaymentReadListAdapter_month extends RecyclerView.Adapter<PaymentRe
             textPayReadNameMonth.setText(payWriteNameMonth);
         }
 
-        public void setPayWriteCountMonth(int payWriteCountMonth) {
+        public void setPayWriteCountMonth(String payWriteCountMonth) {
             textPayReadCountMonth.setText(payWriteCountMonth+"원");
         }
 
-        public void setPayWriteDayMonth(int payWriteDayMonth) {
+        public void setPayWriteDayMonth(String payWriteDayMonth) {
             textPayReadDayMonth.setText(payWriteDayMonth+"일");
         }
-        public void setPayWriteRoomMonth(int payWriteRoomMonth) {
+        public void setPayWriteRoomMonth(String payWriteRoomMonth) {
             textPayReadRoomMonth.setText(payWriteRoomMonth+"호");
         }
 

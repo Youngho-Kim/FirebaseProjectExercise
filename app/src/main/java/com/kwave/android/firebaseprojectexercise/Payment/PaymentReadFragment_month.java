@@ -32,10 +32,10 @@ public class PaymentReadFragment_month extends Fragment {
         List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         MyHomeData bbs = new MyHomeData();
-        bbs.room = 301;
+        bbs.room = "301";
         bbs.name = "kwave";
-        bbs.countTenant = 3000;
-        bbs.day = 4;
+        bbs.countTenant = "3000";
+        bbs.day = "4";
         bbs.checkTenant = true;
         data.add(bbs);
 

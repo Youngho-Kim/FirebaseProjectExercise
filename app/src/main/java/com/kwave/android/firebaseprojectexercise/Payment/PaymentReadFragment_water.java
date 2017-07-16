@@ -36,10 +36,10 @@ public class PaymentReadFragment_water extends Fragment{
         // 리스트를 띄우기 위한 임시데이터
         MyHomeData bbs = new MyHomeData();
         bbs.name = "kwave";
-        bbs.countWater = 3000;
-        bbs.day = 8;
-        bbs.room = 301;
-        bbs.use = 300;
+        bbs.countWater = "3000";
+        bbs.day = "8";
+        bbs.room = "301";
+        bbs.use = "300";
         bbs.checkWater = true;
         data.add(bbs);
 

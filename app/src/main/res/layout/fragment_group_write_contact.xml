@@ -10,10 +10,10 @@
 
 
     <LinearLayout
-        android:gravity="center"
         android:id="@+id/groupWriteLinearLayoutContact"
         android:layout_width="match_parent"
         android:layout_height="36dp"
+        android:gravity="center"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -26,9 +26,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
+            android:text="호실"
             android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="호실" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textGroupWriteNameContact"
@@ -37,9 +37,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
+            android:text="이름"
             android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="이름" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textGroupPhoneContact"
@@ -48,11 +48,12 @@
             android:layout_weight="1"
             android:gravity="center"
             android:letterSpacing="0.02"
+            android:text="핸드폰 번호"
             android:textColor="@color/darkish_pink_two"
-            android:textSize="13sp"
-            android:text="핸드폰 번호" />
+            android:textSize="13sp" />
 
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/groupWriteContactRecycler"
         android:layout_width="match_parent"

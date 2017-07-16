@@ -35,7 +35,7 @@ public class GroupReadFragment_contact extends Fragment{
         List<MyHomeData> data = new ArrayList<>();
         // 리스트를 띄우기 위한 임시데이터
         MyHomeData bbs = new MyHomeData();
-        bbs.room = 301;
+        bbs.room = "301";
         bbs.name = "kwave";
         bbs.phoneNumber = "010_7894-5612";
         data.add(bbs);

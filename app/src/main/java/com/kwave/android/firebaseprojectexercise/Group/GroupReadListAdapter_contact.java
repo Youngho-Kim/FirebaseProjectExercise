@@ -84,7 +84,7 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
         }
 
 
-        public void setGroupRoom(int GroupRoom) {
+        public void setGroupRoom(String GroupRoom) {
             textGroupReadRoomContact.setText(GroupRoom+"호");
         }
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -172,103 +171,6 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
 
 
 
-//    public int getQueryIndex() {
-////        int temp = myHomeData.dataMonth;
-//        int temp = 7;
-//        Log.d("TAG","=====================================================================================");
-//        return temp;
-//    }
-
-//    public void insertUsingRemote(MyHomeData myHomeData){
-//        // 파이어베이스 데이터베이스에 데이터 넣기
-//        if(myHomeData == null){
-//            return;
-//        }
-//
-//        // 이미지가 있으면 이미지 올리기
-////        if(imageUri != null){
-////            myHomeData.fileUriString = imageUri.toString();
-////        }
-//
-//        // 2. 입력할 데이터의 키 생성
-//        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
-//        // 3. 생성된 키를 레퍼런스로 데이터를 입력
-//        //    insert 와 update, delete 는 동일하게 동작
-////        bbsRef.child("bbsKey").setValue(myHomeData.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
-//        bbsRef.child("집주인 이름").setValue(this.myHomeData.masterName);        // 내가 원하는 부분으로 입력된다.
-//        bbsRef.child("집주인 주소").setValue(myHomeData.masterAddr);
-//        bbsRef.child("집주인 계좌번호").setValue(myHomeData.masterAccount);
-//        bbsRef.child("집주인 전화번호").setValue(myHomeData.masterPhoneNumber);
-//        bbsRef.child("분리수거 안내").setValue(myHomeData.masterTrash);
-//        //    update : bbsRef.child(bbsKey).setValue(myHomeData);
-//        //    delete : bbsRef.child(bbsKey).setValue(null);
-//        // 데이터 입력후 창 닫기
-//        finish();
-//    }
-
-
-
-
-
-    public void afterUploadFile(Uri imageUri){
-        // 데이터 받아 올 변수 만들기
-
-//        Log.i("FBStorage","Upload check ========= 3");
-//        int groupWriteRoom = tenantF.data.get(data.indexOf(tenantF)).room
-//
-//        String groupWriteName = tenantF.data.get(data.indexOf(tenantF)).name;
-//        int groupWriteCountTenant = tenantF.data.get(data.indexOf(tenantF)).countTenant;
-
-        // 파이어베이스 데이터베이스에 데이터 넣기
-        // 1. 데이터 객체 생성
-//        MyHomeData bbs = new MyHomeData(groupWriteRoom,groupWriteName,groupWriteCountTenant,groupWriteContract);
-        MyHomeData bbs = new MyHomeData();
-
-            Log.d("getTextWatcher.size", "몇이 나올까?? : "+tenantF.getTextWatcher().size());
-            bbs.room = tenantF.getTextWatcher().get(0).room;
-            bbs.name = tenantF.getTextWatcher().get(0).name;
-            bbs.countTenant = tenantF.getTextWatcher().get(0).countTenant;
-            bbs.contract = tenantF.getTextWatcher().get(0).contract;
-
-        // 이미지가 있으면 이미지 올리기
-//        if(imageUri != null){
-//            bbs.fileUriString = imageUri.toString();
-//        }
-
-        // 2. 입력할 데이터의 키 생성
-        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
-        // 3. 생성된 키를 레퍼런스로 데이터를 입력
-        //    insert 와 update, delete 는 동일하게 동작
-//        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
-        bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-        Log.d("bbs.room", "Room 입력사항 "+bbs.room);;
-        bbsRef.child("이름").setValue(bbs.name);
-        Log.d("bbs.name", "name 입력사항 "+bbs.name);;
-        bbsRef.child("금액(/달)").setValue(bbs.countTenant);
-        Log.d("bbs.countTenant", "countTenant 입력사항 "+bbs.countTenant);;
-        bbsRef.child("계약일").setValue(bbs.contract);
-        Log.d("bbs.contract", "contract 입력사항 "+bbs.contract);;
-        //    update : bbsRef.child(bbsKey).setValue(bbs);
-        //    delete : bbsRef.child(bbsKey).setValue(null);
-        // 데이터 입력후 창 닫기
-        finish();
-    }
-//    @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        if (requestCode == REQ_GROUP_WRITE_TENANT) {
-//            if (resultCode == RESULT_OK) {
-//                // Information Write Activity에서 보낸 값을 세팅
-//                GroupWriteRoomTenant = Integer.parseInt(intent.getStringExtra("GroupWriteRoomTenant"));
-//
-//                GroupWriteNameTenant = intent.getStringExtra("GroupWriteNameTenant");
-//
-//                GroupWriteCountTenant = Integer.parseInt(intent.getStringExtra("GroupWriteCountTenant"));
-//
-//                GroupWriteDayTenant = intent.getStringExtra("GroupWriteDayTenant");
-//
-//
-//            }
-//        }
-//    }
 
 
 
@@ -391,10 +293,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 return true;
             case R.id.groupWritePen:
-//                adapter.notifyDataSetChanged();
-                afterUploadFile(null);
-//                adapter.notifyDataSetChanged();
-//                tenantF.test();
+                tenantF.goFirebase();
                 Intent intent = new Intent(GroupWriteActivity.this,GroupReadActivity.class);
                 startActivity(intent);
 //                finish();

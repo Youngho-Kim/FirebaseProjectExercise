@@ -89,19 +89,19 @@ public class PaymentReadListAdapter_water extends RecyclerView.Adapter<PaymentRe
             textPayReadNameWater.setText(payName);
         }
 
-        public void setPayCount(int payCount) {
+        public void setPayCount(String payCount) {
             textPayReadCountWater.setText(payCount+"만원");
         }
 
-        public void setPayDay(int payDay) {
+        public void setPayDay(String payDay) {
             textPayReadDayWater.setText(payDay+"일");
         }
 
-        public void setPayRoom(int payRoom) {
+        public void setPayRoom(String payRoom) {
             textPayReadRoomWater.setText(payRoom+"호");
         }
 
-        public void setPayUse(int payUse) {
+        public void setPayUse(String payUse) {
             textPayReadUseWater.setText(payUse+"");
         }
 

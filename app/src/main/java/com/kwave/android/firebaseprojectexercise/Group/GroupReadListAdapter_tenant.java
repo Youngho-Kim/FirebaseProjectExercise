@@ -83,14 +83,14 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
             textGroupReadNameTenant.setText(GroupWriteNameTenant);
         }
 
-        public void setGroupWriteCountTenant(int GroupWriteCountTenant) {
+        public void setGroupWriteCountTenant(String GroupWriteCountTenant) {
             textGroupReadCountTenant.setText(GroupWriteCountTenant+"만원");
         }
 
         public void setGroupWriteDayTenant(String GroupWriteDayTenant) {
             textGroupReadDayTenant.setText(GroupWriteDayTenant);
         }
-        public void setGroupWriteRoomTenant(int GroupWriteRoomTenant) {
+        public void setGroupWriteRoomTenant(String GroupWriteRoomTenant) {
             textGroupReadRoomTenant.setText(GroupWriteRoomTenant+"호");
         }
 

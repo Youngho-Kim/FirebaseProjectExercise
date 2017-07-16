@@ -16,6 +16,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="center"
+            android:inputType="number"
             android:hint="101호"
             android:letterSpacing="0.02"
             android:textColor="#4a4a4a"
@@ -46,7 +47,7 @@
             android:gravity="center_horizontal"
             android:hint="010-1234-5678"
             android:letterSpacing="0.02"
-            android:numeric="integer"
+            android:inputType="phone"
             android:textColor="#4a4a4a"
             android:textSize="13sp"
             android:textStyle="normal" />
