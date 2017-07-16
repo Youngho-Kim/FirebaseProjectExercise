@@ -5,7 +5,7 @@ package com.kwave.android.firebaseprojectexercise.domain;
  */
 
 public class PaymentWater {
-    public String id;    // 파이어베이스의 push 로 자동생성된다.
+    public int id;    // 파이어베이스의 push 로 자동생성된다.
     public String room;  // 호수
     public String name;     // 이름
     public String countWater; // 수도세

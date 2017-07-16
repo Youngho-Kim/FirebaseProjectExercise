@@ -79,8 +79,9 @@ public class PaymentWriteFragment_month extends Fragment {
         if(num <=0){
             num = 1;
         }
+
         for(int i=0; i<num; i++){
-            bbs = new MyHomeData();
+            MyHomeData bbs = new MyHomeData();
             bbs.room = "";
             bbs.name = "";
             bbs.countTenant = "";
