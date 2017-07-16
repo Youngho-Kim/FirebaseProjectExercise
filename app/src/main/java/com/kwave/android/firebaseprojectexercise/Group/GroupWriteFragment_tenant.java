@@ -42,7 +42,7 @@ public class GroupWriteFragment_tenant extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_write_tenant, container, false);
 
-        makeData(2);
+        makeData(1);
 
 
 
