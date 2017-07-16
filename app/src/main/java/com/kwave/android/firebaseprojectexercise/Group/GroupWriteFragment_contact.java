@@ -38,25 +38,27 @@ public class GroupWriteFragment_contact extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_write_contact, container, false);
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/");
+//        database = FirebaseDatabase.getInstance();
+//        bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/");
         textGroupPhoneContact = (TextView) view.findViewById(R.id.textGroupPhoneContact);
+//
+////        List<GroupContact> data = new ArrayList<>();
+//        // 리스트를 띄우기 위한 임시데이터
+//        GroupContact bbs = new GroupContact();
+//        bbs.name = "";
+//        bbs.phoneNumber = "";
+//        bbs.room = "";
+//        data.add(bbs);
 
-//        List<GroupContact> data = new ArrayList<>();
-        // 리스트를 띄우기 위한 임시데이터
-        GroupContact bbs = new GroupContact();
-        bbs.name = "";
-        bbs.phoneNumber = "";
-        bbs.room = "";
-        data.add(bbs);
+        makeData(6);
 
         // RecyclerView Setting
         groupWriteContactRecycler = (RecyclerView) view.findViewById(R.id.groupWriteContactRecycler);
         adapter = new GroupWriteListAdapter_contact(data, getContext());
         groupWriteContactRecycler.setAdapter(adapter);
         groupWriteContactRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
 
 
         textGroupPhoneContact.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +68,27 @@ public class GroupWriteFragment_contact extends Fragment {
             }
         });
         return view;
+    }
+
+
+    public void makeData(int num){
+        // 리스트를 띄우기 위한 임시데이터
+        if(num <=0){
+            num = 1;
+        }
+        for(int i =1; i<=num;i++){
+            GroupContact bbs = new GroupContact();
+            bbs.room = "";
+            bbs.name = "";
+            bbs.phoneNumber = "";
+            data.add(bbs);
+//            Log.i("DATA","====================bbs.room : " + bbs.room);
+//            Log.i("DATA", "=================data.add(bbs) : " + data.add(bbs));
+//            Log.i("DATA", "=================data.size() : " + data.size());
+//            Log.i("DATA", "=================data.indexOf(bbs) : " + data.indexOf(bbs));
+
+        }
+
     }
 
 
@@ -82,13 +105,18 @@ public class GroupWriteFragment_contact extends Fragment {
         // 3. 생성된 키를 레퍼런스로 데이터를 입력
         //    insert 와 update, delete 는 동일하게 동작
 //        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
-        bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-        Log.d("bbs.room", "Room 입력사항 "+bbs.room);;
-        bbsRef.child("이름").setValue(bbs.name);
-        Log.d("bbs.name", "name 입력사항 "+bbs.name);;
-        bbsRef.child("전화번호").setValue(bbs.phoneNumber);
-        Log.d("bbs.phoneNumber", "phoneNumber 입력사항 "+bbs.phoneNumber);;
 
+        for(int i=0; i<adapter.getItemCount(); i++) {
+            GroupContact bbs = adapter.getItem(i);
+            database = FirebaseDatabase.getInstance();
+            bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/"+bbs.room+"/");
+            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            Log.d("bbs.room", "Room 입력사항 " + bbs.room);
+            bbsRef.child("이름").setValue(bbs.name);
+            Log.d("bbs.name", "name 입력사항 " + bbs.name);
+            bbsRef.child("전화번호").setValue(bbs.phoneNumber);
+            Log.d("bbs.phoneNumber", "phoneNumber 입력사항 " + bbs.phoneNumber);
+        }
         //    update : bbsRef.child(bbsKey).setValue(bbs);
         //    delete : bbsRef.child(bbsKey).setValue(null);
         // 데이터 입력후 창 닫기
@@ -127,7 +155,9 @@ public class GroupWriteFragment_contact extends Fragment {
 
             return data.size();
         }
-
+        public GroupContact getItem(int position) {
+            return data.get(position);
+        }
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = inflater.inflate(R.layout.item_group_write_contact, parent, false);
@@ -154,9 +184,9 @@ public class GroupWriteFragment_contact extends Fragment {
                 editGroupWritePhoneContact = (EditText) v.findViewById(R.id.editGroupWritePhoneContact);
                 editGroupWriteRoomContact = (EditText) v.findViewById(R.id.editGroupWriteRoomContact);
 
-                editGroupWriteNameContact.addTextChangedListener(nameTenantWatcher);
-                editGroupWritePhoneContact.addTextChangedListener(phoneNumberTenantWatcher);
-                editGroupWriteRoomContact.addTextChangedListener(roomTenantWatcher);
+                editGroupWriteNameContact.addTextChangedListener(nameContactWatcher);
+                editGroupWritePhoneContact.addTextChangedListener(phoneNumberContactWatcher);
+                editGroupWriteRoomContact.addTextChangedListener(roomContactWatcher);
             }
 
 
@@ -166,11 +196,11 @@ public class GroupWriteFragment_contact extends Fragment {
 //-------------------------------------EditText의 TextWatcher 실행 끝   ----------------------------------------
             // TextWatcher는 EditText를 작성하는 것을 실시간으로 어딘가에 적용하거나 저장하고 싶을때 주로 사용한다.
 
-            TextWatcher roomTenantWatcher = new TextWatcher() {
+            TextWatcher roomContactWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.room = edit.toString();
+                    data.get(position).room = edit.toString();
                     Log.d("room", "Room 변경사항 "+bbs.room);
                 }
                 @Override
@@ -185,11 +215,11 @@ public class GroupWriteFragment_contact extends Fragment {
                     }
                 }
             };
-            TextWatcher nameTenantWatcher = new TextWatcher() {
+            TextWatcher nameContactWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.name = edit.toString();
+                    data.get(position).name = edit.toString();
                     Log.d("name", "name 변경사항 "+bbs.name);
                 }
                 @Override
@@ -204,11 +234,11 @@ public class GroupWriteFragment_contact extends Fragment {
                     }
                 }
             };
-            TextWatcher phoneNumberTenantWatcher = new TextWatcher() {
+            TextWatcher phoneNumberContactWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.phoneNumber = edit.toString();
+                    data.get(position).phoneNumber = edit.toString();
                     Log.d("phoneNumber", "phoneNumber 변경사항 "+bbs.phoneNumber);
                 }
                 @Override
