@@ -42,20 +42,20 @@ public class GroupWriteFragment_tenant extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_write_tenant, container, false);
 
-        makeData(1);
 
 
+
+        textGroupWriteDayTenant = (TextView) view.findViewById(R.id.textGroupWriteDayTenant);
+
+        makeData(6);
 
         // RecyclerView Setting
         groupWriteTenantRecycler = (RecyclerView) view.findViewById(R.id.groupWriteTenantRecycler);
-        textGroupWriteDayTenant = (TextView) view.findViewById(R.id.textGroupWriteDayTenant);
-
-
-        adapter = new GroupWriteListAdapter_tenant(data, getContext());
+        adapter = new GroupWriteListAdapter_tenant(data,getContext());
         groupWriteTenantRecycler.setAdapter(adapter);
         groupWriteTenantRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
 
         textGroupWriteDayTenant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +82,10 @@ public class GroupWriteFragment_tenant extends Fragment {
             bbs.countTenant = "";
             bbs.contract = "";
             data.add(bbs);
-            Log.i("DATA","====================bbs.room : " + bbs.room);
-            Log.i("DATA", "=================data.add(bbs) : " + data.add(bbs));
-            Log.i("DATA", "=================data.size() : " + data.size());
-            Log.i("DATA", "=================data.indexOf(bbs) : " + data.indexOf(bbs));
+//            Log.i("DATA","====================bbs.room : " + bbs.room);
+//            Log.i("DATA", "=================data.add(bbs) : " + data.add(bbs));
+//            Log.i("DATA", "=================data.size() : " + data.size());
+//            Log.i("DATA", "=================data.indexOf(bbs) : " + data.indexOf(bbs));
 
         }
 
@@ -94,43 +94,16 @@ public class GroupWriteFragment_tenant extends Fragment {
 
 
     public void goFirebase(){
-//
-//            String groupWriteRoom = bbs.room;
-//        Log.i("TAG","====================bbs.room : "+bbs.room);
-//            String groupWriteName = bbs.name;
-//        String groupWriteCountTenant = bbs.countTenant;
-//            String groupWriteContract = bbs.contract;
-//        bbs = new GroupTenant();
 
-//            bbs = new GroupTenant(groupWriteRoom,groupWriteName,groupWriteCountTenant,groupWriteContract);
-        // 2. 입력할 데이터의 키 생성
-//        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
-        // 3. 생성된 키를 레퍼런스로 데이터를 입력
-        //    insert 와 update, delete 는 동일하게 동작
-//        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
-        for(GroupTenant bbs : data) {
-            Log.i("DATA", "=================data.size() : "+data.size());
-            Log.i("DATA", "=================data.indexOf(bbs) : "+data.indexOf(bbs));
-            Log.i("DATA", "=================data.indexOf(bbs) : "+data.get(bbs.id));
+        for(int i=0; i<adapter.getItemCount(); i++) {
+            GroupTenant bbs = adapter.getItem(i);
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/세입자 정보/"+bbs.room+"/");
 
-            bbsRef.child(bbs.room+"호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            Log.d("bbs.room", "Room fireUp " + bbs.room);
-
+            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
             bbsRef.child("이름").setValue(bbs.name);
-            Log.d("bbs.name", "name fireUp " + bbs.name);
-
             bbsRef.child("금액(달)").setValue(bbs.countTenant);
-            Log.d("bbs.countTenant", "countTenant fireUp " + bbs.countTenant);
-
             bbsRef.child("계약일").setValue(bbs.contract);
-            Log.d("bbs.contract", "contract fireUp " + bbs.contract);
-
-            //    update : bbsRef.child(bbsKey).setValue(bbs);
-            //    delete : bbsRef.child(bbsKey).setValue(null);
-            // 데이터 입력후 창 닫기
-//            adapter.notifyDataSetChanged();
         }
     }
 
@@ -146,12 +119,12 @@ public class GroupWriteFragment_tenant extends Fragment {
 
 
     public class GroupWriteListAdapter_tenant extends RecyclerView.Adapter<GroupWriteListAdapter_tenant.Holder>{
-        List<GroupTenant> data = new ArrayList<>();
+        List<GroupTenant> data = new ArrayList<>();;
         private LayoutInflater inflater;
 
 
 
-        public GroupWriteListAdapter_tenant(List<GroupTenant> data, Context context) {
+        public GroupWriteListAdapter_tenant(List<GroupTenant> data,Context context) {
             this.data = data;
             Log.d("writeDataTenants.size()", "writeDataTenants.size : "+data.size());
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -167,7 +140,9 @@ public class GroupWriteFragment_tenant extends Fragment {
             return data.size();
         }
 
-
+        public GroupTenant getItem(int position) {
+            return data.get(position);
+        }
 
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -178,7 +153,8 @@ public class GroupWriteFragment_tenant extends Fragment {
         @Override
         public void onBindViewHolder(Holder holder, int position) {
 
-            bbs = data.get(position);
+            GroupTenant bbs = data.get(position);
+            Log.d("onBindViewHolder", "data.get(position)  : "+position);
             holder.setEditGroupWriteRoomTenant(bbs.room);
             holder.setEditGroupWriteNameTenant(bbs.name);
             holder.setEditGroupWriteCountTenant(bbs.countTenant);
@@ -218,10 +194,11 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher roomTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    bbs = writeDataTenants.get(position);
-                        bbs.room = edit.toString();
+//                    GroupTenant bbs = data.get(position);
+                    bbs = data.get(position);
+                    data.get(position).room = edit.toString();
 //                    writeDataTenants.add(bbs);
-                        Log.d("room", data.indexOf(bbs)+"Room 변경사항 "+bbs.room);
+//                        Log.d("room", data.indexOf(bbs)+"Room 변경사항 "+bbs.room);
                 }
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count,
@@ -238,10 +215,11 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher nameTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    bbs = writeDataTenants.get(position);
-                    bbs.name = edit.toString();
+//                    GroupTenant bbs = data.get(position);
+                    bbs = data.get(position);
+                    data.get(position).name = edit.toString();
 //                    writeDataTenants.add(bbs);
-                    Log.d("name", data.indexOf(bbs)+"name 변경사항 "+bbs.name);
+//                    Log.d("name", data.indexOf(bbs)+"name 변경사항 "+bbs.name);
                 }
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count,
@@ -258,10 +236,11 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher countTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    bbs = writeDataTenants.get(position);
-                    bbs.countTenant = edit.toString();
+//                    GroupTenant bbs = data.get(position);
+                    bbs = data.get(position);
+                    data.get(position).countTenant = edit.toString();
 //                    writeDataTenants.add(bbs);
-                    Log.d("countTenant", data.indexOf(bbs)+"countTenant 변경사항 "+bbs.countTenant);
+//                    Log.d("countTenant", data.indexOf(bbs)+"countTenant 변경사항 "+bbs.countTenant);
                 }
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count,
@@ -278,10 +257,11 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher contractTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    bbs = writeDataTenants.get(position);
-                    bbs.contract = edit.toString();
+//                    GroupTenant bbs = data.get(position);
+                    bbs = data.get(position);
+                    data.get(position).contract = edit.toString();
 //                    writeDataTenants.add(bbs);
-                    Log.d("contract", data.indexOf(bbs)+"contract 변경사항 "+bbs.contract);
+//                    Log.d("contract", data.indexOf(bbs)+"contract 변경사항 "+bbs.contract);
                 }
 
                 @Override

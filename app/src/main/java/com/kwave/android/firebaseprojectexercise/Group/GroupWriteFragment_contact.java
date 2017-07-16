@@ -93,33 +93,16 @@ public class GroupWriteFragment_contact extends Fragment {
 
 
     public void goFirebase(){
-//
-//            int groupWriteRoom = Integer.parseInt(getEditGroupRoom());
-//            String groupWriteName = getEditGroupName();
-//            int groupWriteCountTenant = Integer.parseInt(getEditGroupCount());
-//            String groupWriteContract = getEditGroupDay();
-//
-//            bbs = new GroupTenant(groupWriteRoom,groupWriteName,groupWriteCountTenant,groupWriteContract);
-        // 2. 입력할 데이터의 키 생성
-//        String bbsKey = bbsRef.push().getKey(); // 자동생성된 키를 가져온다
-        // 3. 생성된 키를 레퍼런스로 데이터를 입력
-        //    insert 와 update, delete 는 동일하게 동작
-//        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
 
         for(int i=0; i<adapter.getItemCount(); i++) {
             GroupContact bbs = adapter.getItem(i);
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/"+bbs.room+"/");
+
             bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            Log.d("bbs.room", "Room 입력사항 " + bbs.room);
             bbsRef.child("이름").setValue(bbs.name);
-            Log.d("bbs.name", "name 입력사항 " + bbs.name);
             bbsRef.child("전화번호").setValue(bbs.phoneNumber);
-            Log.d("bbs.phoneNumber", "phoneNumber 입력사항 " + bbs.phoneNumber);
         }
-        //    update : bbsRef.child(bbsKey).setValue(bbs);
-        //    delete : bbsRef.child(bbsKey).setValue(null);
-        // 데이터 입력후 창 닫기
     }
 
 

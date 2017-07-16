@@ -46,22 +46,22 @@ public class PaymentWriteFragment_month extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_write_month, container, false);
+        textPayWriteCheckMonth = (TextView) view.findViewById(R.id.textPayWriteCheckMonth);
 
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/");
-        makeData(5);
+//        database = FirebaseDatabase.getInstance();
+//        bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/");
+        makeData(6);
 
         // RecyclerView Setting
         payWriteMonthRecycler = (RecyclerView) view.findViewById(R.id.payWriteMonthRecycler);
         adapter = new PaymentWriteListAdapter_month(data, getContext());
         payWriteMonthRecycler.setAdapter(adapter);
         payWriteMonthRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
 
 
 
-        textPayWriteCheckMonth = (TextView) view.findViewById(R.id.textPayWriteCheckMonth);
         textPayWriteCheckMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,16 +93,15 @@ public class PaymentWriteFragment_month extends Fragment {
     }
 
     public void goFirebase(){
-        for(MyHomeData bbs : data) {
-            Log.i("TAG", "bbs : " + bbs.room);
+        for(int i=0; i<adapter.getItemCount(); i++) {
+            MyHomeData bbs = adapter.getItem(i);
+            database = FirebaseDatabase.getInstance();
+            bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/"+bbs.room+"/");
             bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            Log.d("bbs.room", "Room 입력사항 "+bbs.room);
             bbsRef.child("이름").setValue(bbs.name);
-            Log.d("bbs.name", "name 입력사항 "+bbs.name);
             bbsRef.child("금액(달)").setValue(bbs.countTenant);
-            Log.d("bbs.countTenant", "countTenant 입력사항 "+bbs.countTenant);
             bbsRef.child("납부일").setValue(bbs.day);
-            Log.d("bbs.day", "day 입력사항 "+bbs.day);
+            bbsRef.child("체크박스").setValue(bbs.checkTenant);
         }
     }
 
@@ -142,6 +141,10 @@ public class PaymentWriteFragment_month extends Fragment {
         public int getItemCount() {
 
             return data.size();
+        }
+
+        public MyHomeData getItem(int position) {
+            return data.get(position);
         }
 
         @Override
@@ -192,7 +195,7 @@ public class PaymentWriteFragment_month extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.room = edit.toString();
+                    data.get(position).room = edit.toString();
                     Log.d("room", "Room 변경사항 " + bbs.room);
                 }
 
@@ -213,7 +216,7 @@ public class PaymentWriteFragment_month extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.name = edit.toString();
+                    data.get(position).name = edit.toString();
                     Log.d("name", "name 변경사항 " + bbs.name);
                 }
 
@@ -234,7 +237,7 @@ public class PaymentWriteFragment_month extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.countTenant = edit.toString();
+                    data.get(position).countTenant = edit.toString();
                     Log.d("countTenant", "countTenant 변경사항 " + bbs.countTenant);
                 }
 
@@ -256,7 +259,7 @@ public class PaymentWriteFragment_month extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.day = edit.toString();
+                    data.get(position).day = edit.toString();
                     Log.d("day", "day 변경사항 " + bbs.day);
                 }
 
@@ -275,28 +278,7 @@ public class PaymentWriteFragment_month extends Fragment {
             };
 //-------------------------------------EditText의 TextWatcher 실행 끝   ----------------------------------------
 
-            public void setPosition(int position){
-                this.position = position;
-            }
-
-        }
-
-    }
-
-
-
-
-
-
-    public class PayWaterModel{
-        private int position;
-        private EditText editPayWriteNameMonth;
-        private EditText editPayWriteCountMonth;
-        private EditText editPayWriteDayMonth;
-        private EditText editPayWriteRoomMonth;
-        private CheckBox checkPayWriteMonth;
-
-            public void setPosition(int position){
+            public void setPosition(int position) {
                 this.position = position;
             }
 
@@ -331,20 +313,19 @@ public class PaymentWriteFragment_month extends Fragment {
             }
 
             public void setEditPayWriteDayMonth(String payWriteDayMonth) {
-                editPayWriteDayMonth.setText(payWriteDayMonth+"일");
+                editPayWriteDayMonth.setText(payWriteDayMonth + "일");
             }
+
             public void setEditPayWriteRoomMonth(String payWriteRoomMonth) {
-                editPayWriteRoomMonth.setText(payWriteRoomMonth+"호");
+                editPayWriteRoomMonth.setText(payWriteRoomMonth + "호");
             }
 
             public void setCheckPayWriteMonth(boolean payWriteMonth) {
                 checkPayWriteMonth.setChecked(payWriteMonth);
             }
 
+
+        }
     }
-
-
-
-
 
 }

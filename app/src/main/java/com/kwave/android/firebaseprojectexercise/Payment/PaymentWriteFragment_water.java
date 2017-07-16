@@ -43,9 +43,10 @@ public class PaymentWriteFragment_water extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_write_water, container, false);
+        textPayWriteWriteCheck = (TextView) view.findViewById(R.id.textPayWriteWriteCheck);
 
 
-//        makeData(2);
+        makeData(6);
 
         // RecyclerView Setting
         payWriteWaterRecycler = (RecyclerView) view.findViewById(R.id.payWriteWaterRecycler);
@@ -58,7 +59,6 @@ public class PaymentWriteFragment_water extends Fragment {
 
 
         //
-        textPayWriteWriteCheck = (TextView) view.findViewById(R.id.textPayWriteWriteCheck);
         textPayWriteWriteCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,18 +70,18 @@ public class PaymentWriteFragment_water extends Fragment {
         return view;
     }
 
-    public void makeData(int num){
+    public void makeData(int num) {
         // 리스트를 띄우기 위한 임시데이터
-        bbs = new MyHomeData();
-//        for(int i =0; i<num;i++){
-//            bbs.room = "";
-//            bbs.name = "";
-//            bbs.countTenant = "";
-//            bbs.day = "";
-//            bbs.checkTenant = true;
+        for (int i = 0; i < num; i++) {
+            MyHomeData bbs = new MyHomeData();
+            bbs.room = "";
+            bbs.name = "";
+            bbs.countTenant = "";
+            bbs.day = "";
+            bbs.checkWater = true;
             data.add(bbs);
         }
-
+    }
 
     public void goFirebase(){
 //
@@ -96,20 +96,26 @@ public class PaymentWriteFragment_water extends Fragment {
         // 3. 생성된 키를 레퍼런스로 데이터를 입력
         //    insert 와 update, delete 는 동일하게 동작
 //        bbsRef.child("bbsKey").setValue(bbs.masterNotify);        // 자동생성키로 키를 받아서 입력된다.
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/"+bbs.room+"/");
+        for(int i=0; i<adapter.getItemCount(); i++) {
+            MyHomeData bbs = adapter.getItem(i);
+            database = FirebaseDatabase.getInstance();
+            bbsRef = database.getReference("남일빌라/납부내역/2017/7/수도세/" + bbs.room + "/");
 //        bbsRef.setValue(bbs);        // 내가 원하는 부분으로 입력된다.
-        bbsRef.child(bbs.room+"호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-        Log.d("bbs.room", "Room 입력사항 "+bbs.room);;
-        bbsRef.child("이름").setValue(bbs.name);
-        Log.d("bbs.name", "name 입력사항 "+bbs.name);;
-        bbsRef.child("금액(달)").setValue(bbs.countTenant);
-        Log.d("bbs.countTenant", "countTenant 입력사항 "+bbs.countTenant);;
-        bbsRef.child("납부일").setValue(bbs.day);
-        Log.d("bbs.day", "day 입력사항 "+bbs.day);;
-        //    update : bbsRef.child(bbsKey).setValue(bbs);
-        //    delete : bbsRef.child(bbsKey).setValue(null);
-        // 데이터 입력후 창 닫기
+            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            Log.d("bbs.room", "Room 입력사항 " + bbs.room);
+            bbsRef.child("이름").setValue(bbs.name);
+            Log.d("bbs.name", "name 입력사항 " + bbs.name);
+            bbsRef.child("금액").setValue(bbs.countWater);
+            Log.d("bbs.countWater", "countWater 입력사항 " + bbs.countWater);
+            bbsRef.child("사용량").setValue(bbs.use);
+            Log.d("bbs.use", "use 입력사항 " + bbs.use);
+            bbsRef.child("납부일").setValue(bbs.day);
+            Log.d("bbs.day", "day 입력사항 " + bbs.day);
+            bbsRef.child("체크박스").setValue(bbs.checkWater);
+            //    update : bbsRef.child(bbsKey).setValue(bbs);
+            //    delete : bbsRef.child(bbsKey).setValue(null);
+            // 데이터 입력후 창 닫기
+        }
     }
 
 
@@ -153,6 +159,11 @@ public class PaymentWriteFragment_water extends Fragment {
 
             return data.size();
         }
+
+        public MyHomeData getItem(int position) {
+            return data.get(position);
+        }
+
 
         @Override
         public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -206,7 +217,7 @@ public class PaymentWriteFragment_water extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.room = edit.toString();
+                    data.get(position).room = edit.toString();
                     Log.d("room", "Room 변경사항 "+bbs.room);
                 }
                 @Override
@@ -225,7 +236,7 @@ public class PaymentWriteFragment_water extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.name = edit.toString();
+                    data.get(position).name = edit.toString();
                     Log.d("name", "name 변경사항 "+bbs.name);
                 }
                 @Override
@@ -244,7 +255,7 @@ public class PaymentWriteFragment_water extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.countWater = edit.toString();
+                    data.get(position).countWater = edit.toString();
                     Log.d("countWater", "countWater 변경사항 "+bbs.countWater);
                 }
                 @Override
@@ -264,7 +275,7 @@ public class PaymentWriteFragment_water extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.use = edit.toString();
+                    data.get(position).use = edit.toString();
                     Log.d("use", "use 변경사항 "+bbs.use);
                 }
                 @Override
@@ -284,7 +295,7 @@ public class PaymentWriteFragment_water extends Fragment {
                 @Override
                 public void afterTextChanged(Editable edit) {
                     bbs = data.get(position);
-                    bbs.day = edit.toString();
+                    data.get(position).day = edit.toString();
                     Log.d("day", "day 변경사항 "+bbs.day);
                 }
                 @Override
@@ -314,19 +325,19 @@ public class PaymentWriteFragment_water extends Fragment {
             }
 
             public void setPayCount(String payCount) {
-                editPayWriteCountWater.setText(payCount+"");
+                editPayWriteCountWater.setText(payCount);
             }
 
             public void setPayDay(String payDay) {
-                editPayWriteDayWater.setText(payDay+"일");
+                editPayWriteDayWater.setText(payDay);
             }
 
             public void setPayRoom(String payRoom) {
-                editPayWriteRoomWater.setText(payRoom+"호");
+                editPayWriteRoomWater.setText(payRoom);
             }
 
             public void setPayUse(String payUse) {
-                editPayWriteUseWater.setText(payUse+"");
+                editPayWriteUseWater.setText(payUse);
             }
 
             public void setTextcheckPay(boolean payWriteWater) {
