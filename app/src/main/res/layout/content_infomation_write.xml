@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.kwave.android.firebaseprojectexercise.Information.InfomationWriteActivity"
+    tools:context="com.kwave.android.firebaseprojectexercise.Information.InformationWriteActivity"
     tools:showIn="@layout/activity_infomation_write">
 
     <ImageView

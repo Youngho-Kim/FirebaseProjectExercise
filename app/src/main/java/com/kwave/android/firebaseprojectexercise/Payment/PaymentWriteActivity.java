@@ -250,6 +250,7 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
                 return true;
             case R.id.paymentWritePen:
                 Intent intent = new Intent(PaymentWriteActivity.this,PaymentReadActivity.class);
+
                 startActivity(intent);
                 finish();
                 return true;
@@ -263,7 +264,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.payWritePreMonth :
                 SetDataPreMonth();
                 break;

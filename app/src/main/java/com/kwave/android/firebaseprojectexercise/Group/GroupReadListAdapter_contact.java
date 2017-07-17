@@ -1,8 +1,8 @@
 package com.kwave.android.firebaseprojectexercise.Group;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +21,11 @@ import java.util.List;
 public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupReadListAdapter_contact.Holder>{
     private List<MyHomeData> data = new ArrayList<>();
     private LayoutInflater inflater;
+    Context context = null;
 
-    public GroupReadListAdapter_contact(List<MyHomeData> data, Context context) {
-        this.data = data;
+//    public GroupReadListAdapter_contact(List<MyHomeData> data, Context context) {
+    public GroupReadListAdapter_contact(Context context) {
+//        this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -33,12 +35,14 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
 
     @Override
     public int getItemCount() {
-
         return data.size();
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(context == null){
+            this.context = parent.getContext();
+        }
         View view = inflater.inflate(R.layout.item_group_read_contact, parent, false);
         return new Holder(view);
     }
@@ -47,6 +51,7 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
     public void onBindViewHolder(Holder holder, int position) {
         MyHomeData bbs = data.get(position);
         holder.setGroupName(bbs.name);
+        Log.d("bbs.name", "bbs.name"+bbs.name);
         holder.setGroupPhone(bbs.phoneNumber);
         holder.setGroupRoom(bbs.room);
         holder.setPosition(position);
@@ -62,14 +67,14 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
             textGroupReadNameContact = (TextView) v.findViewById(R.id.textGroupReadNameContact);
             textGroupReadPhoneContact = (TextView) v.findViewById(R.id.textGroupReadPhoneContact);
             textGroupReadRoomContact = (TextView) v.findViewById(R.id.textGroupReadRoomContact);
-            v.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
-                    intent.putExtra("LIST_POSITION", position);
-                    v.getContext().startActivity(intent);
-                 }
-            });
+//            v.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                 public void onClick(View v) {
+//                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
+//                    intent.putExtra("LIST_POSITION", position);
+//                    v.getContext().startActivity(intent);
+//                 }
+//            });
         }
         public void setPosition(int position){
             this.position = position;
@@ -85,7 +90,7 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
 
 
         public void setGroupRoom(String GroupRoom) {
-            textGroupReadRoomContact.setText(GroupRoom+"호");
+            textGroupReadRoomContact.setText(GroupRoom);
         }
 
     }

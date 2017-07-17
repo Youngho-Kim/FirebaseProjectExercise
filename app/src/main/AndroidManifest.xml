@@ -35,7 +35,7 @@
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Information.InfomationWriteActivity"
+            android:name=".Information.InformationWriteActivity"
             android:label="@string/title_activity_infomation"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

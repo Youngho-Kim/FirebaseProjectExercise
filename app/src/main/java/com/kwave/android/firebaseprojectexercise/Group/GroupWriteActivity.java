@@ -46,6 +46,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
     ViewPager groupWriteViewPaser;
     Fragment tenantFee,contactFee;
     GroupWriteFragment_tenant tenantF = new GroupWriteFragment_tenant();
+    GroupWriteFragment_contact tenantC = new GroupWriteFragment_contact();
     PagerAdapter adapter;
     ImageButton groupWritePreMonth, groupWriteNextMonth;
     int current_month;
@@ -293,7 +294,7 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 return true;
             case R.id.groupWritePen:
-                tenantF.goFirebase();
+                tenantC.uploadFirebase();   // attach & transaction을 해야함        - fragment가 화면에 붙어야 new가 됨
                 Intent intent = new Intent(GroupWriteActivity.this,GroupReadActivity.class);
                 startActivity(intent);
 //                finish();

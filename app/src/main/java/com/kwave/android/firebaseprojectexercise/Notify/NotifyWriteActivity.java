@@ -31,7 +31,7 @@ public class NotifyWriteActivity extends AppCompatActivity {
 
         // 데이터베이스 레퍼런스
         database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/준수 사항/");
+        bbsRef = database.getReference("남일빌라/준수사항/");
 
 
         setContentView(R.layout.activity_notify_write);
@@ -66,7 +66,7 @@ public class NotifyWriteActivity extends AppCompatActivity {
         // 3. 생성된 키를 레퍼런스로 데이터를 입력
         //    insert 와 update, delete 는 동일하게 동작
 //        bbsRef.child("bbsKey").setValue(bbs.masterNotify);
-        bbsRef.child("임차인 준수사항 확인서").setValue(bbs.masterNotify);
+        bbsRef.child("masterNotify").setValue(bbs.masterNotify);
         //    update : bbsRef.child(bbsKey).setValue(bbs);
         //    delete : bbsRef.child(bbsKey).setValue(null);
         // 데이터 입력후 창 닫기

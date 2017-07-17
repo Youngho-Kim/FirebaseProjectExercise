@@ -55,7 +55,7 @@ public class GroupReadActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
 
         database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("bbs");
+//        bbsRef = database.getReference("남일빌라/납부내역/2017/7/");
         setContentView(R.layout.activity_group_read);
 
         // view Setting

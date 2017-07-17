@@ -1,7 +1,6 @@
 package com.kwave.android.firebaseprojectexercise.Group;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,14 +64,14 @@ public class GroupReadListAdapter_tenant extends RecyclerView.Adapter<GroupReadL
             textGroupReadCountTenant = (TextView) v.findViewById(R.id.textGroupReadCountTenant);
             textGroupReadDayTenant = (TextView) v.findViewById(R.id.textGroupReadDayTenant);
             textGroupReadRoomTenant = (TextView) v.findViewById(R.id.textGroupReadRoomTenant);
-            v.setOnClickListener(new View.OnClickListener() {
-                 @Override
-                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
-                    intent.putExtra("LIST_POSITION", position);
-                    v.getContext().startActivity(intent);
-                 }
-            });
+//            v.setOnClickListener(new View.OnClickListener() {
+//                 @Override
+//                 public void onClick(View v) {
+//                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
+//                    intent.putExtra("LIST_POSITION", position);
+//                    v.getContext().startActivity(intent);
+//                 }
+//            });
         }
         public void setPosition(int position){
             this.position = position;

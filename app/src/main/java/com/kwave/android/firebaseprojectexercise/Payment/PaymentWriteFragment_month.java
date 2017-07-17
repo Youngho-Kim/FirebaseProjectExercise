@@ -97,11 +97,11 @@ public class PaymentWriteFragment_month extends Fragment {
             MyHomeData bbs = adapter.getItem(i);
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/"+bbs.room+"/");
-            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            bbsRef.child("이름").setValue(bbs.name);
-            bbsRef.child("금액(달)").setValue(bbs.countTenant);
-            bbsRef.child("납부일").setValue(bbs.day);
-            bbsRef.child("체크박스").setValue(bbs.checkTenant);
+            bbsRef.child("room").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            bbsRef.child("name").setValue(bbs.name);
+            bbsRef.child("countTenant").setValue(bbs.countTenant);
+            bbsRef.child("day").setValue(bbs.day);
+            bbsRef.child("checkTenant").setValue(bbs.checkTenant);
         }
     }
 

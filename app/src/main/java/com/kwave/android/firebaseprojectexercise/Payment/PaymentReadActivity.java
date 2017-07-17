@@ -32,6 +32,7 @@ import com.kwave.android.firebaseprojectexercise.R;
 import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
     MyHomeData myHomeData = new MyHomeData();
     Date date = new Date();
 
-
+    // Date 대신에 사용
+    Calendar calendar = null;
 
     FirebaseDatabase database;
     DatabaseReference bbsRef;
@@ -60,6 +62,7 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         database = FirebaseDatabase.getInstance();
         bbsRef = database.getReference("bbs");
 
+        calendar = Calendar.getInstance();
 
         setContentView(R.layout.activity_payment_read);
 
@@ -85,9 +88,7 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
         manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
 
 //        // 1. ViewPager 위젯 연결           // 탭을 생성
 //        payTab.addTab(payTab.newTab().setText("One"));
@@ -107,17 +108,14 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         // 4. Fragment Manager와 함께 adapter에 전달
         adapter = new PagerAdapter(getSupportFragmentManager(), datas);
 
-
         // 5. adapter를 pager 위젯에 연결
         payReadViewPaser.setAdapter(adapter);
 
         // 6. 페이저가 변경 되었을 때 탭을 변경해주는 리스너
         payReadViewPaser.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(payReadTab));
 
-
         // 7. 탭이 변경되었을 때 탭을 변경해주는 리스너
         payReadTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payReadViewPaser));
-
 
 //        loadData();
 
@@ -126,9 +124,6 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
             checkPermission();
         }
 
-
-
-
     }
 
 
@@ -136,16 +131,13 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         int currentMonth = myHomeData.dataMonth;
         Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
         if(currentMonth > 12){
-            currentMonth = date.getMonth();
+            currentMonth = calendar.get(Calendar.MONTH);   //deprecated       date.getMonth();
             Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else if(currentMonth <= 1)
-        {
+        } else if(currentMonth <= 1) {
             currentMonth = 12;
 //            myHomeData.dataMonth = currentMonth;
             Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else{
+        } else {
             currentMonth = currentMonth-1;
 //            myHomeData.dataMonth = currentMonth;
             Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
@@ -161,14 +153,11 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
             currentMonth = date.getMonth()+1;
 //            myHomeData.dataMonth = currentMonth;
             Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else if(myHomeData.dataMonth >=12)
-        {
+        } else if(myHomeData.dataMonth >=12) {
             currentMonth = 1;
 //            myHomeData.dataMonth = currentMonth;
             Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else{
+        } else {
             currentMonth = currentMonth+1;
 //            myHomeData.dataMonth = currentMonth;
             Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
@@ -177,11 +166,6 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         myHomeData.dataMonth = currentMonth;
         Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
     }
-
-
-
-
-
 
     // 어댑터의 데이터가 달라지면서 리스트  갱신
     @Override
@@ -211,11 +195,11 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // 권한을 요청한 코드가 해당 코드인지 확인한 후 조건이 맞으면
         if(requestCode == REQ_PERMISSION){
-            // 해당하는 조건의 결과가 동의가 되었는지 확인 한 후 동의됐으면 아래를 실행한다.
+            // 해당하는 조건의 결과가 동의가 되었는지 확인 한 후 동의됐으면 아래를 실행
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
             }
-            // 해당하는 조건의 결과가 동의가 되었는지 확인 한 후 동의되지 않았으면 아래를 실행한다.
+            // 해당하는 조건의 결과가 동의가 되었는지 확인 한 후 동의되지 않았으면 아래를 실행
             else{
                 cancel();
             }
@@ -226,10 +210,7 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         Toast.makeText(this,"권한을 설정하셔야 사용이 가능합니다",Toast.LENGTH_SHORT).show();
         finish();
     }
-
     //---------------------------------권한처리 끝--------------------------------------------------------------------------------------
-
-
 
     //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
     @Override
@@ -255,7 +236,7 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         }
         return super.onOptionsItemSelected(item);
     }
-//------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
+    //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
 
 
     //------------------해당 월이 바뀌면서 데이터 갱신하기 ----------------------------------------
@@ -274,9 +255,6 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         }
     }
     //------------------해당 월이 바뀌면서 데이터 갱신하기 끝 ----------------------------------------
-
-
-
 
     class PagerAdapter extends FragmentStatePagerAdapter {
         List<Fragment> datas;

@@ -101,17 +101,17 @@ public class PaymentWriteFragment_water extends Fragment {
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/납부내역/2017/7/수도세/" + bbs.room + "/");
 //        bbsRef.setValue(bbs);        // 내가 원하는 부분으로 입력된다.
-            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            bbsRef.child("room").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
             Log.d("bbs.room", "Room 입력사항 " + bbs.room);
-            bbsRef.child("이름").setValue(bbs.name);
+            bbsRef.child("name").setValue(bbs.name);
             Log.d("bbs.name", "name 입력사항 " + bbs.name);
-            bbsRef.child("금액").setValue(bbs.countWater);
+            bbsRef.child("countWater").setValue(bbs.countWater);
             Log.d("bbs.countWater", "countWater 입력사항 " + bbs.countWater);
-            bbsRef.child("사용량").setValue(bbs.use);
+            bbsRef.child("use").setValue(bbs.use);
             Log.d("bbs.use", "use 입력사항 " + bbs.use);
-            bbsRef.child("납부일").setValue(bbs.day);
+            bbsRef.child("day").setValue(bbs.day);
             Log.d("bbs.day", "day 입력사항 " + bbs.day);
-            bbsRef.child("체크박스").setValue(bbs.checkWater);
+            bbsRef.child("checkWater").setValue(bbs.checkWater);
             //    update : bbsRef.child(bbsKey).setValue(bbs);
             //    delete : bbsRef.child(bbsKey).setValue(null);
             // 데이터 입력후 창 닫기

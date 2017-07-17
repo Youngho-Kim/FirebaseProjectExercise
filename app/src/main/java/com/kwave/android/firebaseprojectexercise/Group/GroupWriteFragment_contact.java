@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupContact;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ import java.util.List;
 
 public class GroupWriteFragment_contact extends Fragment {
     GroupWriteListAdapter_contact adapter;
-    List<GroupContact> data = new ArrayList<>();
-    GroupContact bbs;
+    List<MyHomeData> data = new ArrayList<>();
+    MyHomeData bbs;
     FirebaseDatabase database;
     DatabaseReference bbsRef;
     RecyclerView groupWriteContactRecycler;
@@ -42,9 +42,9 @@ public class GroupWriteFragment_contact extends Fragment {
 //        bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/");
         textGroupPhoneContact = (TextView) view.findViewById(R.id.textGroupPhoneContact);
 //
-////        List<GroupContact> data = new ArrayList<>();
+////        List<MyHomeData> data = new ArrayList<>();
 //        // 리스트를 띄우기 위한 임시데이터
-//        GroupContact bbs = new GroupContact();
+//        MyHomeData bbs = new MyHomeData();
 //        bbs.name = "";
 //        bbs.phoneNumber = "";
 //        bbs.room = "";
@@ -64,7 +64,7 @@ public class GroupWriteFragment_contact extends Fragment {
         textGroupPhoneContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goFirebase();
+
             }
         });
         return view;
@@ -77,7 +77,7 @@ public class GroupWriteFragment_contact extends Fragment {
             num = 1;
         }
         for(int i =1; i<=num;i++){
-            GroupContact bbs = new GroupContact();
+            MyHomeData bbs = new MyHomeData();
             bbs.room = "";
             bbs.name = "";
             bbs.phoneNumber = "";
@@ -91,17 +91,21 @@ public class GroupWriteFragment_contact extends Fragment {
 
     }
 
+        public void uploadFirebase(){
+            goFirebase();
+        }
+
 
     public void goFirebase(){
 
         for(int i=0; i<adapter.getItemCount(); i++) {
-            GroupContact bbs = adapter.getItem(i);
+            MyHomeData bbs = adapter.getItem(i);
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/"+bbs.room+"/");
 
-            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            bbsRef.child("이름").setValue(bbs.name);
-            bbsRef.child("전화번호").setValue(bbs.phoneNumber);
+            bbsRef.child("room").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            bbsRef.child("name").setValue(bbs.name);
+            bbsRef.child("phoneNumber").setValue(bbs.phoneNumber);
         }
     }
 
@@ -121,15 +125,15 @@ public class GroupWriteFragment_contact extends Fragment {
 
 
     public class GroupWriteListAdapter_contact extends RecyclerView.Adapter<GroupWriteListAdapter_contact.Holder>{
-        private List<GroupContact> data = new ArrayList<>();
+        private List<MyHomeData> data = new ArrayList<>();
         private LayoutInflater inflater;
 
-        public GroupWriteListAdapter_contact(List<GroupContact> data, Context context) {
+        public GroupWriteListAdapter_contact(List<MyHomeData> data, Context context) {
             this.data = data;
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        public void setData(List<GroupContact> data){
+        public void setData(List<MyHomeData> data){
             this.data = data;
         }
 
@@ -138,7 +142,7 @@ public class GroupWriteFragment_contact extends Fragment {
 
             return data.size();
         }
-        public GroupContact getItem(int position) {
+        public MyHomeData getItem(int position) {
             return data.get(position);
         }
         @Override
@@ -149,7 +153,7 @@ public class GroupWriteFragment_contact extends Fragment {
 
         @Override
         public void onBindViewHolder(Holder holder, int position) {
-            GroupContact bbs = data.get(position);
+            MyHomeData bbs = data.get(position);
             holder.setGroupName(bbs.name);
             holder.setGroupPhone(bbs.phoneNumber);
             holder.setGroupRoom(bbs.room);

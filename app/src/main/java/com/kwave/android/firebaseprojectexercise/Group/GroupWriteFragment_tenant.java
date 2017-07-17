@@ -17,15 +17,15 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.kwave.android.firebaseprojectexercise.R;
-import com.kwave.android.firebaseprojectexercise.domain.GroupTenant;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class GroupWriteFragment_tenant extends Fragment {
-    List<GroupTenant> data = new ArrayList<>();
-    GroupTenant bbs;
+    List<MyHomeData> data = new ArrayList<>();
+    MyHomeData bbs;
     RecyclerView groupWriteTenantRecycler;
     GroupWriteListAdapter_tenant adapter;
     FirebaseDatabase database;
@@ -76,7 +76,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             num = 1;
         }
         for(int i =1; i<=num;i++){
-            GroupTenant bbs = new GroupTenant();
+            MyHomeData bbs = new MyHomeData();
             bbs.room = "";
             bbs.name = "";
             bbs.countTenant = "";
@@ -95,15 +95,15 @@ public class GroupWriteFragment_tenant extends Fragment {
 
     public void goFirebase(){
 
-        for(int i=0; i<adapter.getItemCount(); i++) {
-            GroupTenant bbs = adapter.getItem(i);
+        for(int i=1; i<=adapter.getItemCount(); i++) {
+            MyHomeData bbs = adapter.getItem(i);
             database = FirebaseDatabase.getInstance();
             bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/세입자 정보/"+bbs.room+"/");
 
-            bbsRef.child("호실").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
-            bbsRef.child("이름").setValue(bbs.name);
-            bbsRef.child("금액(달)").setValue(bbs.countTenant);
-            bbsRef.child("계약일").setValue(bbs.contract);
+            bbsRef.child("room").setValue(bbs.room);        // 내가 원하는 부분으로 입력된다.
+            bbsRef.child("name").setValue(bbs.name);
+            bbsRef.child("countTenant").setValue(bbs.countTenant);
+            bbsRef.child("contract").setValue(bbs.contract);
         }
     }
 
@@ -119,18 +119,18 @@ public class GroupWriteFragment_tenant extends Fragment {
 
 
     public class GroupWriteListAdapter_tenant extends RecyclerView.Adapter<GroupWriteListAdapter_tenant.Holder>{
-        List<GroupTenant> data = new ArrayList<>();;
+        List<MyHomeData> data = new ArrayList<>();;
         private LayoutInflater inflater;
 
 
 
-        public GroupWriteListAdapter_tenant(List<GroupTenant> data,Context context) {
+        public GroupWriteListAdapter_tenant(List<MyHomeData> data,Context context) {
             this.data = data;
             Log.d("writeDataTenants.size()", "writeDataTenants.size : "+data.size());
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        public void setData(List<GroupTenant> data){
+        public void setData(List<MyHomeData> data){
             this.data = data;
         }
 
@@ -140,7 +140,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             return data.size();
         }
 
-        public GroupTenant getItem(int position) {
+        public MyHomeData getItem(int position) {
             return data.get(position);
         }
 
@@ -153,7 +153,7 @@ public class GroupWriteFragment_tenant extends Fragment {
         @Override
         public void onBindViewHolder(Holder holder, int position) {
 
-            GroupTenant bbs = data.get(position);
+            MyHomeData bbs = data.get(position);
             Log.d("onBindViewHolder", "data.get(position)  : "+position);
             holder.setEditGroupWriteRoomTenant(bbs.room);
             holder.setEditGroupWriteNameTenant(bbs.name);
@@ -194,7 +194,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher roomTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    GroupTenant bbs = data.get(position);
+//                    MyHomeData bbs = data.get(position);
                     bbs = data.get(position);
                     data.get(position).room = edit.toString();
 //                    writeDataTenants.add(bbs);
@@ -215,7 +215,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher nameTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    GroupTenant bbs = data.get(position);
+//                    MyHomeData bbs = data.get(position);
                     bbs = data.get(position);
                     data.get(position).name = edit.toString();
 //                    writeDataTenants.add(bbs);
@@ -236,7 +236,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher countTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    GroupTenant bbs = data.get(position);
+//                    MyHomeData bbs = data.get(position);
                     bbs = data.get(position);
                     data.get(position).countTenant = edit.toString();
 //                    writeDataTenants.add(bbs);
@@ -257,7 +257,7 @@ public class GroupWriteFragment_tenant extends Fragment {
             TextWatcher contractTenantWatcher = new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable edit) {
-//                    GroupTenant bbs = data.get(position);
+//                    MyHomeData bbs = data.get(position);
                     bbs = data.get(position);
                     data.get(position).contract = edit.toString();
 //                    writeDataTenants.add(bbs);
@@ -283,7 +283,7 @@ public class GroupWriteFragment_tenant extends Fragment {
 
 
 //
-//            public List<GroupTenant> getData() {
+//            public List<MyHomeData> getData() {
 //
 //                return writeDataTenants;
 //            }

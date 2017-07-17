@@ -32,7 +32,7 @@ public class MyHomeData {
     public String masterPhoneNumber;   // 주인 전화번호
     public String masterTrash;   // 분리수거 사항
     public String masterNotify;   // 분리수거 사항
-
+    public String fileUriString;    // 사진 파일
 //    public MyHomeData bbs = new MyHomeData();
 
     public MyHomeData() {

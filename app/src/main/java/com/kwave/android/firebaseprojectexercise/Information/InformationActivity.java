@@ -10,16 +10,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kwave.android.firebaseprojectexercise.R;
+import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * 나는 뭐하는 놈입니다~
+ */
 public class InformationActivity extends AppCompatActivity {
     static final int REQ_ADD_CONTACT = 1 ;
     TextView editAddressRead, editNameRead, editPhone, editAccountRead, editTrashRead;
-
-
+    ImageView infoImage;
+    List<MyHomeData> data = new ArrayList<>();
+    MyHomeData bbs;
+    FirebaseDatabase database;
+    DatabaseReference bbsRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +53,9 @@ public class InformationActivity extends AppCompatActivity {
 
         Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
         toolbar.setOverflowIcon(drawable);
-
-
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference("남일빌라/집 정보/");
+        loadFireBase();
     }
 
     private void setView(){
@@ -47,7 +64,9 @@ public class InformationActivity extends AppCompatActivity {
         editPhone = (TextView) findViewById(R.id.editPhone);
         editAccountRead = (TextView) findViewById(R.id.editAccountRead);
         editTrashRead = (TextView) findViewById(R.id.editTrashRead);
+        infoImage = (ImageView) findViewById(R.id.infoImage);
     }
+
 
 
     //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
@@ -67,54 +86,46 @@ public class InformationActivity extends AppCompatActivity {
                 finish();
                 return true;
             case R.id.informationReadPen:
-                Intent intent = new Intent(InformationActivity.this,InfomationWriteActivity.class);
+                Intent intent = new Intent(InformationActivity.this,InformationWriteActivity.class);
                 startActivityForResult(intent, REQ_ADD_CONTACT);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
-    @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == REQ_ADD_CONTACT) {
-            if (resultCode == RESULT_OK) {
-                // Information Write Activity에서 보낸 값을 세팅
-                String addrWrite = intent.getStringExtra("addrWrite");
-                // 주소에 해당하는 값이 들어오면 주소를 표시해줌
-                if(addrWrite != null){
-                    editAddressRead.setText(addrWrite);
-                }
 
-
-                String nameWrite = intent.getStringExtra("nameWrite");
-                // 주소에 해당하는 값이 들어오면 주소를 표시해줌
-                if(nameWrite != null){
-                    editNameRead.setText(nameWrite);
-                }
-
-
-                String phoneWrite = intent.getStringExtra("phoneWrite");
-                // 주소에 해당하는 값이 들어오면 주소를 표시해줌
-                if(phoneWrite != null){
-                    editPhone.setText(phoneWrite);
-                }
-
-
-                String accountWrite = intent.getStringExtra("accountWrite");
-                // 주소에 해당하는 값이 들어오면 주소를 표시해줌
-                if(accountWrite != null){
-                    editAccountRead.setText(accountWrite);
-                }
-
-
-                String trashWrite = intent.getStringExtra("trashWrite");
-                // 주소에 해당하는 값이 들어오면 주소를 표시해줌
-                if(trashWrite != null){
-                    editTrashRead.setText(trashWrite);
+    /**
+     * 설명
+     */
+    private void loadFireBase(){
+//        Query query = bbsRef.orderByChild("연락처").equalTo(location);
+        ValueEventListener postListener = new ValueEventListener()  {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() >= 1) {
+                    MyHomeData bbs = dataSnapshot.getValue(MyHomeData.class);
+                    setData(bbs);
                 }
             }
-        }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        bbsRef.addValueEventListener(postListener);
     }
 
+    private void setData(MyHomeData bbs){
+        Glide.with(this)
+                .load(bbs.fileUriString)
+                .into(infoImage);
 
+        editAddressRead.setText(bbs.masterAddr);
+        editNameRead.setText(bbs.masterName);
+        editPhone.setText(bbs.masterPhoneNumber);
+        editAccountRead.setText(bbs.masterAccount);
+        editTrashRead.setText(bbs.masterTrash);
+    }
 
 }
