@@ -12,8 +12,10 @@ import com.kwave.android.firebaseprojectexercise.Information.InformationActivity
 import com.kwave.android.firebaseprojectexercise.Notify.NotifyReadActivity;
 import com.kwave.android.firebaseprojectexercise.Payment.PaymentReadActivity;
 
+/**
+ * 원하는 액티비티로 가기 위한 SelectPage
+ */
 public class SelectActivity extends AppCompatActivity implements View.OnClickListener{
-
     ImageView imageInformation, imagePay, imageGruop, imageNotify;
 
     @Override
@@ -23,17 +25,23 @@ public class SelectActivity extends AppCompatActivity implements View.OnClickLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
 
-        imageInformation = (ImageView) findViewById(R.id.imageInfomation);
-        imagePay = (ImageView) findViewById(R.id.imagePay);
-        imageGruop = (ImageView) findViewById(R.id.imageGruop);
-        imageGruop.setClickable(true);
-        imageNotify = (ImageView) findViewById(R.id.imageNotify);
-        imageInformation.setOnClickListener(this);
-        imagePay.setOnClickListener(this);
-        imageGruop.setOnClickListener(this);
-        imageNotify.setOnClickListener(this);
-
+        initView();
         }
+
+
+        private void initView (){
+            imageInformation = (ImageView) findViewById(R.id.imageInfomation);
+            imagePay = (ImageView) findViewById(R.id.imagePay);
+            imageGruop = (ImageView) findViewById(R.id.imageGruop);
+            imageGruop.setClickable(true);
+            imageNotify = (ImageView) findViewById(R.id.imageNotify);
+            imageInformation.setOnClickListener(this);
+            imagePay.setOnClickListener(this);
+            imageGruop.setOnClickListener(this);
+            imageNotify.setOnClickListener(this);
+        }
+
+
     @Override
     public void onClick(View v) {
         Intent intent;

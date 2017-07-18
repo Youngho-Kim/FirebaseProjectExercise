@@ -52,12 +52,6 @@ public class GroupWriteActivity extends AppCompatActivity implements View.OnClic
     int current_month;
     GroupWriteFragment_tenant tenant1;
 
-//
-//    int GroupWriteRoomTenant;
-//    String GroupWriteNameTenant;
-//    int GroupWriteCountTenant;
-//    String GroupWriteDayTenant;
-
 
     MyHomeData myHomeData = new MyHomeData();
     Date date = new Date();

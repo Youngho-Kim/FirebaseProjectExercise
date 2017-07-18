@@ -59,6 +59,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "961845877436-tdbinqe56lmfri0dj0mkehmbnq2eumto.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kwave.android.firebaseprojectexercise",
+            "certificate_hash": "d3f605eee541d5272513c9149ffb9ba06b33d696"
+          }
+        },
+        {
           "client_id": "961845877436-rnmhugfgtcctug7q6ur7tgsv7ad2vjr7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

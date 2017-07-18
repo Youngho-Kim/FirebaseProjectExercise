@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,32 +21,53 @@ import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 준수사항 ReadPage
+ */
+
 public class NotifyReadActivity extends AppCompatActivity {
     TextView textNotify;
     List<MyHomeData> data = new ArrayList<>();
     MyHomeData bbs;
     FirebaseDatabase database;
     DatabaseReference bbsRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify_read);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.notifyReadToolbar);
-        textNotify = (TextView) findViewById(R.id.textNotify);
-        setSupportActionBar(toolbar);
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/준수사항/");
 
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        InitView();
+        setFirebaseReference("남일빌라/준수사항/");
         loadFireBase();
+    }
 
+    /**
+     *  데이터베이스 레퍼런스 설정
+     * @param reference 파이어베이스에 데이터 저장경로
+     */
+    private void setFirebaseReference(String reference){
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference(reference);
+    }
+
+    /**
+     * View 관련 사항 init
+     */
+    private void InitView(){
+        textNotify = (TextView) findViewById(R.id.textNotify);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.notifyReadToolbar);
+        setSupportActionBar(toolbar);
     }
 
 
-
-
-    //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
+    /**
+     * 액션바 메뉴 inflate 시키기
+     * @param menu  설정되는 메뉴
+     * @return  생성 유무
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

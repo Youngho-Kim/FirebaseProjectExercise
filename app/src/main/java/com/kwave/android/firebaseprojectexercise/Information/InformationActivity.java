@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 import com.kwave.android.firebaseprojectexercise.R;
 import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
@@ -26,37 +27,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 나는 뭐하는 놈입니다~
+ * 집 정보 ReadPage 설정
  */
 public class InformationActivity extends AppCompatActivity {
     static final int REQ_ADD_CONTACT = 1 ;
     TextView editAddressRead, editNameRead, editPhone, editAccountRead, editTrashRead;
     ImageView infoImage;
-    List<MyHomeData> data = new ArrayList<>();
-    MyHomeData bbs;
     FirebaseDatabase database;
     DatabaseReference bbsRef;
+    // 스토리지
+    private StorageReference mStorageRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
-        setView();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.infoToolbar);
-        setSupportActionBar(toolbar);
 
+        setView();
+        setToolbar();
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.inflateMenu(R.menu.information);
-
-        Drawable dr = getResources().getDrawable(R.drawable.pagepencilicon);
-        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
-
-        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
-        toolbar.setOverflowIcon(drawable);
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/집 정보/");
+        setFirebaseReference("남일빌라/집 정보/");
         loadFireBase();
     }
+
+
+    /**
+     *  데이터베이스 레퍼런스 설정
+     * @param reference 파이어베이스에 데이터 저장경로
+     */
+    private void setFirebaseReference(String reference){
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference(reference);
+    }
+
 
     private void setView(){
         editAddressRead = (TextView) findViewById(R.id.editAddressRead);
@@ -68,15 +72,29 @@ public class InformationActivity extends AppCompatActivity {
     }
 
 
+    private void setToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.infoToolbar);
+        setSupportActionBar(toolbar);
+        toolbar.inflateMenu(R.menu.information);
+        Drawable dr = getResources().getDrawable(R.drawable.pagepencilicon);
+        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        Drawable drawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 50, 50, true));
+        toolbar.setOverflowIcon(drawable);
+    }
 
-    //-----------------------------액션바에서 WriteActivity로 가기 ----------------------------------------
+
+    /**
+     * 액션바 메뉴 inflate 시키기
+     * @param menu  설정되는 메뉴
+     * @return  생성 유무
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.infomation_read_menu, menu);
-
         return true;
     }
+
 
     //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 실행----------------------------------------
     @Override
@@ -94,8 +112,9 @@ public class InformationActivity extends AppCompatActivity {
     }
 //------------------툴바에서 뒤로가기 버튼 추가 및 뒤로가기 끝----------------------------------------
 
+
     /**
-     * 설명
+     * Firebase에서 데이터 가져오기
      */
     private void loadFireBase(){
 //        Query query = bbsRef.orderByChild("연락처").equalTo(location);
@@ -115,6 +134,7 @@ public class InformationActivity extends AppCompatActivity {
         };
         bbsRef.addValueEventListener(postListener);
     }
+
 
     private void setData(MyHomeData bbs){
         Glide.with(this)

@@ -37,22 +37,37 @@ public class PaymentReadFragment_month extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_read_month, container, false);
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/납부내역/2017/7/수도세/");
-
-        // RecyclerView Setting
         payReadMonthRecycler = (RecyclerView) view.findViewById(R.id.payReadMonthRecycler);
+        setFirebaseReference("남일빌라/납부내역/2017/7/수도세/");
+        setRecyclerView();
+        loadFireBase();
+        return view;
+    }
+
+    /**
+     *  데이터베이스 레퍼런스 설정
+     * @param reference 파이어베이스에 데이터 저장경로
+     */
+    private void setFirebaseReference(String reference){
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference(reference);
+    }
+
+    /**
+     * RecyclerView Setting
+     */
+    private void setRecyclerView(){
+        // RecyclerView Setting
         adapter = new PaymentReadListAdapter_month(data, getContext());
         payReadMonthRecycler.setAdapter(adapter);
         payReadMonthRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setData(data);
         adapter.notifyDataSetChanged();
-
-        loadFireBase();
-
-        return view;
     }
 
+    /**
+     * Firebase에서 데이터 가져오기
+     */
     private void loadFireBase(){
 //        Query query = bbsRef.orderByChild("연락처").equalTo(location);
         bbsRef.addValueEventListener(new ValueEventListener() {
@@ -79,6 +94,11 @@ public class PaymentReadFragment_month extends Fragment {
             }
         });
     }
+
+    /**
+     *  들어온 데이터로 데이터 변경
+     * @param data 새로 변경될 데이터
+     */
     private void refreshList(List<MyHomeData> data){
         adapter.setData(data);
         adapter.notifyDataSetChanged();
