@@ -37,8 +37,6 @@ public class NotifyReadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify_read);
 
-        // 툴바에 뒤로가기 버튼 보이게 하기
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         InitView();
         setFirebaseReference("남일빌라/준수사항/");
         loadFireBase();
@@ -60,6 +58,8 @@ public class NotifyReadActivity extends AppCompatActivity {
         textNotify = (TextView) findViewById(R.id.textNotify);
         Toolbar toolbar = (Toolbar) findViewById(R.id.notifyReadToolbar);
         setSupportActionBar(toolbar);
+        // 툴바에 뒤로가기 버튼 보이게 하기
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 

@@ -38,7 +38,11 @@ public class PaymentReadFragment_month extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_read_month, container, false);
         payReadMonthRecycler = (RecyclerView) view.findViewById(R.id.payReadMonthRecycler);
-        setFirebaseReference("남일빌라/납부내역/2017/7/수도세/");
+//        PaymentReadActivity paymentReadActivity = (PaymentReadActivity) getActivity();
+//        Log.d("postCurrentMonth","--------------------postCurrentMonth : "+paymentReadActivity.postCurrentMonth());
+//        int month = paymentReadActivity.postCurrentMonth()+1;
+//        Log.d("month","--------------------month : "+month);
+        setFirebaseReference("남일빌라/납부내역/2017/7/월세/");
         setRecyclerView();
         loadFireBase();
         return view;
@@ -61,8 +65,8 @@ public class PaymentReadFragment_month extends Fragment {
         adapter = new PaymentReadListAdapter_month(data, getContext());
         payReadMonthRecycler.setAdapter(adapter);
         payReadMonthRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
     }
 
     /**

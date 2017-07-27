@@ -63,8 +63,8 @@ public class PaymentReadFragment_water extends Fragment{
         adapter = new PaymentReadListAdapter_water(data, getContext());
         payReadWaterRecycler.setAdapter(adapter);
         payReadWaterRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
     }
 
     /**

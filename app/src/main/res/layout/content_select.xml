@@ -27,10 +27,12 @@
 
             <ImageView
                 android:id="@+id/imageInfomation"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="108dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.65"
                 android:background="#f3f3f3"
                 app:srcCompat="@mipmap/ios_home_outline" />
 
@@ -43,8 +45,7 @@
                 android:letterSpacing="0.1"
                 android:text="집 정보"
                 android:textColor="#3b3a3c"
-                android:textSize="15sp"
-                 />
+                android:textSize="15sp" />
 
         </LinearLayout>
 

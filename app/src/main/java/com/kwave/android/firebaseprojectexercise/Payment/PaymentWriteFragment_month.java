@@ -47,9 +47,6 @@ public class PaymentWriteFragment_month extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_payment_write_month, container, false);
         textPayWriteCheckMonth = (TextView) view.findViewById(R.id.textPayWriteCheckMonth);
-
-//        database = FirebaseDatabase.getInstance();
-//        bbsRef = database.getReference("남일빌라/납부내역/2017/7/월세/");
         makeData(6);
 
         // RecyclerView Setting

@@ -90,7 +90,7 @@ public class PaymentReadListAdapter_water extends RecyclerView.Adapter<PaymentRe
         }
 
         public void setPayCount(String payCount) {
-            textPayReadCountWater.setText(payCount+"만원");
+            textPayReadCountWater.setText(payCount+"원");
         }
 
         public void setPayDay(String payDay) {

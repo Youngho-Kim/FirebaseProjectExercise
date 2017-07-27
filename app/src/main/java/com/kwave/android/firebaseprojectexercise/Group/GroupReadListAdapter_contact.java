@@ -23,9 +23,8 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
     private LayoutInflater inflater;
     Context context = null;
 
-//    public GroupReadListAdapter_contact(List<MyHomeData> data, Context context) {
-    public GroupReadListAdapter_contact(Context context) {
-//        this.data = data;
+    public GroupReadListAdapter_contact(List<MyHomeData> data, Context context) {
+        this.data = data;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -67,14 +66,6 @@ public class GroupReadListAdapter_contact extends RecyclerView.Adapter<GroupRead
             textGroupReadNameContact = (TextView) v.findViewById(R.id.textGroupReadNameContact);
             textGroupReadPhoneContact = (TextView) v.findViewById(R.id.textGroupReadPhoneContact);
             textGroupReadRoomContact = (TextView) v.findViewById(R.id.textGroupReadRoomContact);
-//            v.setOnClickListener(new View.OnClickListener() {
-//                 @Override
-//                 public void onClick(View v) {
-//                    Intent intent = new Intent(v.getContext(), GroupWriteActivity.class);
-//                    intent.putExtra("LIST_POSITION", position);
-//                    v.getContext().startActivity(intent);
-//                 }
-//            });
         }
         public void setPosition(int position){
             this.position = position;

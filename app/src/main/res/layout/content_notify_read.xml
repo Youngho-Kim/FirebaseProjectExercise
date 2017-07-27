@@ -30,6 +30,8 @@
     <TextView
         android:id="@+id/textNotify"
         android:padding="5dp"
+        android:paddingLeft="11.3dp"
+        android:paddingRight="11.3dp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"

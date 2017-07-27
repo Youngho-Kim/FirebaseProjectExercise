@@ -1,5 +1,6 @@
 package com.kwave.android.firebaseprojectexercise.Group;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +24,6 @@ import java.util.List;
 /**
  * Created by kwave on 2017-07-11.
  */
-
 public class GroupReadFragment_contact extends Fragment{
     List<MyHomeData> data = new ArrayList<>();
     MyHomeData bbs;
@@ -39,37 +39,43 @@ public class GroupReadFragment_contact extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_read_contact, container, false);
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("남일빌라/세입자 관리/2017/7/연락처/");
-//        List<MyHomeData> data = new ArrayList<>();
-//        // 리스트를 띄우기 위한 임시데이터
-//        MyHomeData bbs = new MyHomeData();
-//        bbs.room = "301";
-//        bbs.name = "kwave";
-//        bbs.phoneNumber = "010_7894-5612";
-//        data.add(bbs);
-
-        // RecyclerView Setting
         groupReadContactRecycler = (RecyclerView) view.findViewById(R.id.groupReadContactRecycler);
-        adapter = new GroupReadListAdapter_contact(getContext());
-        groupReadContactRecycler.setAdapter(adapter);
-        groupReadContactRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-//        adapter.setData(data);
-//        adapter.notifyDataSetChanged();
-
+        setFirebaseReference("남일빌라/세입자 관리/2017/7/연락처/");
+        setRecycler();
         loadFireBase();
-
         return view;
     }
 
 
+    /**
+     *  데이터베이스 레퍼런스 설정
+     * @param reference 파이어베이스에 데이터 저장경로
+     */
+    private void setFirebaseReference(String reference){
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference(reference);
+    }
+
+
+    /**
+     * RecyclerView Setting
+     */
+    private void setRecycler(){
+        adapter = new GroupReadListAdapter_contact(data,getContext());
+        groupReadContactRecycler.setAdapter(adapter);
+        groupReadContactRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.setData(data);
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Firebase에서 데이터 가져오기
+     */
     private void loadFireBase(){
-//        Query query = bbsRef.orderByChild("연락처").equalTo(location);
         bbsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 data = new ArrayList<>();
-//                DataMyHomeData.list.clear();
                 for(DataSnapshot item : dataSnapshot.getChildren()){
                     try {
                         bbs = item.getValue(MyHomeData.class);
@@ -79,7 +85,6 @@ public class GroupReadFragment_contact extends Fragment{
                         e.printStackTrace();
                     }
                 }
-//                dialogInterface.dismiss();
                 refreshList(data);
             }
 
@@ -89,6 +94,10 @@ public class GroupReadFragment_contact extends Fragment{
             }
         });
     }
+    /**
+     *  들어온 데이터로 데이터 변경
+     * @param data 새로 변경될 데이터
+     */
     private void refreshList(List<MyHomeData> data){
         adapter.setData(data);
         adapter.notifyDataSetChanged();

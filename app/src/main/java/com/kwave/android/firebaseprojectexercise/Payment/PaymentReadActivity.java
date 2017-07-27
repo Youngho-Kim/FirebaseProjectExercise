@@ -14,6 +14,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,15 +43,15 @@ import java.util.List;
 public class PaymentReadActivity extends AppCompatActivity implements View.OnClickListener {
     TextView textPayReadMonth;
     ImageButton payReadPreMonth, payReadNextMonth;
-    ViewPager payReadViewPaser;
-    PagerAdapter adapter;
     TabLayout payReadTab;
     TabItem payReadTabMonth, payReadTabWater;
+    ViewPager payReadViewPaser;
+    PagerAdapter adapter;
     Fragment monthFee, waterFee;
     LocationManager manager;
     MyHomeData myHomeData = new MyHomeData();
     // Date 대신에 사용
-    Calendar calendar = null;
+    Calendar calendar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         setCurrentMonth();
         setViewPager();
+//        addList();
         // 마시멜로 버전 이상에서 권한설정을 한다.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkPermission();
@@ -108,6 +110,29 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         payReadTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payReadViewPaser));
     }
 
+    // 프래그먼트 화면에 넣기
+    public void addList(){
+        /**
+         * 프래그먼트 화면에 넣기
+         */
+        if(!monthFee.isAdded())
+        {
+            // 1. 프래그먼트 트랜잭션 시작하기
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // 2. 화면에 프래그먼트 넣기
+            transaction.add(R.id.payReadViewPaser,monthFee);   // Transaction을 사용하는 이유는 트랜잭션이 Stack을  사용하기 때문이다.
+//        transaction.add(R.id.payReadViewPaser,waterFee);   // Transaction을 사용하는 이유는 트랜잭션이 Stack을  사용하기 때문이다.
+            // 3. 트랜잭션 완료
+            transaction.commit();
+        }
+    }
+//    public void addDetail(){
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.add(R.id.payReadViewPaser,detail);   // Transaction을 사용하는 이유는 트랜잭션이 Stack을  사용하기 때문이다.
+//        // 트랜잭션 처리 전체를 Stack에 담아놨다가, 안드로이드의 back 버튼으로 뒤로가기를 할 수 있다.
+//        transaction.addToBackStack(null);   //. 스택을 사용하겠다고 알림
+//        transaction.commit();
+//    }
     //----------------------------------------툴바에 버튼 추가 및 실행------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,6 +158,15 @@ public class PaymentReadActivity extends AppCompatActivity implements View.OnCli
         return super.onOptionsItemSelected(item);
     }
     //----------------------------------------툴바에 버튼 추가 및 실행 끝------------------------------------------
+
+    /**
+     *  프래그먼트에 해당 월 보내기
+     */
+    public int postCurrentMonth(){
+        String text = textPayReadMonth.getText().toString();
+
+     return Integer.parseInt(text.substring(0,1));
+    }
 
 
     /**

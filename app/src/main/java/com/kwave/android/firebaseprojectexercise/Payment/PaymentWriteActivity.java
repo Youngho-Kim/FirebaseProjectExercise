@@ -26,12 +26,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kwave.android.firebaseprojectexercise.R;
 import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +46,8 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
     LocationManager manager;
     ViewPager payWriteViewPaser;
     Fragment monthFee,waterFee;
+    PaymentWriteFragment_month writeFragment_month;
+    PaymentWriteFragment_month writeFragment_water;
     PagerAdapter adapter;
 
     ImageButton payWritePreMonth, payWriteNextMonth;
@@ -49,18 +55,27 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
 
     DatabaseReference bbsRef;
     MyHomeData myHomeData = new MyHomeData();
-    Date date = new Date();
-
+    List<MyHomeData> datas = new ArrayList<>();
+    Calendar calendar ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        database = FirebaseDatabase.getInstance();
-        bbsRef = database.getReference("bbs");
-
+        calendar = Calendar.getInstance();
+        setFirebaseReference("남일빌라/납부내역/2017/");
 
         setContentView(R.layout.activity_payment_write);
 
+        initView();
+        setCurrentMonth();
+        setViewPager();
+
+        // 툴바에 뒤로가기 버튼 보이게 하기
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    }
+
+    private void initView() {
         textPayWriteMonth = (TextView) findViewById(R.id.textPayWriteMonth);
         payWriteTab = (TabLayout) findViewById(R.id.payWriteTab);
         payWriteTabMonth = (TabItem) findViewById(R.id.payWriteTabMonth);
@@ -70,27 +85,12 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
         payWriteNextMonth = (ImageButton) findViewById(R.id.payWriteNextMonth);
         payWritePreMonth.setOnClickListener(this);
         payWriteNextMonth.setOnClickListener(this);
-
-
-        myHomeData.dataMonth = date.getMonth()+1;
-        int currentMonth = myHomeData.dataMonth;
-        Log.d("onCreat","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        textPayWriteMonth.setText(currentMonth+"월");
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.payWriteToolbar);
         setSupportActionBar(toolbar);
 
-        // 툴바에 뒤로가기 버튼 보이게 하기
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowCustomEnabled(true);
-//        toolbar.inflateMenu(R.group_read_menu.information);
-//        getSupportActionBar().setIcon(ic_menu_edit);
+    }
 
-
-        manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+    private void setViewPager() {
 
 //        // 1. ViewPager 위젯 연결           // 탭을 생성
 //        payTab.addTab(payTab.newTab().setText("One"));
@@ -110,78 +110,106 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
         // 4. Fragment Manager와 함께 adapter에 전달
         adapter = new PagerAdapter(getSupportFragmentManager(), datas);
 
-
         // 5. adapter를 pager 위젯에 연결
         payWriteViewPaser.setAdapter(adapter);
 
         // 6. 페이저가 변경 되었을 때 탭을 변경해주는 리스너
         payWriteViewPaser.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(payWriteTab));
 
-
         // 7. 탭이 변경되었을 때 탭을 변경해주는 리스너
         payWriteTab.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(payWriteViewPaser));
-
-
-//        loadData();
 
         // 마시멜로 버전 이상에서 권한설정을 한다.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             checkPermission();
         }
-
-
-
-
     }
 
-    public void SetDataPreMonth(){
+
+    private void setFirebaseReference(String reference){
+        database = FirebaseDatabase.getInstance();
+        bbsRef = database.getReference(reference);
+    }
+
+    private void loadFireBase(){
+//        Query query = bbsRef.orderByChild("연락처").equalTo(location);
+        ValueEventListener postListener = new ValueEventListener()  {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                MyHomeData bbs= dataSnapshot.getValue(MyHomeData.class);
+                textPayWriteMonth.setText(bbs.dataMonth);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        bbsRef.addValueEventListener(postListener);
+    }
+
+
+    private void setCurrentMonth(){
+        myHomeData.dataMonth = calendar.get(Calendar.MONTH);
+        Log.d("setCurrentMonth", "calendar.get(Calendar.MONTH) : " + calendar.get(Calendar.MONTH) + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
         int currentMonth = myHomeData.dataMonth;
-        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        if(currentMonth > 12){
-            currentMonth = date.getMonth();
-            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else if(currentMonth <= 1)
-        {
+        textPayWriteMonth.setText(currentMonth + "월");
+    }
+
+    //------------------------------------------리스트의 월 바꾸기  -------------------------------------------------------
+    /**
+     * textPayReadMonth의 달을 이전 달로 변경
+     */
+    public void SetDataPreMonth() {
+        int currentMonth = myHomeData.dataMonth;
+        Log.d("first", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        if (currentMonth > 12) {
+            currentMonth = calendar.get(Calendar.MONTH);   //deprecated       date.getMonth();
+            Log.d("if", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        } else if (currentMonth <= 1) {
             currentMonth = 12;
 //            myHomeData.dataMonth = currentMonth;
-            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else{
-            currentMonth = currentMonth-1;
+            Log.d("elseif", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        } else {
+            currentMonth = currentMonth - 1;
 //            myHomeData.dataMonth = currentMonth;
-            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+            Log.d("else", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
         }
-        textPayWriteMonth.setText(currentMonth+"월");
+        textPayWriteMonth.setText(currentMonth + "월");
         myHomeData.dataMonth = currentMonth;
-        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        Log.d("last", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
     }
-    public void SetDataNextMonth(){
+
+
+    /**
+     * textPayReadMonth의 달을 다음 달로 변경
+     */
+    public void SetDataNextMonth() {
         int currentMonth = myHomeData.dataMonth;
-        Log.d("first","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        if(currentMonth < 1){
-            currentMonth = date.getMonth()+1;
+        Log.d("first", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        if (currentMonth < 1) {
+            currentMonth = calendar.get(Calendar.MONTH);
+            ;
 //            myHomeData.dataMonth = currentMonth;
-            Log.d("if","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else if(myHomeData.dataMonth >=12)
-        {
+            Log.d("if", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        } else if (myHomeData.dataMonth >= 12) {
             currentMonth = 1;
 //            myHomeData.dataMonth = currentMonth;
-            Log.d("elseif","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
-        }
-        else{
-            currentMonth = currentMonth+1;
+            Log.d("elseif", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
+        } else {
+            currentMonth = currentMonth + 1;
 //            myHomeData.dataMonth = currentMonth;
-            Log.d("else","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+            Log.d("else", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
         }
-        textPayWriteMonth.setText(currentMonth+"월");
+        textPayWriteMonth.setText(currentMonth + "월");
         myHomeData.dataMonth = currentMonth;
-        Log.d("last","currentMonth : " +currentMonth +"/  myHomeData.dataMonth"+myHomeData.dataMonth);
+        Log.d("last", "currentMonth : " + currentMonth + "/  myHomeData.dataMonth" + myHomeData.dataMonth);
     }
 
-
-
+    public int getMonthValue(){
+        int currentMonth = myHomeData.dataMonth;
+        return currentMonth;
+    }
 
 
     // 어댑터의 데이터가 달라지면서 리스트  갱신
@@ -193,7 +221,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
 
     //-------------------------------------------권한처리---------------------------------------------------------------------------------
     private final int REQ_PERMISSION = 100;
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkPermission() {
         // Manifest에 있는 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />가 권한 허락을 맡았는지 물어보기
@@ -227,7 +254,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
         Toast.makeText(this,"권한을 설정하셔야 사용이 가능합니다",Toast.LENGTH_SHORT).show();
         finish();
     }
-
     //------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -237,7 +263,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.payment_write_menu, menu);
-
         return true;
     }
 
@@ -250,7 +275,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
                 return true;
             case R.id.paymentWritePen:
                 Intent intent = new Intent(PaymentWriteActivity.this,PaymentReadActivity.class);
-
                 startActivity(intent);
                 finish();
                 return true;
@@ -273,12 +297,6 @@ public class PaymentWriteActivity extends AppCompatActivity implements View.OnCl
         }
     }
     //------------------해당 월이 바뀌면서 데이터 갱신하기 끝 ----------------------------------------
-
-
-
-
-
-
 
     class PagerAdapter extends FragmentStatePagerAdapter {
         List<Fragment> datas;

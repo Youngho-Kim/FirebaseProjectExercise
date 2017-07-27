@@ -34,14 +34,15 @@ public class PaymentWriteFragment_water extends Fragment {
 
     FirebaseDatabase database;
     DatabaseReference bbsRef;
-
+    PaymentWriteActivity paymentWriteActivity = new PaymentWriteActivity();
     TextView textPayWriteWriteCheck;
     public PaymentWriteFragment_water() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {                           // 액티비티의 oncreateView 보다 먼저 생김
+                                                                                    // 그래서 fragment의 onViewCreate는 확실하게 액티비티의 onCreate보다 늦게 나온다.
         View view = inflater.inflate(R.layout.fragment_payment_write_water, container, false);
         textPayWriteWriteCheck = (TextView) view.findViewById(R.id.textPayWriteWriteCheck);
 
@@ -53,8 +54,8 @@ public class PaymentWriteFragment_water extends Fragment {
         adapter = new PaymentWriteListAdapter_water(data, getContext());
         payWriteWaterRecycler.setAdapter(adapter);
         payWriteWaterRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter.setData(data);
-        adapter.notifyDataSetChanged();
+//        adapter.setData(data);
+//        adapter.notifyDataSetChanged();
 
 
 
@@ -66,6 +67,8 @@ public class PaymentWriteFragment_water extends Fragment {
             }
         });
 
+        int currentMonths = paymentWriteActivity.getMonthValue();
+        Log.d("currentMonths","----------------------------------currentMonths : " + currentMonths);
 
         return view;
     }
@@ -84,6 +87,8 @@ public class PaymentWriteFragment_water extends Fragment {
     }
 
     public void goFirebase(){
+
+
 //
 //            int groupWriteRoom = Integer.parseInt(getEditGroupRoom());
 //            String groupWriteName = getEditGroupName();

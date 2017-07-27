@@ -1,12 +1,17 @@
 package com.kwave.android.firebaseprojectexercise.Information;
 
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,16 +21,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.kwave.android.firebaseprojectexercise.R;
 import com.kwave.android.firebaseprojectexercise.domain.MyHomeData;
+import com.kwave.android.firebaseprojectexercise.domain.PermissionControl;
 
 import java.io.File;
 
@@ -35,29 +47,43 @@ import java.io.File;
 
 public class InformationWriteActivity extends AppCompatActivity {
     EditText editAddressWrite, editNameWrite, editPhoneWrite, editAccountWrite, editTrashWrite;
+    TextView infoTextImageWrite;
     ImageView infoImageWrite;
     // 데이터베이스
     FirebaseDatabase database;
     DatabaseReference bbsRef;
     // 스토리지
     private StorageReference mStorageRef;
-
+    // 프로그래스 다이얼로그
+    private ProgressDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setFirebaseReference("남일빌라/집 정보/");
-        setFirebaseStorageReference("image");
+        // 스토리지 레퍼런스
+        setFirebaseStorageReference("images");
+        loadFireBase();
         setContentView(R.layout.activity_infomation_write);
-
-        // 툴바에 뒤로가기 버튼 보이게 하기
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initDialog();
         setView();
         infoImageWrite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                PermissionControl.checkVersion(InformationWriteActivity.this);           // 퍼미션 실시
                 OpenGallery(v);
             }
         });
+    }
+
+    /**
+     *  다이얼로그 설정
+     */
+    private void initDialog(){
+        // 다이얼로그
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("Upload Data");
+        dialog.setMessage("uploading...");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     }
 
     /**
@@ -84,17 +110,21 @@ public class InformationWriteActivity extends AppCompatActivity {
         editPhoneWrite = (EditText) findViewById(R.id.editPhoneWrite);
         editAccountWrite = (EditText) findViewById(R.id.editAccountWrite);
         editTrashWrite = (EditText) findViewById(R.id.editTrashWrite);
+        infoTextImageWrite = (TextView) findViewById(R.id.infoTextImageWrite);
         infoImageWrite = (ImageView) findViewById(R.id.infoImageWrite);
         Toolbar toolbar = (Toolbar) findViewById(R.id.infomationToolbar);
         setSupportActionBar(toolbar);
+        // 툴바에 뒤로가기 버튼 보이게 하기
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
     /**
      * 데이터 전송
      */
     public void postData(){
-        String imagePath = getPackageName();
+        dialog.show();
+        String imagePath = infoTextImageWrite.getText().toString();
+        Log.d("imagePath", "--------------------------imagePath : "+imagePath);
         // 이미지가 있으면 이미지 경로를 받아서 저장해야 되기 때문에
         // 이미지를 먼저 업로드 한다.
         if(imagePath != null && !"".equals(imagePath)){
@@ -159,6 +189,7 @@ public class InformationWriteActivity extends AppCompatActivity {
         // 이미지가 있으면 이미지 올리기
         if(imageUri != null){
             bbs.fileUriString = imageUri.toString();
+            Log.d("bbs.fileUriString","--------------------------------------bbs.fileUriString : " + bbs.fileUriString);
         }
 
         // 2. 입력할 데이터의 키 생성
@@ -170,10 +201,12 @@ public class InformationWriteActivity extends AppCompatActivity {
         bbsRef.child("masterAddr").setValue(bbs.masterAddr);
         bbsRef.child("masterAccount").setValue(bbs.masterAccount);
         bbsRef.child("masterPhoneNumber").setValue(bbs.masterPhoneNumber);
-        bbsRef.child("masterPhoneNumber").setValue(bbs.masterTrash);
+        bbsRef.child("masterTrash").setValue(bbs.masterTrash);
+        bbsRef.child("fileUriString").setValue(bbs.fileUriString);
         //    update : bbsRef.child(bbsKey).setValue(bbs);
         //    delete : bbsRef.child(bbsKey).setValue(null);
         // 데이터 입력후 창 닫기
+        dialog.dismiss();
         finish();
     }
 
@@ -184,7 +217,21 @@ public class InformationWriteActivity extends AppCompatActivity {
         // 가. 이미지 선택창 호출
         startActivityForResult( Intent.createChooser(intent, "앱을 선택하세요") , 100);
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            switch (requestCode) {
+                // 나. 이미지 선택창에서 선택된 이미지의 경로 추출
+                case 100:
+                    Uri imageUri = data.getData();
+                    String filePath = getPathFromUri(this, imageUri);
+                    infoTextImageWrite.setText(filePath);
+                    infoImageWrite.setImageURI(imageUri);
+                    break;
+            }
+        }
+    }
 
 /**
  *  Uri 에서 실제 경로 꺼내는 함수
@@ -197,6 +244,44 @@ public class InformationWriteActivity extends AppCompatActivity {
         }
         cursor.close();
         return realPath;
+    }
+
+
+    /**
+     * Firebase에서 데이터 가져오기
+     */
+    private void loadFireBase(){
+//        Query query = bbsRef.orderByChild("연락처").equalTo(location);
+        ValueEventListener postListener = new ValueEventListener()  {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getChildrenCount() >= 1) {
+                    MyHomeData bbs = dataSnapshot.getValue(MyHomeData.class);
+                    setData(bbs);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        bbsRef.addValueEventListener(postListener);
+
+    }
+
+
+    private void setData(MyHomeData bbs){
+//        if(bbs.fileUriString != null && !"".equals(bbs.fileUriString)) {
+//            Glide.with(this)
+//                    .load(bbs.fileUriString)
+//                    .into(infoImageWrite);
+//        }
+        editAddressWrite.setText(bbs.masterAddr);
+        editNameWrite.setText(bbs.masterName);
+        editPhoneWrite.setText(bbs.masterPhoneNumber);
+        editAccountWrite.setText(bbs.masterAccount);
+        editTrashWrite.setText(bbs.masterTrash);
     }
 
 
@@ -227,6 +312,7 @@ public class InformationWriteActivity extends AppCompatActivity {
                 // 액티비티 이동하기
                 Intent intent = new Intent(InformationWriteActivity.this, InformationActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);

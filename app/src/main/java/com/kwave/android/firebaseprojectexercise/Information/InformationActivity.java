@@ -48,6 +48,8 @@ public class InformationActivity extends AppCompatActivity {
         // 툴바에 뒤로가기 버튼 보이게 하기
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setFirebaseReference("남일빌라/집 정보/");
+        // 스토리지 레퍼런스
+//        mStorageRef = FirebaseStorage.getInstance().getReference("images");
         loadFireBase();
     }
 
@@ -59,6 +61,7 @@ public class InformationActivity extends AppCompatActivity {
     private void setFirebaseReference(String reference){
         database = FirebaseDatabase.getInstance();
         bbsRef = database.getReference(reference);
+//        StorageReference fileRef = mStorageRef.child("image/");
     }
 
 
@@ -106,6 +109,7 @@ public class InformationActivity extends AppCompatActivity {
             case R.id.informationReadPen:
                 Intent intent = new Intent(InformationActivity.this,InformationWriteActivity.class);
                 startActivityForResult(intent, REQ_ADD_CONTACT);
+                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -133,14 +137,16 @@ public class InformationActivity extends AppCompatActivity {
             }
         };
         bbsRef.addValueEventListener(postListener);
+
     }
 
 
     private void setData(MyHomeData bbs){
-        Glide.with(this)
-                .load(bbs.fileUriString)
-                .into(infoImage);
-
+        if(bbs.fileUriString != null && !"".equals(bbs.fileUriString)) {
+            Glide.with(this)
+                    .load(bbs.fileUriString)
+                    .into(infoImage);
+        }
         editAddressRead.setText(bbs.masterAddr);
         editNameRead.setText(bbs.masterName);
         editPhone.setText(bbs.masterPhoneNumber);
